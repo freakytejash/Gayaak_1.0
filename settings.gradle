@@ -1,0 +1,6 @@
+include ':commonlib'
+include ':mobilertc'
+include ':mobilertc'
+include ':commonlib'
+rootProject.name='Gayaak_1.0'
+include ':app'

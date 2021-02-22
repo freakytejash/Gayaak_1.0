@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="otp_view_item_size">48dp</dimen>
+    <dimen name="otp_view_item_radius">5dp</dimen>
+    <dimen name="otp_view_item_spacing">5dp</dimen>
+    <dimen name="otp_view_item_line_width">2dp</dimen>
+    <dimen name="otp_view_cursor_width">2dp</dimen>
+
+    <dimen name="size_ten">10dp</dimen>
+    <dimen name="size_five">5dp</dimen>
+    <dimen name="size_sixteen">16dp</dimen>
+    <dimen name="size_three">3dp</dimen>
+    <dimen name="size_two">2dp</dimen>
+    <dimen name="size_zero">0dp</dimen>
+    <dimen name="size_thirty_five">35dp</dimen>
+    <dimen name="size_forty">40dp</dimen>
+    <dimen name="size_fifty">50dp</dimen>
+    <dimen name="size_one">1dp</dimen>
+    <dimen name="size_two_hundred">200dp</dimen>
+
+    <dimen name="player_base_height">220dp</dimen>
+    <dimen name="player_controller_base_height">40dp</dimen>
+    <dimen name="seekbar_thumb_width">25dp</dimen>
+
+    <dimen name="row_height">44dp</dimen>
+    <dimen name="day_label_size_events_enabled">30dp</dimen>
+    <dimen name="day_label_focus_size_events_enabled">34dp</dimen>
+    <dimen name="day_label_size_events_disabled">38dp</dimen>
+    <dimen name="day_label_focus_size_events_disabled">42dp</dimen>
+
+</resources>

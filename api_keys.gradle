@@ -1,0 +1,11 @@
+
+android{
+    defaultConfig {
+        buildConfigField "String", "GAPI_KEY", "\"AIzaSyDSD2_ztgbWWlDNojAoAkuMQeTPKbPHiFg\""
+        buildConfigField "String", "facebook_app_id" , "\"572916370061533\""
+        buildConfigField "String", "paypal_client_id" , "\"ARW19CH3RpRTIepjAErM5MfxsFCTQZVarRmx13N2xqBmA7dMncFBwagEQ-7CrBsakW7ipOzNEuMKa8yN\""
+        buildConfigField "String", "zoom_app_id" , "\"CPs5J6tvkLBkpTdZvgdJqAop5jkQ7CCIaXPt\""
+        buildConfigField "String", "zoom_app_secret" , "\"Bk78U9PlLWCoP6uCnmG4DdICu6gKmOf0HFuo\""
+        buildConfigField "String", "zoom_web_domain" , "\"zoom.us\""
+    }
+}

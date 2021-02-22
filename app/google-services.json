@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "120437974558",
+    "firebase_url": "https://gayaak.firebaseio.com",
+    "project_id": "gayaak",
+    "storage_bucket": "gayaak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120437974558:android:8ea5b3042e018f0f2d700f",
+        "android_client_info": {
+          "package_name": "com.example.gayaak_10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120437974558-lgrpij581lhs53l340ca0k3vo17fqfa3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkE9eyePQCVK-e_AqiB89SHKMW3zVI3nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120437974558-lgrpij581lhs53l340ca0k3vo17fqfa3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

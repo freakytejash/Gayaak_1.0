@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true">
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical">
+
+         <!--Header-->
+         <RelativeLayout
+             android:id="@+id/layoutToolbar"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:background="@drawable/linear_bg"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             android:orientation="horizontal">
+
+             <androidx.appcompat.widget.AppCompatImageView
+                 android:id="@+id/ivModuleBack"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:src="@drawable/ic_left_arrow_white"
+                 android:padding="5dp"
+                 android:layout_alignParentStart="true"
+                 android:layout_centerVertical="true"/>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                 android:orientation="horizontal">
+
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:id="@+id/ivAppIcon"
+                     android:layout_width="40dp"
+                     android:layout_height="match_parent"
+                     android:src="@drawable/gaayak_symbol"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toStartOf="@+id/tvTitle"
+                     app:layout_constraintTop_toTopOf="parent" />
+
+                 <androidx.appcompat.widget.AppCompatTextView
+                     android:id="@+id/tvTitle"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:gravity="center"
+                     android:text="@string/app_title"
+                     android:textColor="@color/white"
+                     android:textSize="22sp"
+                     android:textStyle="bold" />
+             </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentEnd="true"
+                 android:gravity="center"
+                 android:orientation="horizontal">
+
+                 <FrameLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:visibility="visible">
+
+                     <androidx.appcompat.widget.AppCompatImageView
+                         android:id="@+id/ivAppNotification"
+                         android:layout_width="40dp"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center"
+                         android:padding="5dp"
+                         android:src="@drawable/ic_notifications" />
+
+                     <androidx.appcompat.widget.AppCompatImageView
+                         android:layout_width="10dp"
+                         android:layout_height="10dp"
+                         android:layout_gravity="top|end"
+                         android:layout_marginEnd="10dp"
+                         android:paddingTop="2dp"
+                         android:src="@drawable/circle_filled"
+                         android:textColor="@color/white"
+                         android:tint="@color/red" />
+                 </FrameLayout>
+
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:id="@+id/ivPoints"
+                     android:layout_width="50dp"
+                     android:layout_height="wrap_content"
+                     android:padding="5dp"
+                     android:src="@drawable/ic_credits" />
+             </LinearLayout>
+         </RelativeLayout>
+
+         <!--Home Body-->
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             app:layout_constraintTop_toBottomOf="@+id/layoutToolbar"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical"
+                 android:visibility="visible">
+
+                 <RelativeLayout
+                     android:layout_height="250dp"
+                     android:layout_width="match_parent">
+
+                     <androidx.appcompat.widget.AppCompatImageView
+                         android:id="@+id/ivCourseBg"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:src="@drawable/ic_learning"/>
+
+                     <androidx.appcompat.widget.AppCompatImageView
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:alpha="0.4"
+                         android:background="@color/black"
+                         android:scaleType="fitXY" />
+
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tvCourseName"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="20sp"
+                         android:layout_gravity="center"
+                         android:layout_marginTop="30dp"
+                         android:layout_marginStart="30dp"
+                         android:layout_marginEnd="10dp"
+                         android:layout_centerHorizontal="true"
+                         android:fontFamily="@font/poppins_regular"
+                         android:textColor="@color/white"
+                         android:gravity="center"
+                         android:text="@string/course"/>
+
+                     <LinearLayout
+                         android:id="@+id/layoutBookSessions"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="40dp"
+                         android:orientation="vertical"
+                         android:padding="10dp"
+                         android:layout_alignParentEnd="true"
+                         android:background="@drawable/circle_semicircle_transparent">
+
+                         <androidx.appcompat.widget.AppCompatTextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="10"
+                             android:textSize="14sp"
+                             android:layout_gravity="center"
+                             android:textColor="@color/white"
+                             android:drawablePadding="10dp"
+                             android:drawableEnd="@drawable/ic_students"/>
+
+                         <androidx.appcompat.widget.AppCompatTextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="per session"
+                             android:textSize="12sp"
+                             android:layout_gravity="center"
+                             android:textColor="@color/white" />
+                     </LinearLayout>
+
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tvModuleDescription"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/poppins_regular"
+                         android:layout_alignParentBottom="true"
+                         android:layout_margin="10dp"
+                         android:text="@string/dummy_text"
+                         android:textColor="@color/white"
+                         android:textSize="14sp" />
+
+                 </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutModule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="30dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="@string/all_modules"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvEbook"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center"
+                            android:background="@drawable/rectangular_curved_white"
+                            android:backgroundTint="@color/colorAccent"
+                            android:padding="10dp"
+                            android:text="@string/ebook"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvModule"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        tools:listitem="@layout/item_module"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+                </LinearLayout>
+             </LinearLayout>
+
+             <!--Empty view-->
+             <LinearLayout
+                 android:id="@+id/layoutEmptyModule"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="30dp"
+                 android:layout_marginEnd="30dp"
+                 android:orientation="vertical"
+                 android:visibility="gone"
+                 android:layout_centerInParent="true">
+
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:layout_width="100dp"
+                     android:layout_height="100dp"
+                     android:layout_gravity="center"
+                     android:src="@drawable/ic_chat"
+                     android:tint="@color/colorPrimary" />
+
+                 <androidx.appcompat.widget.AppCompatTextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginTop="10dp"
+                     android:fontFamily="@font/poppins_regular"
+                     android:gravity="center"
+                     android:text="@string/modules_not_available"
+                     android:textColor="@color/colorPrimary"
+                     android:textSize="18sp" />
+
+             </LinearLayout>
+         </RelativeLayout>
+     </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rvSlotTime"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:listitem="@layout/item_tutor_student"
+    android:background="@color/white"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

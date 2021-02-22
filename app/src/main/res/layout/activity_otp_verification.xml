@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/app_bg"
+    android:orientation="vertical"
+    tools:context=".common.login_register.SignUpActivity">
+
+    <ProgressBar
+        android:id="@+id/progressOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+             android:id="@+id/ivOtpBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:src="@drawable/ic_left_arrow_white" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/gayaak_icon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_title"
+                android:textColor="#000"
+                android:textSize="41sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:lineSpacingExtra="12sp"
+                android:text="@string/online_music_school"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtpSentNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:text="@string/otpText"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.example.gayaak_10.widgets.customotp.OtpView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center_horizontal"
+                android:inputType="number"
+                app:cursorColor="@color/colorPrimary"
+                app:cursorWidth="1dp"
+                app:hideLineWhenFilled="false"
+                android:textColor="@color/black"
+                app:itemCount="4"
+                app:itemSpacing="15dp"
+                android:imeOptions="actionDone"
+                app:lineColor1="@color/colorPrimary"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVerifyOtp"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rectangular_10_border_gray"
+                android:text="@string/verify_code"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnResend"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="@string/resend_otp"
+                android:textColor="@color/inactive"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
