@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/off_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/CoursesMoreToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/linear_bg"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/gaayak_symbol"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAppNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notifications" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/circle_filled"
+                    android:textColor="@color/white"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_credits"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivAppNotification"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="500" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/CoursesMoreToolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                tools:text="Hi Suba"/>
+
+            <LinearLayout
+                android:id="@+id/layoutUnreadMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/rectangular_25_filled_white">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivMessageNotification"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_message" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|end"
+                        android:text="100"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/circle_filled_24"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/red" />
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:text="Unread Messages"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:padding="25dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rectangular_10_filled_white"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Sessions this week"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTotalSessions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="14sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        tools:text="15"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rectangular_10_filled_white"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Students Practiced" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTotalStudent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="14sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="5"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:background="@drawable/rectangular_10_filled_white"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Coins Earned"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTotalCoins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="14sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
+                        tools:text="100"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+               <LinearLayout
+                   android:id="@+id/layoutTodaysSession"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:visibility="gone"
+                   android:orientation="vertical">
+
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/poppins_bold"
+                       android:textSize="16sp"
+                       android:padding="10dp"
+                       android:gravity="center"
+                       android:textColor="@color/black"
+                       android:drawableTint="@color/black"
+                       android:drawableEnd="@drawable/ic_calendar"
+                       android:drawablePadding="10dp"
+                       android:text="@string/today_s_session"/>
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/rvTodaySession"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical"
+                       tools:itemCount="1"
+                       android:nestedScrollingEnabled="false"
+                       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                       tools:listitem="@layout/item_tutor_session"/>
+               </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutUpcomingClasses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivCloseUpcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_down_black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/your_upcoming_class"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDemoUpcomingSession"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/demo_upcoming_classes"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutEmptySchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:text="@string/no_sessions_right"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

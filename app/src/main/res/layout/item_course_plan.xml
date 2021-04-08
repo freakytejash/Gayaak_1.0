@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="8dp"
+    android:id="@+id/cardViewPlan"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPlanName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:hint="Carnatic Music"
+        android:gravity="center_vertical"
+        android:background="@drawable/rect_gray"
+        android:layout_toStartOf="@+id/tvWalletPoints"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:padding="5dp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWalletPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:text="500 per session"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:padding="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:drawableStart="@drawable/ic_credits"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/rectangular_filled_appcolor"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+</RelativeLayout>

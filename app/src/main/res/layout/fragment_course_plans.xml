@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff">
+<!--header-->
+    <RelativeLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/linear_bg"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPaymentBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left_arrow_white"
+            android:padding="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            tools:ignore="RelativeOverlap">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/gaayak_symbol" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAppNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notifications" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/circle_filled"
+                    android:textColor="@color/white"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWalletPointsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_credits"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivAppNotification"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="500" />
+
+           <!-- <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_credits" />-->
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!--plans layout-->
+            <LinearLayout
+                android:id="@+id/layoutCoursePlans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="visible">
+<!--wallet recharge text view-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWalletRecharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutToolbar"
+                    android:text="Wallet Recharge"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/white"/>
+
+<!--                1 wallet coin = 1 usd layout-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:gravity="end">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" *1"
+                        android:textSize="12sp"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="11dp"
+                        android:src="@drawable/ic_credits"
+                        android:layout_gravity="center_vertical"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="= "
+                        android:textSize="12sp"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_1_usd"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginEnd="20dp"/>
+                </LinearLayout>
+
+                <!--            course spinner-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangular_1_border_grey"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_course_plan"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Crashic test"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:textSize="18sp" />
+
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:id="@+id/spCoursePlan"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="45dp"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:hint="Course Name"-->
+<!--                        android:textColorHint="@color/black"-->
+<!--                        app:drawableTint="@color/colorPrimary"-->
+<!--                        android:drawableEnd="@drawable/ic_arrow_down_black"/>-->
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spCoursePlan"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="45dp"/>
+                </RelativeLayout>
+
+<!--                <include layout="@layout/item_course_plan"-->
+<!--                    android:id="@+id/layoutCoursePlan"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvCoursePlan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    tools:itemCount="3"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/item_course_plan" />-->
+
+
+<!--                custom plan card view-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/customCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:cardElevation="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/radioCustomPlan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Custom Plan"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/colorAccent"
+                                android:fontFamily="@font/poppins_bold"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="5dp"/>
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorAccent"/>
+
+                        <!--                    no. of session layout-->
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginBottom="20dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <!--                        no. of session layout with - and + button-->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="start"
+                                    android:layout_marginStart="20dp">
+
+                                    <!--                            + text view-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/btn_subtract"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:text="-"
+                                        android:textSize="23sp"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:textColor="@color/colorAccent"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/circle_button_grey"/>
+
+                                    <!--                            no of sessions-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tvCustomSessions"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="30dp"
+                                        android:text="1"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        android:layout_margin="10dp"
+                                        android:paddingTop="-3dp"
+                                        android:textSize="20sp"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:textColor="@color/dark_gray"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/circle_button_grey"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/btn_add"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:text="+"
+                                        android:paddingTop="-3dp"
+                                        android:textSize="23sp"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:textColor="@color/colorAccent"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/circle_button_grey"/>
+                                </LinearLayout>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="Sessions"
+                                    android:textColor="@color/dark_gray"
+                                    app:fontFamily="@font/poppins_bold"
+                                    android:layout_gravity="center_horizontal"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="end"
+                                android:gravity="end"
+                                android:layout_marginEnd="20dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvWorth"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Worth    "
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center_horizontal"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textSize="23sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/dark_gray"/>
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCustomRequiredPoints"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="12"
+                                    android:inputType="number"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textSize="23sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorAccent"/>
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_credits"
+                                    android:layout_marginTop="4dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <!--            textview recommended pack-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radioRecommendedPlan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="21dp"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Recommended Pack"
+                        android:gravity="center_horizontal"
+                        app:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"/>
+                </RelativeLayout>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWalletsPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_wallet_plan_recommended" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
+
+                   <!-- <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/read_instruction"
+                        android:textAlignment="gravity"
+                        android:drawablePadding="5dp"
+                        android:layout_gravity="center"
+                        android:drawableStart="@drawable/app_color_triangle"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="10dp" />-->
+
+                   <LinearLayout
+                       android:id="@+id/layoutInfoCoins"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:padding="5dp"
+                       android:visibility="visible"
+                       android:orientation="horizontal">
+
+                       <androidx.appcompat.widget.AppCompatImageView
+                           android:layout_width="20dp"
+                           android:layout_height="40dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/app_color_triangle"/>
+
+                       <androidx.appcompat.widget.AppCompatTextView
+                           android:id="@+id/tvCoinInfo"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           tools:text="1 coin = 1 USD/50 INR"
+                           android:textAlignment="gravity"
+                           android:drawablePadding="5dp"
+                           android:layout_gravity="center"
+                           android:drawableStart="@drawable/app_color_triangle"
+                           android:textColor="@color/black"
+                           android:fontFamily="@font/poppins_regular"
+                           android:textSize="12sp"
+                           android:layout_marginEnd="10dp" />
+
+
+                   </LinearLayout>
+
+                 <!--   <LinearLayout
+                        android:id="@+id/layoutCoinInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:padding="5dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/app_color_triangle"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCoinDeductionInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/balance_insufficient"
+                            android:textAlignment="gravity"
+                            android:drawablePadding="5dp"
+                            android:layout_gravity="center"
+                            android:drawableStart="@drawable/app_color_triangle"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="10dp" />
+                    </LinearLayout>-->
+
+                    <CheckBox
+                        android:id="@+id/checkTermsCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/i_agree_to_the_terms_and_conditions_of_gaayak"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutPlanTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPlanTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="$210"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/red"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProceedPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/proceed"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rectangular_10_filled_coloraccent"/>
+
+            </LinearLayout>
+
+            <!--courseUpdationView-->
+            <LinearLayout
+                android:id="@+id/courseUpdationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_progress"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:progress="60"
+                    android:layout_gravity="center"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
+                    android:text="@string/please_wait_nupdating_your_courses"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

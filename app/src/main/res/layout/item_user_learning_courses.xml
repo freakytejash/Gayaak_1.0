@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="9dp"
+    app:cardElevation="10dp"
+    android:layout_marginEnd="10dp"
+    android:elevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="280dp">
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCourseBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/singer3"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.4"
+                android:background="@color/black"
+                android:scaleType="fitXY" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCourseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carnatic Music"
+                android:textColor="@color/yellow"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLevelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Level 2"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 to 6 lessons"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContinueCourse"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_learning"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="35dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:layout_marginEnd="35dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:background="@drawable/rectangular_10_filled_appcolor"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

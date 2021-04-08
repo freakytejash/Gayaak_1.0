@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/linear_bg"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPaymentBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left_arrow_white"
+            android:padding="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            tools:ignore="RelativeOverlap">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/gaayak_symbol" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAppNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notifications" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/circle_filled"
+                    android:textColor="@color/white"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_credits" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <!--payment layout-->
+        <LinearLayout
+            android:id="@+id/layoutSelectPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+          <LinearLayout
+              android:id="@+id/layoutPlans"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:visibility="visible"
+              android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/order_summary"
+                  android:textColor="@color/colorAccent"
+                  android:layout_gravity="center"
+                  android:layout_marginTop="20dp"
+                  android:textStyle="bold"
+                  android:fontFamily="@font/poppins_regular"
+                  android:textSize="18sp" />
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="@color/gray_bg"/>
+
+              <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:padding="5dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginBottom="10dp">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:id="@+id/tvPlanName"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/poppins_regular"
+                      tools:text="Carnatic Music"
+                      android:textSize="16sp"
+                      android:layout_toStartOf="@+id/tvPlanPrice"/>
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:id="@+id/tvPlanPrice"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/poppins_regular"
+                      tools:text="40 USD"
+                      android:textSize="16sp"
+                      android:layout_alignParentEnd="true"/>
+
+
+              </RelativeLayout>
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="@color/gray_bg"/>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:padding="5dp"
+                      android:visibility="visible">
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="@string/sub_total"
+                          android:textSize="16sp"/>
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:id="@+id/tvSubTotal"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          tools:text="$ 32"
+                          android:textSize="16sp"
+                          android:layout_alignParentEnd="true"
+                          tools:ignore="RelativeOverlap" />
+
+
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:padding="5dp"
+                      android:visibility="visible">
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="@string/tax_18"
+                          android:textSize="16sp"/>
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:id="@+id/tvTax"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          tools:text="$ 7.2"
+                          android:textSize="16sp"
+                          android:layout_alignParentEnd="true"
+                          tools:ignore="RelativeOverlap" />
+
+
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:padding="5dp">
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="@string/student_discount"
+                          android:textSize="16sp"/>
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:id="@+id/tvStudentDiscount"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="@string/_10"
+                          android:textSize="16sp"
+                          android:layout_alignParentEnd="true"
+                          tools:ignore="RelativeOverlap" />
+
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:background="@color/colorAccent"
+                      android:layout_marginTop="@dimen/zm_ui_kit_text_size_10sp"
+                      android:padding="10dp">
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="@string/total_to_pay"
+                          android:textColor="@color/white"
+                          android:textSize="16sp"/>
+
+                      <androidx.appcompat.widget.AppCompatTextView
+                          android:id="@+id/tvTotal"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/poppins_regular"
+                          tools:text="40 USD"
+                          android:textColor="@color/white"
+                          android:textSize="16sp"
+                          android:layout_alignParentEnd="true"
+                          tools:ignore="RelativeOverlap" />
+
+                  </RelativeLayout>
+
+              </LinearLayout>
+          </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnPayPal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/proceed_to_pay"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:layout_margin="30dp"
+                android:gravity="center"
+                android:background="@drawable/rectangular_25_filled_coloraccent"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+
+    <!--
+
+    <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCreditDebit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pay_with_debit_credit_card"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/rectangular_10_filled_white_nocurved"/>
+
+
+
+    <LinearLayout
+                    android:id="@+id/layoutDebitCredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="5dp"
+                    android:background="@drawable/edittext_bg"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_visa"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_mastercard"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/name_on_the_card"
+                        android:textColor="@color/colorLightGray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etUserInfoEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/edittext_bg"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp"
+                        android:paddingStart="10dp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/card_number"
+                        android:textColor="@color/colorLightGray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:imeOptions="actionNext"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/edittext_bg"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:baselineAligned="false">
+
+                        <LinearLayout android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/expiry_date"
+                                android:textColor="@color/colorLightGray"
+                                android:textSize="16sp" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:paddingStart="10dp"
+                                android:hint="@string/mm_yy"
+                                android:background="@drawable/edittext_bg"
+                                android:inputType="number"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                tools:ignore="RtlSymmetry" />
+
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/security_code"
+                                android:textColor="@color/colorLightGray"
+                                android:textSize="16sp" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:paddingStart="10dp"
+                                android:maxLength="3"
+                                android:background="@drawable/edittext_bg"
+                                android:inputType="number"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                tools:ignore="RtlSymmetry" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/expiry_date"
+                        android:textColor="@color/colorLightGray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/edittext_bg"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/mm_yy"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:paddingStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/proceed"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/rectangular_10_filled_white_nocurved"/>
+                </LinearLayout>-->

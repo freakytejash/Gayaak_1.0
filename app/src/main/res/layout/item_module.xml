@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewModule"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/gray_bg"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivModule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/ic_right_arrow_black"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvModuleName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/ivModule"
+                    android:text="Module 1"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_lock"/>
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvModuleDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_text"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                android:textSize="14sp"
+                android:maxLines="3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_question"
+                    android:tint="@color/gray_icon"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_hollow_gray"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quiz"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorLightGray"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutModuleVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_play"
+                    android:tint="@color/gray_icon"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_hollow_gray"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Video"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorLightGray"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutModulePDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_library_circle"
+                    android:tint="@color/gray_icon"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_hollow_gray"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Audio"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorLightGray"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

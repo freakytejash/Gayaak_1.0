@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".tutor.fragment.TutorRegularFeedbackFragment">
+
+<!--    header-->
+    <RelativeLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/linear_bg"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/gaayak_symbol" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAppNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notifications" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/circle_filled"
+                    android:textColor="@color/white"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_credits" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFeedbackBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_left_arrow_white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutToolbar"
+        android:nestedScrollingEnabled="false"
+        android:fillViewport="true"
+        android:fitsSystemWindows="false"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Arjun's Feedback"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/module_progress"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/colorAccent"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".75"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/in_progress"
+                    android:gravity="center"
+                    android:textColor="#E39845"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".75"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/completed"
+                   android:gravity="center"
+                    android:textColor="@color/green"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+<!--            module 1 layout-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvModuleProgress"
+                android:orientation="vertical"
+                tools:listitem="@layout/item_regular_module_progress"
+                tools:itemCount="4"
+                android:visibility="visible"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <!--        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/module_1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioModule1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/module1InProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"/>
+
+                    <RadioButton
+                        android:id="@+id/module1Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"/>
+
+                </RadioGroup>
+
+
+            </LinearLayout>-->
+
+<!--            &lt;!&ndash; module 2 layout&ndash;&gt;
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/module_2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioModule2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/module2InProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"/>
+
+                    <RadioButton
+                        android:id="@+id/module2Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"/>
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+&lt;!&ndash;            module 3 layout&ndash;&gt;
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/module_3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioModule3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/module3InProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"/>
+
+                    <RadioButton
+                        android:id="@+id/module3Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"/>
+
+                </RadioGroup>
+            </LinearLayout>
+
+&lt;!&ndash;            module 4 layout&ndash;&gt;
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/module_4"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioModule4"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/module4InProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"/>
+
+                    <RadioButton
+                        android:id="@+id/module4Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"/>
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+&lt;!&ndash;           if others layout&ndash;&gt;
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/others"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioIfOthers"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/othersInProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"/>
+
+                    <RadioButton
+                        android:id="@+id/othersCompleted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"/>
+
+                </RadioGroup>
+
+
+            </LinearLayout>-->
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etTaught"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/specify_what_has_been_taught"
+                android:padding="10dp"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/general_feedback_about_the_student"
+                android:padding="10dp"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="1dp"
+                android:layout_marginTop="20dp">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rating"
+                app:fontFamily="@font/poppins_medium"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                android:padding="10dp" />
+
+            </RelativeLayout>
+           <!-- <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:text="Rating"
+                app:fontFamily="@font/poppins_medium"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                android:drawableEnd="@drawable/ic_arrow_down_black"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"/>-->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangular_10_filled_coloraccent"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:textAllCaps="false"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#00ffffff" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

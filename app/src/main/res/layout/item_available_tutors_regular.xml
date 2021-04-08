@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="15dp"
+    app:cardPreventCornerOverlap="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/linear_bg"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginStart="30dp"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivTutorImage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_user_placeholder"
+                    android:background="@drawable/circle_hollow_gray"
+                    android:layout_marginEnd="40dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTutorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Meera Lakshmi"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/white"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-2dp"
+                        tools:text="Experienced Trainer"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/white"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-2dp"
+                        tools:text="Course Name"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/white"/>
+
+                    <!-- <LinearLayout
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginTop="5dp"
+                         android:visibility="gone">
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/fill_star"/>
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/fill_star"/>
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/fill_star"/>
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/fill_star"/>
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/empty_star"/>
+
+                     </LinearLayout>-->
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvClassDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="14sp"
+                tools:text="Teaching stated with the idea of learning new things along the way and its been 10 years."/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <com.example.gayaak_10.videoplayer.AndExoPlayerViewWithoutControls
+                    android:id="@+id/videoview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:andexo_aspect_ratio="aspect_match"
+                    app:andexo_full_screen="false"
+                    app:andexo_loop="finite"
+                    app:andexo_play_when_ready="false"
+                    app:andexo_resize_mode="Fit"
+                    app:andexo_show_controller="false"
+                    android:src="@drawable/group_singers_1"/>
+
+                <!--     <androidx.appcompat.widget.AppCompatImageView
+                         android:id="@+id/play"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_centerInParent="true"
+                         android:background="@drawable/circle_filled"
+                         android:src="@drawable/ic_play"/>-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTutorSlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_your_slot"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1.8">
+
+                    <LinearLayout
+                        android:id="@+id/layoutFirstClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:visibility="visible"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:id="@+id/layoutWeekClass1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/edittext_bg"
+                            android:fitsSystemWindows="true"
+                            tools:ignore="NestedWeights">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDayName1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:drawableEnd="@drawable/ic_arrow_down_black"
+                                android:gravity="center"
+                                android:hint="@string/weekly_class_1"
+                                android:padding="10dp"
+                                android:textColorHint="@color/black"
+                                app:drawableTint="@color/colorPrimary" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutTimeClass1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:background="@drawable/edittext_bg"
+                            android:fitsSystemWindows="true">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvClassTime1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:hint="@string/timing_class_1"
+                                android:textColorHint="@color/black"
+                                app:drawableTint="@color/colorPrimary"
+                                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutSecondClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:id="@+id/layoutWeekClass2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/edittext_bg"
+                            android:fitsSystemWindows="true"
+                            android:layout_marginStart="10dp"
+                            tools:ignore="NestedWeights">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDayName2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:hint="@string/weekly_class_2"
+                                android:textColorHint="@color/black"
+                                app:drawableTint="@color/colorPrimary"
+                                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutTimeClass2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:background="@drawable/edittext_bg"
+                            android:fitsSystemWindows="true">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvClassTime2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:hint="@string/timing_class_2"
+                                android:textColorHint="@color/black"
+                                app:drawableTint="@color/colorPrimary"
+                                android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAddClass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_add"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_tutor_dates"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/available_time_slots"
+                    android:layout_gravity="center"
+                    android:textColor="@color/gray_icon"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="16sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_bg"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:itemCount="4"
+                    android:layout_gravity="center"
+                    tools:listitem="@layout/item_regular_tutor_time_slot"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/rectangular_25_filled_coloraccent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnPayNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pay_now"
+                    android:textColor="@color/white"
+                    android:paddingStart="30dp"
+                    android:layout_marginStart="20dp"
+                    android:paddingEnd="30dp"
+                    android:background="@drawable/rectangular_25_filled_coloraccent"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

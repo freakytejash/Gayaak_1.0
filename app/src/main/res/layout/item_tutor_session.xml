@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/tutorSession"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tvUpcomingSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="10dp"
+        android:background="@color/light_blue"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvUpcomingCourseName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Test"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvUpcomingCourseLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Beginner"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutTutorDetail"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="end"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseTutorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:gravity="center"
+                        tools:text="Meera Lakshmi"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"/>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivCourseTutor"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/singer2_2"
+                        android:padding="2dp"
+                        app:civ_border_width="3dp"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_overlay="true"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutScheduleTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUpcomingCourseTimeHr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00 :"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HR :"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/red"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUpcomingCourseTimeMIN"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="   00 :"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MIN :"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/red"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUpcomingCourseTimeSec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEC"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/red"
+                            android:textSize="16sp"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutSessionTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_blue">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="2 PM"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins_regular" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Wednesday"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_color"
+                        android:fontFamily="@font/poppins_regular" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="September 2"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRescheduleSession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reschedule"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@color/colorPrimary"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCancelSession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@color/red"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutStatusClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/linear_bg"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCurrentCourseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:text="Semi Classical" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCurrentCourseLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvCurrentCourseName"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="Beginner" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnStartClass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/rectangular_25_filled_white"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:padding="10dp"
+                    android:text="@string/go_to_class"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:padding="10dp"
+                android:gravity="end"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivCurrentCourseTutor"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/singer2_2"
+                        android:padding="2dp"
+                        app:civ_border_width="3dp"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_overlay="true"
+                        android:layout_gravity="center" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTutorStatus"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/circle_filled"
+                        android:backgroundTint="@color/green"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCurrentCourseTutorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:gravity="center"
+                    tools:text="Meera Lakshmi"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

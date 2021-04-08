@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/cardViewPlan"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
+    android:layout_height="250dp"
+    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/layoutPlan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/plan_unselected_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPlanName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:hint="Plan 1"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPlanFees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:hint="40"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@drawable/ic_credits"
+                android:padding="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/layoutExtraCoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:visibility="visible"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvExtraCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:hint="40"
+                    android:drawablePadding="5dp"
+                    android:drawableEnd="@drawable/ic_credits"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:text="Free"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPlanSelect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black"/>
+    </RelativeLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

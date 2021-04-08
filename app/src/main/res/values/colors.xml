@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2D94B2</color>
+    <color name="colorPrimaryTransparent">#9A2D94B2</color>
+    <color name="colorPrimaryDark">#2D94B2</color>
+    <color name="colorAccent">#35B5DB</color>
+    <color name="text_color">#44BADD</color>
+    <color name="light_blue">#DCF6FD</color>
+    <color name="lighter_blue">#95D6E9</color>
+    <color name="white">#ffffff</color>
+    <color name="off_white">#F1F1F1</color>
+
+    <color name="black">#000000</color>
+    <color name="red">#FF1100</color>
+    <color name="green">#49CA4B</color>
+    <color name="green_light">#7FEB97</color>
+    <color name="green_text">#88D9B3</color>
+
+
+    <color name="gray_color">#e9e9e9</color>
+    <color name="off_gray">#EDEDED</color>
+    <color name="colorLightGray">#9f9f9f</color>
+    <color name="light_gray_color">#CEE9E9E9</color>
+    <color name="gray_bg">#F0F0F0</color>
+    <color name="gray_icon">#979797</color>
+    <color name="inactive">#C1C1C1</color>
+    <color name="gray_light">#FCFCFC</color>
+    <color name="gray_view">#CACACA</color>
+    <color name="dark_gray">#575063</color>
+    <color name="darker_gray">#595B60</color>
+    <color name="seekbar_gray">#959698</color>
+    <color name="orange_original">#F48736</color>
+
+    <color name="tab_selected_txt">#0277BD</color>
+    <color name="tab_unselected_txt">#9E9E9E</color>
+
+    <color name="color_transparent">#00000000</color>
+    <color name="color_video_transparent">#88000000</color>
+    <color name="color_unplayed">#323232</color>
+    <color name="color_buffered">#b2b2b2</color>
+    <color name="blackTransparent">#07DDDDDD</color>
+    <color name="yellow">#f9b513</color>
+    <color name="light_yellow">#FEDB90</color>
+    <color name="light_yellow1">#35B5DB</color>
+    <color name="pink">#FD7F80</color>
+    <color name="dark_pink">#C43C7B</color>
+
+    <item name="purple" type="color">#ECC7FF</item>
+    <item name="orange" type="color">#FFE7B8</item>
+    <item name="darkblue" type="color">#C5F1FF</item>
+    <item name="darkpurple" type="color">#F6E6FD</item>
+    <item name="darkgreen" type="color">#EFFFD0</item>
+    <item name="darkorange" type="color">#FBE2C6</item>
+    <item name="darkred" type="color">#FFA4A4</item>
+    <color name="free">#D4FEE0</color>
+
+    <integer-array name="androidcolors">
+        <item>@color/purple</item>
+        <item>@color/orange</item>
+        <item>@color/darkblue</item>
+        <item>@color/darkpurple</item>
+        <item>@color/darkgreen</item>
+        <item>@color/darkorange</item>
+        <item>@color/darkred</item>
+    </integer-array>
+
+    <color name="daysLabelColor">#8A000000</color>
+    <color name="currentMonthDayColor">#de000000</color>
+    <color name="nextMonthDayColor">#1F000000</color>
+    <color name="disabledDialogButtonColor">#1F000000</color>
+
+    <color name="itemHighlightColor">#1F000000</color>
+    <color name="itemFocusedColor">#1A000000</color>
+
+    <color name="defaultColor">#2962FF</color>
+
+
+</resources>

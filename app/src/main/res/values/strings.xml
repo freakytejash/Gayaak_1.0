@@ -1,0 +1,311 @@
+<resources>
+    <array name="material_calendar_day_abbreviations_array">
+        <item>@string/material_calendar_sunday</item>
+        <item>@string/material_calendar_monday</item>
+        <item>@string/material_calendar_tuesday</item>
+        <item>@string/material_calendar_wednesday</item>
+        <item>@string/material_calendar_thursday</item>
+        <item>@string/material_calendar_friday</item>
+        <item>@string/material_calendar_saturday</item>
+    </array>
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+    <array name="question_array_list">
+        <item>Select an Option</item>
+        <item>I wish to switch to a new tutor</item>
+        <item>I wish to change my class timings</item>
+        <item>Change frequency of classes</item>
+        <item>Going on a break</item>
+        <item>Other</item>
+    </array>
+
+    <string name="app_name">Gayaak_1.0</string>
+
+    <string name="facebook_app_id">572916370061533</string>
+    <string name="fb_login_protocol_scheme">fb572916370061533</string>
+    <string name="home">Home</string>
+    <string name="course">Course</string>
+
+    <string name="calendar">Calendar</string>
+    <string name="profile">Profile</string>
+    <string name="Expert_Feedback">Expert Feedback</string>
+    <string name="Record">Record</string>
+    <string name="email">Email</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="user_information">User Information</string>
+    <string name="app_title">Gaayak</string>
+    <string name="online_music_school">Online Music School</string>
+    <string name="enter_email_id">Enter Email Id</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="get_started">Get Started</string>
+    <string name="update">Update</string>
+    <string name="tutors">Tutors</string>
+    <string name="resend_otp">Resend Code</string>
+    <string name="submit">Submit</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="enter_your_email_so_that_we_ncan_send_a_otp">Enter your email to get the OTP</string>
+    <string name="beginner_level">Beginner Level</string>
+    <string name="otp_sent_id">Enter One Time Password sent to your email Id</string>
+    <string name="next">Next</string>
+    <string name="verified">Verified!</string>
+    <string name="verified_your_account">Congratulation! You have successfully verified the account.</string>
+    <string name="add_profile_image">Add Profile Image</string>
+    <string name="course_catalog">Course Catalog</string>
+    <string name="intermediate_level">Intermediate Level</string>
+    <string name="expert_level">Expert Level</string>
+    <string name="advance_level">Advance Level</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="old_password">Old Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="new_password">New Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="update_password">Update Password</string>
+    <string name="practice_room">Practice Room</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="restart">Restart</string>
+    <string name="pause">Pause</string>
+    <string name="view">View</string>
+    <string name="there_are_no_videos_for_this_course_level">There are no videos for this course level.</string>
+    <string name="choose_signature">Choose Signature</string>
+    <string name="choose_your_speed">Choose your speed</string>
+    <string name="choose_path">Choose your path</string>
+    <string name="remove">Remove</string>
+    <string name="save_for_later">Save for later</string>
+    <string name="continue_browsing">Continue Browsing</string>
+    <string name="continue_learning">Continue</string>
+    <string name="check_out">Check out</string>
+    <string name="join_now">Join now</string>
+    <string name="practice_song">Practice Song</string>
+    <string name="courses_count">Courses Count</string>
+    <string name="total">Total:</string>
+    <string name="you_have_not_added_any_courses_yet">No courses added.</string>
+
+    <!-- Toasts -->
+    <string name="course_added_cart">You have successfully added course to cart.</string>
+    <string name="course_already">You have already added this course in your cart.</string>
+    <string name="toast_recording_start">Recording started</string>
+    <string name="toast_recording_finish">Recording saved to</string>
+    <string name="toast_file_delete">%1$s successfully deleted</string>
+    <string name="toast_file_exists">The file %1$s already exists. Please choose a different file name.</string>
+    <string name="pause_recording_button">Pause</string>
+    <string name="resume_recording_button">Resume</string>
+    <string name="default_file_name">MyRecording</string>
+
+    <!-- Dialogs -->
+    <string name="record_prompt">Tap the button to start recording</string>
+    <string name="record_in_progress">Recording</string>
+    <string name="dialog_title_delete">Confirm Delete...</string>
+    <string name="dialog_text_delete">Are you sure you would like to delete this file?</string>
+    <string name="dialog_title_licenses">Open Source Licenses</string>
+    <string name="dialog_title_share">Share File</string>
+
+    <string name="dialog_title_rename">Rename File</string>
+    <string name="dialog_title_options">Options</string>
+    <string name="dialog_file_share">Share File</string>
+    <string name="dialog_file_rename">Rename File</string>
+    <string name="dialog_file_delete">Delete File</string>
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_action_ok">OK</string>
+    <string name="dialog_action_yes">Yes</string>
+    <string name="dialog_action_no">No</string>
+    <string name="send_to">Send To</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="title_retry">Retry</string>
+    <string name="learning_courses">Your Learning courses</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_courses">My Courses</string>
+    <string name="my_ebooks">My Ebooks</string>
+    <string name="quiz">Quiz</string>
+    <string name="book_a_live_class">Book a live class</string>
+
+    <string name="support">Support</string>
+    <string name="logout">Logout</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="press_to_record_pause">Press to record / Pause</string>
+    <string name="my_recordings">My Recordings</string>
+    <string name="buy_course">Buy Course</string>
+    <string name="comment_for_session">Enter name for this session.</string>
+    <string name="save_your_session">Do you want to save your session?</string>
+    <string name="save_session">Save Session</string>
+    <string name="uploaded_session">Uploaded Session</string>
+    <string name="recorded_files">Recorded Files</string>
+    <string name="not_yet_reviewed">Not yet reviewed</string>
+    <string name="filter">Filter</string>
+    <string name="tags">Tags</string>
+    <string name="course_level">Levels</string>
+    <string name="course_price">Price</string>
+    <string name="register_now">Register Now</string>
+    <string name="set_your_currency">Set your currency</string>
+    <string name="currency">Currency</string>
+    <string name="please_wait_nupdating_your_courses">Please Wait..\nUpdating your courses....</string>
+    <string name="set_country">Set Your Country</string>
+    <string name="my_country">My Country</string>
+    <string name="what_looking_to_learn">What are you looking to learn?</string>
+    <string name="what_level_in">What level are you in?</string>
+    <string name="select_country">Select your country</string>
+    <string name="no_recorded_files">You have not uploaded any session yet.</string>
+    <string name="search_courses">Search Courses</string>
+    <string name="no_courses_found">No course found</string>
+    <string name="otpText">An 4-digit code has been sent to. Enter te code below to confirm your email address.</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="others">Others</string>
+    <string name="book_demo_class">Book a demo class</string>
+    <string name="book_demo">Book a demo</string>
+    <string name="verify_email">Verify your Email</string>
+    <string name="resend_email">Resend Email</string>
+    <string name="join_more_classes">Join more classes</string>
+    <string name="trending_course_title">Trending courses</string>
+    <string name="your_upcoming_class">Your Upcoming Class</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="cancel">Cancel</string>
+    <string name="status_class">Status of your class</string>
+    <string name="go_to_class">Go to the class</string>
+    <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
+    <string name="my_students">My Students</string>
+    <string name="my_scheduler">My Scheduler</string>
+    <string name="tutor_details">Tutor Details</string>
+    <string name="report_card">Report Card</string>
+    <string name="choose_a_course">Choose a course</string>
+    <string name="find_a_tutor">Find a Tutor</string>
+    <string name="slot_update_availability">Select an unlocked slot to update the availability</string>
+    <string name="daily_schdeule">Your Daily Schdeule</string>
+
+    <string name="delete_slot">Do you want to delete this slot?</string>
+    <string name="spinner_title">Time</string>
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thru</string>
+    <string name="material_calendar_friday">Fri</string>
+
+    <string name="material_calendar_saturday">Sat</string>
+
+    <string name="material_calendar_sunday">Sun</string>
+
+    <string name="material_calendar_today_button">Today</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Cancel</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="rescheduled">Rescheduled</string>
+    <string name="are_you_sure_you_want_to_remove_this_class">Are you sure you want to remove this class</string>
+    <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="all_modules">All Modules</string>
+    <string name="modules">Modules</string>
+    <string name="add_class">Add Class</string>
+    <string name="refill">Refill</string>
+    <string name="refilled_wallet">Refilled Wallet</string>
+    <string name="pay_with_debit_credit_card">Pay with Debit/Credit card</string>
+    <string name="pay_with_paypal">Pay with PayPal</string>
+    <string name="name_on_the_card">Name on the card</string>
+    <string name="card_number">Card Number</string>
+    <string name="proceed">Proceed</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="security_code">Security Code</string>
+    <string name="choose_a_plan_and_continue">Choose a plan and continue</string>
+    <string name="i_agree_to_the_terms_and_conditions_of_gaayak">I agree to the terms and conditions of Gaayak.</string>
+    <string name="_1_usd">1 USD</string>
+    <string name="equal_symbol"> = </string>
+    <string name="_1"><font color='#FF0000'>*</font>1</string>
+    <string name="experienced_any_technical_difficulties">Have your experienced any technical difficulties?</string>
+    <string name="experience_with_tutor">How was your experience with tutor?</string>
+    <string name="moment_share_your_experience">Please take a moment to share your experience.</string>
+    <string name="thank_using_demo_class">Thank you for using the demo class</string>
+    <string name="yet_to_decide">Yet to decide</string>
+    <string name="would_you_like_to_join">Would you like to join</string>
+    <string name="tanpura">Tanpura</string>
+    <string name="metronome">Metronome</string>
+    <string name="ebook">Ebook</string>
+    <string name="back">Back</string>
+    <string name="submit_practice_song">Submit your practice song</string>
+    <string name="no_tutor">Tutors are not available.</string>
+    <string name="select_student">Select Student</string>
+    <string name="no_schedule_found_for_this_student">No schedule found for this student.</string>
+    <string name="book">Book</string>
+    <string name="today_s_session">Today\'s Session</string>
+    <string name="modules_not_available">Modules not available</string>
+    <string name="no_schedule_found">No schedule found</string>
+    <string name="no_sessions_right">No sessions scheduled yet.</string>
+    <string name="no_books">No Library Available</string>
+    <string name="sure_reschedule_session">Are you sure you want to reschedule this session?</string>
+    <string name="alert_other_is_sharing">share</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="have_the_student_got_sitting_tolerance">Have the student got sitting tolerance?</string>
+    <string name="course_recommended">Course Recommended</string>
+    <string name="timing_class_2">Timing class 2</string>
+    <string name="day">Day</string>
+    <string name="tutor_feedback">Tutor Feedback</string>
+    <string name="student_qualifies">Student Qualifies</string>
+    <string name="general_feedback_about_the_student">General Feedback about the student</string>
+    <string name="specify_what_has_been_taught">Specify what has been taught</string>
+    <string name="is_the_class_completed">Is the class completed ?</string>
+    <string name="no_of_class_per_week">No. of class per week</string>
+    <string name="have_you_decided_on_the_class_day_and_timings">Have you decided on the Class day and timings</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="timing_class_1">Timing class 1</string>
+    <string name="is_the_student_proficient_in">Is the student proficient in</string>
+    <string name="your_thoughts">Your Thoughts ?</string>
+    <string name="course_plans">Course Plans</string>
+    <string name="select">Select</string>
+    <string name="proceed_to_pay">Proceed to pay</string>
+    <string name="sub_total">Sub-Total</string>
+    <string name="tax_18">GST(18%)</string>
+    <string name="student_discount">Student Discount</string>
+    <string name="_10">- 10</string>
+    <string name="total_to_pay">Total To Pay</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="balance_insufficient">If the balance in wallet is insufficient, we would raise a notification for refilling the wallet( Min - 40 coins )</string>
+    <string name="read_instruction">Please read all the terms and conditions before continuing.</string>
+    <string name="here_are_the_available_tutors">here are the available tutors</string>
+    <string name="select_level">Select Level</string>
+    <string name="select_a_level">Select a level</string>
+    <string name="select_course">Select Course</string>
+    <string name="book_a_demo">Book a demo</string>
+    <string name="available_time_slots">Available Time Slots</string>
+    <string name="select_your_slot">Select your slot</string>
+    <string name="weekly_class_1">Weekly Class 1</string>
+    <string name="weekly_class_2">Weekly Class 2</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="re_schedule">Re-Schedule</string>
+    <string name="module_progress">Module Progress</string>
+    <string name="in_progress">Inprogress</string>
+    <string name="completed">Completed</string>
+    <string name="module_1">Module 1</string>
+    <string name="module_2">Module 2</string>
+    <string name="module_3">Module 3</string>
+    <string name="module_4">Module 4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

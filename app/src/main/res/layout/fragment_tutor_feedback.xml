@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/linear_bg"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/gaayak_symbol" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAppNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notifications" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/circle_filled"
+                    android:textColor="@color/white"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_credits" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFeedbackBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_left_arrow_white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutToolbar"
+        android:nestedScrollingEnabled="false"
+        android:fillViewport="true"
+        android:fitsSystemWindows="false"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/tutor_feedback"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_bg">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/student_qualifies"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioQualities"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/qualitiesYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:layout_marginEnd="20dp"/>
+
+                    <RadioButton
+                        android:id="@+id/qualitiesNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:layout_marginEnd="20dp"/>
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/general_feedback_about_the_student"
+                android:padding="10dp"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_bg">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/have_you_decided_on_the_class_day_and_timings"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupDateTime"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+
+                    <RadioButton
+                        android:id="@+id/dateTimeYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:layout_marginEnd="20dp"/>
+
+                    <RadioButton
+                        android:id="@+id/dateTimeNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:layout_marginEnd="20dp"/>
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2"
+                    android:background="@drawable/edittext_bg">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/no_of_class_per_week"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="NestedWeights" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupClassWeek"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="end">
+
+                        <RadioButton
+                            android:id="@+id/rbOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/one"
+                            android:layout_marginEnd="20dp"/>
+
+                        <RadioButton
+                            android:id="@+id/rbtwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/two"
+                            android:layout_marginEnd="20dp"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutFirstSession"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/layoutSelectDat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/edittext_bg"
+                        android:fitsSystemWindows="true"
+                        tools:ignore="NestedWeights">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDayName1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:hint="@string/day"
+                            android:textColorHint="@color/black"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTime1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/edittext_bg"
+                        android:fitsSystemWindows="true">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvClassTime1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:hint="@string/timing_class_1"
+                           android:textColorHint="@color/black"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSecondSession"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/layoutSelectDay1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/edittext_bg"
+                        android:fitsSystemWindows="true">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDayName2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:drawableEnd="@drawable/ic_arrow_down_black"
+                            android:padding="4dp"
+                            android:hint="@string/day"
+                            android:textColorHint="@color/black"
+                            app:drawableTint="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTime2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/edittext_bg"
+                        android:fitsSystemWindows="true">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvClassTime2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:textColorHint="@color/black"
+                            android:hint="@string/timing_class_2"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCourseRecommend"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_bg"
+                android:fitsSystemWindows="true">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCourseRecommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/course_recommended"
+                    app:drawableTint="@color/colorPrimary"
+                    android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSitting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_bg">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/have_the_student_got_sitting_tolerance"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupTolerance"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+
+                    <RadioButton
+                        android:id="@+id/toleranceYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:layout_marginEnd="20dp"/>
+
+                    <RadioButton
+                        android:id="@+id/toleranceNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:layout_marginEnd="20dp"/>
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:background="@drawable/edittext_bg">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/is_the_student_proficient_in"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProficiencies"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_student_proficiencies"/>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangular_10_filled_coloraccent"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

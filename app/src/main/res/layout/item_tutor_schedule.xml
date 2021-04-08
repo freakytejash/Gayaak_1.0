@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorAccent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSessionDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="MON"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:background="@color/off_white"
+            android:elevation="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                    android:layout_weight="0.6">
+
+                    <LinearLayout
+                        android:id="@+id/layoutSelectTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        android:padding="4dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/rectangular_5_border_white"
+                        android:fitsSystemWindows="true">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time"
+                            android:drawableTint="@color/colorPrimary"
+                            android:drawableEnd="@drawable/ic_arrow_down_black"/>
+
+                    </LinearLayout>
+
+            </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1.4">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFreeSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        tools:listitem="@layout/item_schedule_time"
+                        tools:itemCount="4"
+                        android:layout_marginBottom="10dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvBookedSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="10dp"
+                        tools:listitem="@layout/item_schedule_time"
+                        tools:itemCount="4"
+                        android:layout_marginBottom="5dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutDeleteSlot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:background="@drawable/gradient_white_bg">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="@string/delete_slot"/>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentEnd="true"
+           android:layout_marginEnd="10dp"
+           android:padding="5dp"
+           android:orientation="horizontal">
+
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tvYesDelete"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/rectangular_filled_appcolor"
+               android:padding="5dp"
+               android:text="@string/dialog_action_yes"
+               android:layout_marginEnd="10dp"
+               android:textColor="@color/white" />
+
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tvNoDelete"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/rectangular_filled_appcolor"
+               android:padding="5dp"
+               android:text="@string/dialog_action_no"
+               android:textColor="@color/white" />
+
+       </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

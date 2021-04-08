@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:elevation="10dp"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTrendingCourseHeader"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/singer_3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTrendingCourseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                tools:text="Semi Classical"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTrendingCourseDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.4dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15.4dp"
+                android:lineSpacingExtra="2.6sp"
+                tools:text="Learn to sing ARR hits"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTrendingLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    tools:text="Beginner Level"
+                    android:drawableStart="@drawable/timer"
+                    android:gravity="center"
+                    android:drawablePadding="10dp"
+                    app:drawableTint="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    tools:text="6 HOURS"
+                    android:drawableStart="@drawable/watch"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    tools:ignore="RtlSymmetry" />
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnJoinNow"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Join"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/rectangular_5_border_white"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/moduleCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="8">
+
+        <ImageView
+            android:id="@+id/moduleStatusIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_correct_circle"
+            app:tint="@color/green"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:id="@+id/cardViewModule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rectangular_10_filled_coloraccent"
+            android:backgroundTint="@color/green"
+            android:paddingBottom="4dp"
+            android:weightSum="7">
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/moduleName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="15dp"
+                android:text="@string/module_1"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!--                    video, music, question button layout-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:weightSum="3"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <!--                        video layout-->
+                <LinearLayout
+                    android:id="@+id/layoutModuleVideo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_play_circle"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="video"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginBottom="-4dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+                <!--question layout-->
+                <LinearLayout
+                    android:id="@+id/layoutModuleQuestion"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_question_circle"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quiz"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginBottom="-4dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+                <!--                        music layout-->
+                <LinearLayout
+                    android:id="@+id/layoutModuleAudio"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_music_circle"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Audio"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginBottom="-4dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moduleCardLayout"
+        android:visibility="gone"
+        tools:listitem="@layout/item_video_list"/>
+</RelativeLayout>

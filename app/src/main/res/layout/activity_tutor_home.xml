@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/progressBarHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:progress="60"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/progress"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Please Wait..\nWe are getting app ready for you."/>
+    </LinearLayout>
+
+
+   <RelativeLayout
+       android:id="@+id/layoutHome"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:id="@+id/bottom_tutor_navigation"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:itemBackground="@color/white"
+           app:labelVisibilityMode="labeled"
+           app:itemIconTint="@drawable/selector"
+           app:itemTextColor="@drawable/selector"
+           android:layout_alignParentBottom="true"
+           android:visibility="visible"
+           app:menu="@menu/bottom_menu" />
+
+       <FrameLayout
+           android:id="@+id/fragmentTutorContainer"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginBottom="5dp"
+           android:layout_above="@+id/bottom_tutor_navigation" />
+   </RelativeLayout>
+
+
+</RelativeLayout>

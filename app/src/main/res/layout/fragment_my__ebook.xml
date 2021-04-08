@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.My_Ebook"
+    android:orientation="vertical"
+    android:background="#f1f1f1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@drawable/gradient_appcolor_bg">
+
+            <ImageView
+                android:id="@+id/profile_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_left_arrow_white" />
+
+            <TextView
+                android:id="@+id/my_ebook"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="80dp"
+                android:text="My Ebooks"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>   // header
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/book1" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Geethams 1 - 6"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>  // book 1
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/book2" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Semi classical
+                    Bhajans"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>  // book 2
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/book3" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Slokas for kids"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>  // book 3
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/book4" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Easy to learn songs
+                              for kids"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>  // book 4
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

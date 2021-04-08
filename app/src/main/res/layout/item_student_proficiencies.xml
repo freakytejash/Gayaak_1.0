@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rvProficiencyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            tools:text="Dictation"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/zm_ui_kit_text_size_10sp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGrp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yes"
+                android:layout_marginEnd="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rbNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no"
+                android:layout_marginEnd="20dp"/>
+
+        </RadioGroup>
+    </LinearLayout>
