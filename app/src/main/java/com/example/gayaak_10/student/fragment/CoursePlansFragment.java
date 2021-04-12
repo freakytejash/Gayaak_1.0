@@ -30,6 +30,7 @@ import com.example.gayaak_10.student.adapter.CoursePlansAdapter;
 import com.example.gayaak_10.student.adapter.CourseWalletPlansAdapter;
 import com.example.gayaak_10.student.model.CoinCurrencyConfig;
 import com.example.gayaak_10.student.model.CourseDataContractList;
+import com.example.gayaak_10.student.model.CoursePlan;
 import com.example.gayaak_10.student.model.WalletRechargePlanDataContractList;
 import com.example.gayaak_10.student.model.request.DemoTutorRequest;
 import com.example.gayaak_10.student.model.request.WalletUpdateRequest;
@@ -85,9 +86,6 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
     public CoursePlansFragment(){
 
     }
-
-
-
 
     @SuppressLint("SetTextI18n")
     @Nullable
@@ -151,6 +149,8 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
 
 
         } else {
+            binding.radioCustomPlan.setChecked(true);
+            binding.radioRecommendedPlan.setChecked(false);
             getPlans();
         }
         return binding.getRoot();
@@ -250,32 +250,41 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 binding.customCard.setVisibility(View.VISIBLE);
 
                 binding.layoutInfoCoins.setVisibility(View.VISIBLE);
-               // binding.layoutCoinInfo.setVisibility(View.VISIBLE);
+
                 binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
-              //  binding.tvCoinDeductionInfo.setText(" Coins will deduct from your wallet is "+walletPoints);
+
                 binding.layoutPlanTotal.setVisibility(View.VISIBLE);
-               /* total = ((App.selectedSessionDetail.coursePrice*App.noOfSessions)-walletPoints)* App.countryCurrencyValue;*/
+
                 total = ((App.selectedSessionDetail.coursePrice*App.noOfSessions))* App.countryCurrencyValue;
                 binding.tvPlanTotal.setText(""+countryCurrencyName + total);
 
-              //  binding.tvCoursePlan.setText(App.selectedSessionDetail.courseName);
-              // customCoursePrice=App.selectedSessionDetail.coursePrice * App.noOfSessions;
-              //  binding.tvCustomRequiredPoints.setText("" + customCoursePrice);
+
             }
             else
                 {
-                    binding.radioRecommendedPlan.setChecked(true);
-                    binding.radioCustomPlan.setChecked(false);
+                  /*  binding.radioRecommendedPlan.setChecked(true);
+                    binding.radioCustomPlan.setChecked(false);*/
                     if (coursePlan.detail.courseDataContractList==null){
                         binding.spCoursePlan.setVisibility(View.GONE);
                         binding.tvCoursePlan.setVisibility(View.GONE);
                         binding.customCard.setVisibility(View.GONE);
+                        binding.contentLayout.setVisibility(View.GONE);
+                        binding.emptyDataLayout.setVisibility(View.VISIBLE);
                     }
 
                 if (coursePlan.detail.courseDataContractList != null && coursePlan.detail.courseDataContractList.size() != 0) {
                     binding.spCoursePlan.setVisibility(View.VISIBLE);
                     binding.tvCoursePlan.setVisibility(View.GONE);
                     binding.customCard.setVisibility(View.VISIBLE);
+
+                    binding.layoutInfoCoins.setVisibility(View.VISIBLE);
+
+                    binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
+
+                    binding.layoutPlanTotal.setVisibility(View.VISIBLE);
+
+
+
                     //done
 
                     ArrayList<String> courseString= new ArrayList<>();
@@ -294,6 +303,8 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                     binding.spCoursePlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            App.spinnerSelectedCourse = coursePlan.detail.courseDataContractList.get(position);
                             binding.tvCustomSessions.setText(String.valueOf(App.noOfSessions));
                             customCoursePrice = coursePlan.detail.courseDataContractList.get(position).price*App.noOfSessions;
                             binding.tvCustomRequiredPoints.setText(""+(customCoursePrice));
@@ -302,6 +313,10 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
 
                             customPlan = coursePlan.detail.courseDataContractList.get(position);
                             perSessionPrice = coursePlan.detail.courseDataContractList.get(position).price;
+
+                            total = (customCoursePrice)* App.countryCurrencyValue;
+                            binding.tvPlanTotal.setText(""+countryCurrencyName + total);
+
                         }
 
                         @Override
@@ -309,6 +324,8 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
 
                         }
                     });
+
+
 
                 }
             }
@@ -342,9 +359,12 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                     checkPlans();
                 }
                 else {
-                    binding.radioCustomPlan.setChecked(false);
+                    binding.radioCustomPlan.setChecked(true);
+                    binding.radioRecommendedPlan.setChecked(false);
+                    getPlans();
+                    /*binding.radioCustomPlan.setChecked(false);
                     Toast.makeText(getActivity(), "You Can only select custom plan for Recommended Courses ", Toast.LENGTH_LONG).show();
-                }
+                */}
 
                 break;
 
@@ -375,6 +395,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(getActivity(),"Maximum sessions of the course is "+coursePlanNoOfSessions,Toast.LENGTH_LONG).show();
             }else {
                 App.noOfSessions = App.noOfSessions+1;
+                getPlans();
                 //checkPlans();
             }
             binding.tvCustomSessions.setText(""+App.noOfSessions);
@@ -397,6 +418,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(getActivity(),"minimun no. of session is 1",Toast.LENGTH_LONG).show();
             }else {
                 App.noOfSessions = App.noOfSessions-1;
+                getPlans();
                 //checkPlans();
             }
             binding.tvCustomSessions.setText(""+App.noOfSessions);
@@ -469,17 +491,29 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 }
 
             }
+
             else {
-                if (selectedPlan != null) {
+                if (binding.radioCustomPlan.isChecked()){
                     if (binding.checkTermsCondition.isChecked()) {
                         //open checkout view
-                        StudentHomeActivity.addFragment(new CheckoutFragment(selectedPlan, "planBuy", country), Constant.PROFILE, getActivity());
+                        StudentHomeActivity.addFragment(new CheckoutFragment(total, "customBuy", country), Constant.PROFILE, getActivity());
                     } else {
                         Toast.makeText(getActivity(), "Please agree to terms and condition", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getActivity(), "Please at least choose one plan.", Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    if (selectedPlan != null) {
+                        if (binding.checkTermsCondition.isChecked()) {
+                            //open checkout view
+                            StudentHomeActivity.addFragment(new CheckoutFragment(selectedPlan, "planBuy", country), Constant.PROFILE, getActivity());
+                        } else {
+                            Toast.makeText(getActivity(), "Please agree to terms and condition", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getActivity(), "Please at least choose one plan.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
 
         }

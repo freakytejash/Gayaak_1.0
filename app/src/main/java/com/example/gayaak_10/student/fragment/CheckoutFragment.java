@@ -166,7 +166,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                 total = selectedWalletPlan.noOfCoin * App.countryCurrencyValue;
             }
 
-            else if (type.equalsIgnoreCase("customRecommendedCourseBuy")){
+            else if (type.equalsIgnoreCase("customRecommendedCourseBuy") ||type.equalsIgnoreCase("customBuy")){
                 total = coursePrice;
             }
 
@@ -294,6 +294,10 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             payPalItem.add(new PayPalItem(App.selectedSessionDetail.courseName,
                     1,new BigDecimal(payPalTotal),currencyCode,
                     App.selectedSessionDetail.categoryId.toString()));
+        }else if (type.equalsIgnoreCase("customBuy")){
+            payPalItem.add(new PayPalItem(App.spinnerSelectedCourse.name,
+                    1,new BigDecimal(payPalTotal),currencyCode,
+                    App.spinnerSelectedCourse.categoryId.toString()));
         }
 
         PayPalItem[] simpleArray = new PayPalItem[payPalItem.size()];
@@ -341,6 +345,9 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                             viewModel.updateWallet(selectedWalletPlan, paypalPaymentInfo.id, transactionId).observe(getActivity(),
                                     defaultResponse -> getUserProfile(App.userDataContract.detail.userId));
                            // updateWalletCoins(selectedWalletPlan, paypalPaymentInfo.id);
+                        }
+                        else if (type.equalsIgnoreCase("customBuy")){
+                            walletAddCoinsCustomBuy(App.userDataContract.detail.userId,paypalPaymentInfo.id);
                         }
                         else {
                             // update wallet coins
@@ -422,6 +429,27 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
         plans.userId = App.userDataContract.detail.userId;
         plans.courseId = App.selectedSessionDetail.courseId;
         plans.CreditDebit = 2;
+        //1 for credit & 2 for debit
+        viewModel.updateWalletDirect(plans).observe(getViewLifecycleOwner(), new Observer<DefaultResponse>() {
+            @Override
+            public void onChanged(DefaultResponse defaultResponse) {
+                if (defaultResponse.status) {
+                    getUserProfile(userId);
+
+                }
+            }
+        });
+    }
+
+    private void walletAddCoinsCustomBuy(int userId, String paymentId){
+        WalletUpdateRequest plans = new WalletUpdateRequest();
+        plans.coins = App.spinnerSelectedCourse.price*App.noOfSessions;
+        plans.name = App.spinnerSelectedCourse.name;
+        plans.userId = App.userDataContract.detail.userId;
+        plans.courseId = App.spinnerSelectedCourse.courseId;
+        plans.transactionId = paymentId;
+        plans.transactionTypeId = transactionId;
+        plans.CreditDebit = 1;
         //1 for credit & 2 for debit
         viewModel.updateWalletDirect(plans).observe(getViewLifecycleOwner(), new Observer<DefaultResponse>() {
             @Override

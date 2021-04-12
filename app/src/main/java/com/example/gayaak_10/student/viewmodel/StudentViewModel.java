@@ -495,7 +495,7 @@ public class StudentViewModel extends ViewModel {
     }
 
     private void getAllPlans() {
-        Call<CoursePlan> filterCall = Constant.retrofitService.getCoursePlans();
+        Call<CoursePlan> filterCall = Constant.retrofitServiceHeader.getCoursePlans();
         Log.d("call", " filter => " + filterCall.request());
         filterCall.enqueue(new Callback<CoursePlan>() {
             @Override

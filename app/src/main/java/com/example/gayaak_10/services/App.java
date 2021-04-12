@@ -6,6 +6,7 @@ import android.content.Context;
 import com.example.gayaak_10.model.response.CoursesDetail;
 import com.example.gayaak_10.model.response.UserDataProfile;
 import com.example.gayaak_10.student.model.BuyCoursesDetail;
+import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.LiveClassDataContractList;
 import com.example.gayaak_10.student.model.SelectedSessionDetail;
 import com.example.gayaak_10.tutor.model.TodaySessions;
@@ -30,6 +31,7 @@ public class App extends Application {
     public static LiveClassDataContractList sessionStarted = new LiveClassDataContractList();
     public static TodaySessions tutorSessionStarted = new TodaySessions();
     public static SelectedSessionDetail selectedSessionDetail = new SelectedSessionDetail();
+    public static CourseDataContractList spinnerSelectedCourse = new CourseDataContractList();
     public static int requiredPoints;
     public static String countryCurrencyName ="";
     public static String countryName="";
