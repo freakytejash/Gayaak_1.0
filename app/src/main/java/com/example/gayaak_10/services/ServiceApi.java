@@ -31,6 +31,7 @@ import com.example.gayaak_10.student.model.TransactionType;
 import com.example.gayaak_10.student.model.TutorByCourseLevel;
 import com.example.gayaak_10.student.model.request.DemoTutorRequest;
 import com.example.gayaak_10.student.model.request.FeedbackContentRequest;
+import com.example.gayaak_10.student.model.request.StudentFutureBookingRequest;
 import com.example.gayaak_10.student.model.request.StudentSupportRequest;
 import com.example.gayaak_10.student.model.request.WalletUpdateRequest;
 import com.example.gayaak_10.tutor.model.ScheduleSlotTime;
@@ -251,6 +252,10 @@ public interface ServiceApi {
     @POST("User/ManageSupport?")
     Call<DefaultResponse> postStudentSupport(@Query("userId") int userId,
                                              @Body StudentSupportRequest studentSupportRequest);
+
+    @POST("Schedule/ManageStudentFutureBooking?")
+    Call<DefaultResponse> postStudentFutureBooking(@Query("userId") int userId,
+                                                   @Body StudentFutureBookingRequest studentFutureBookingRequest);
 
     //get schedule according to student id
     @GET("Schedule/GetStudentCalendarByStudentId?")

@@ -102,6 +102,7 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
             }*/
             if (demoUserDashboard.detail != null && demoUserDashboard.detail.liveClassDataContractList != null) {
                 binding.layoutUpcomingClasses.setVisibility(View.VISIBLE);
+
                 setUpcomingClasses(demoUserDashboard.detail.liveClassDataContractList);
                 viewModel.getDemoUserDashboard(App.userDataContract.detail.userId).removeObservers(getActivity());
             } else {
@@ -128,6 +129,7 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
     private void setUpcomingClasses(ArrayList<LiveClassDataContractList> liveClassDataContractList) {
         Utility.hideLoader();
         if (liveClassDataContractList != null && !liveClassDataContractList.isEmpty()) {
+
             binding.layoutUpcomingClasses.setVisibility(View.VISIBLE);
             binding.rvDemoUpcomingSession.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
             sessionAdapter = new DemoUpcomingSessionAdapter(getActivity(), liveClassDataContractList, new DemoUpcomingSessionAdapter.OnItemClickListener() {
@@ -163,9 +165,11 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
 
                     if(liveClassDataContractList.get(position).Price > App.userDataContract.detail.userWalletDataContract.Coins
                             && liveClassDataContractList.get(position).liveClassTypeId==2){
+                        App.studentTutorBookingId=liveClassDataContractList.get(position).StudentTutorBookingId;
                         StudentHomeActivity.addFragment(new CoursePlansFragment(), Constant.COURSE_CATALOG, getActivity());
                     }
                     else {
+                        App.studentTutorBookingId =0;
                         Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
                         Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
                         openSession(position, liveClassDataContractList);

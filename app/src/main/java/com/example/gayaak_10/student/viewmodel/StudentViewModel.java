@@ -31,6 +31,7 @@ import com.example.gayaak_10.student.model.TutorByCourseLevel;
 import com.example.gayaak_10.student.model.WalletRechargePlanDataContractList;
 import com.example.gayaak_10.student.model.request.DemoTutorRequest;
 import com.example.gayaak_10.student.model.request.FeedbackContentRequest;
+import com.example.gayaak_10.student.model.request.StudentFutureBookingRequest;
 import com.example.gayaak_10.student.model.request.StudentSupportRequest;
 import com.example.gayaak_10.student.model.request.WalletUpdateRequest;
 import com.example.gayaak_10.tutor.model.ScheduleSlotTimeTemp;
@@ -756,4 +757,25 @@ public class StudentViewModel extends ViewModel {
         });
     }
 
+    /*------------------------------------post StudentFutureBooking-----------------------------------*/
+    public MutableLiveData<DefaultResponse> postStudentFutureBooking(int userId, StudentFutureBookingRequest studentFutureBookingRequest) {
+        defaultResponseMutableLiveData = new MutableLiveData<>();
+        postStudentFutureBookingCall(userId, studentFutureBookingRequest);
+        return defaultResponseMutableLiveData;
+    }
+
+    private void postStudentFutureBookingCall(int userId, StudentFutureBookingRequest studentFutureBookingRequest) {
+        Call<DefaultResponse> defaultResponseCall = Constant.retrofitService.postStudentFutureBooking(userId, studentFutureBookingRequest);
+        defaultResponseCall.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                defaultResponseMutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+            }
+        });
+    }
 }

@@ -149,6 +149,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
 
 
         } else {
+
             binding.radioCustomPlan.setChecked(true);
             binding.radioRecommendedPlan.setChecked(false);
             getPlans();
@@ -414,8 +415,8 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
             binding.tvCustomSessions.setText(""+App.noOfSessions);
             binding.tvCustomRequiredPoints.setText(""+(App.selectedSessionDetail.coursePrice* App.noOfSessions));
         }else {
-            if ( App.noOfSessions==1){
-                Toast.makeText(getActivity(),"minimun no. of session is 1",Toast.LENGTH_LONG).show();
+            if ( App.noOfSessions==4 || App.noOfSessions<4){
+                Toast.makeText(getActivity(),"minimun no. of session is 4",Toast.LENGTH_LONG).show();
             }else {
                 App.noOfSessions = App.noOfSessions-1;
                 getPlans();

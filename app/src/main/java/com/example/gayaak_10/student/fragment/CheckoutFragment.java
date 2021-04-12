@@ -33,6 +33,7 @@ import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.TransactionType;
 import com.example.gayaak_10.student.model.WalletRechargePlanDataContractList;
 import com.example.gayaak_10.student.model.request.DemoTutorRequest;
+import com.example.gayaak_10.student.model.request.StudentFutureBookingRequest;
 import com.example.gayaak_10.student.model.request.WalletUpdateRequest;
 import com.example.gayaak_10.student.viewmodel.StudentViewModel;
 import com.example.gayaak_10.tutor.activity.TutorHomeActivity;
@@ -351,8 +352,9 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                         }
                         else {
                             // update wallet coins
-                            viewModel.updateWallet(selectedWalletPlan, paypalPaymentInfo.id, transactionId).observe(getActivity(),
-                                    defaultResponse -> getUserProfile(App.userDataContract.detail.userId));
+                            walletAddSelectedWalletPlan(selectedWalletPlan,paypalPaymentInfo.id,transactionId);
+                        /*    viewModel.updateWallet(selectedWalletPlan., paypalPaymentInfo.id, transactionId).observe(getActivity(),
+                                    defaultResponse -> getUserProfile(App.userDataContract.detail.userId));*/
                         }
 
 
@@ -417,6 +419,36 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private void walletAddSelectedWalletPlan(WalletRechargePlanDataContractList selectedPlanInfo, String paymentId, Integer transactionId) {
+
+        WalletUpdateRequest walletUpdateRequest = new WalletUpdateRequest();
+        walletUpdateRequest.userWalletTransactionId = 0;
+        walletUpdateRequest.userId = App.userDataContract.detail.userId;
+        walletUpdateRequest.coins = (selectedPlanInfo.noOfCoin + selectedPlanInfo.extraCoin);
+        walletUpdateRequest.name = selectedPlanInfo.name;
+        walletUpdateRequest.description = null;
+        walletUpdateRequest.courseId = App.spinnerSelectedCourse.courseId;
+        walletUpdateRequest.transactionId = paymentId;
+        walletUpdateRequest.transactionTypeId = transactionId;
+        walletUpdateRequest.isActive = selectedPlanInfo.isActive;
+        walletUpdateRequest.createdBy = App.userDataContract.detail.userId;
+        walletUpdateRequest.createdDate = selectedPlanInfo.createdDate;
+        walletUpdateRequest.modifiedBy = null;
+        walletUpdateRequest.modifiedDate = null;
+        walletUpdateRequest.walletRechargePlanId = selectedPlanInfo.walletRechargePlanId;
+        walletUpdateRequest.CreditDebit = 1;
+
+        viewModel.updateWalletDirect(walletUpdateRequest).observe(getViewLifecycleOwner(), new Observer<DefaultResponse>() {
+            @Override
+            public void onChanged(DefaultResponse defaultResponse) {
+                if (defaultResponse.status) {
+                    studentFutureBooking(App.userDataContract.detail.userId,2);
+
+                }
+            }
+        });
+    }
+
     private void updateWalletCoins(WalletRechargePlanDataContractList selectedWalletPlan, String paymentId) {
         viewModel.updateWallet(selectedWalletPlan, paymentId, transactionId).observe(getActivity(),
                 defaultResponse -> walletDeductAmount(App.userDataContract.detail.userId));
@@ -455,8 +487,28 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(DefaultResponse defaultResponse) {
                 if (defaultResponse.status) {
-                    getUserProfile(userId);
+                    studentFutureBooking(userId,1);
 
+                }
+            }
+        });
+    }
+
+    private void studentFutureBooking(int userId, int fromPlan){
+        StudentFutureBookingRequest bookingRequest = new StudentFutureBookingRequest();
+        bookingRequest.studentTutorBookingId = App.spinnerSelectedCourse.studentTutorBookingId;
+        if (fromPlan==2){
+            int session =(selectedWalletPlan.noOfCoin+selectedWalletPlan.extraCoin)/App.spinnerSelectedCourse.price;
+            bookingRequest.noOfSession=session;
+        }else {
+            bookingRequest.noOfSession = App.noOfSessions;
+        }
+
+        viewModel.postStudentFutureBooking(userId,bookingRequest).observe(getViewLifecycleOwner(), new Observer<DefaultResponse>() {
+            @Override
+            public void onChanged(DefaultResponse defaultResponse) {
+                if (defaultResponse.status){
+                    getUserProfile(userId);
                 }
             }
         });
@@ -482,6 +534,8 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
+
     private void getUserProfile(int userId) {
         viewModel.getUserProfile(userId).observe(getActivity(), userDataProfile -> {
             if (userDataProfile != null) {

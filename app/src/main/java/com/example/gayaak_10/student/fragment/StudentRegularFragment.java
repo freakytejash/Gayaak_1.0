@@ -189,8 +189,10 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
                 App.sessionStarted = liveClassDataContractList.get(position);
                 if(liveClassDataContractList.get(position).Price > App.userDataContract.detail.userWalletDataContract.Coins
                         && liveClassDataContractList.get(position).liveClassTypeId==2){
+                    App.studentTutorBookingId = liveClassDataContractList.get(position).StudentTutorBookingId;
                     StudentHomeActivity.addFragment(new CoursePlansFragment(), Constant.COURSE_CATALOG, getActivity());
                 }else {
+                    App.studentTutorBookingId = null;
                     Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
                     Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
                     openSession(position, liveClassDataContractList);

@@ -31,6 +31,9 @@ public class CourseDataContractList{
     @SerializedName("CategoryId")
     @Expose
     public Integer categoryId;
+    @SerializedName("StudentTutorBookingId")
+    @Expose
+    public Integer studentTutorBookingId;
     @SerializedName("CategoryName")
     @Expose
     public Object categoryName;

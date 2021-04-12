@@ -6,6 +6,7 @@ import android.content.Context;
 import com.example.gayaak_10.model.response.CoursesDetail;
 import com.example.gayaak_10.model.response.UserDataProfile;
 import com.example.gayaak_10.student.model.BuyCoursesDetail;
+import com.example.gayaak_10.student.model.CourseAndStudentTutorBookingIdModel;
 import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.LiveClassDataContractList;
 import com.example.gayaak_10.student.model.SelectedSessionDetail;
@@ -42,6 +43,9 @@ public class App extends Application {
     public static String StudentName ="";
     public static Integer tutorCoins;
     public static Integer tutorFeedbackId;
+    public static Integer studentTutorBookingId;
+    public static ArrayList<CourseAndStudentTutorBookingIdModel> courseAndStudentTutorBookingIdModelArrayList =
+            new ArrayList<CourseAndStudentTutorBookingIdModel>();
     @Override
     public void onCreate() {
         super.onCreate();
