@@ -56,6 +56,7 @@ public class StudentProfileFragment extends Fragment implements View.OnClickList
         binding.layoutMyCourses.setOnClickListener(this);
         binding.layoutSupport.setOnClickListener(this);
         binding.layoutCoursePlans.setOnClickListener(this);
+        binding.layoutPracticeSession.setOnClickListener(this);
 
         if (App.isSocial) {
             binding.layoutChangePassword.setVisibility(View.GONE);
@@ -85,6 +86,9 @@ public class StudentProfileFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.layoutSupport:
                 StudentHomeActivity.addFragment(new SupportFragment(),Constant.PROFILE,getActivity());
+                break;
+            case R.id.layoutPracticeSession:
+                StudentHomeActivity.addFragment(new PracticeRoomFragment(), Constant.PROFILE,getActivity());
                 break;
 
         /*    case R.id.my_ebooks:

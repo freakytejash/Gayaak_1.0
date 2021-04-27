@@ -179,20 +179,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
             }else {
                 walletPoints = App.userDataContract.detail.userWalletDataContract.Coins;
             }
-
-           /* if (App.requiredPoints <= walletPoints) {
-                total = 0;
-                binding.layoutPlanTotal.setVisibility(View.VISIBLE);
-
-              //  bindi/ng.layoutCoinInfo.setVisibility(View.VISIBLE);
-              //  binding.tvCoinDeductionInfo.setText(" Coins will deduct from your wallet is "+App.requiredPoints);
-                binding.tvPlanTotal.setText( ""+countryCurrencyName + total);
-                binding.tvProceedPlan.setText("Pay from wallet");
                 getPlans();
-            } else*/ {
-              /*  binding.tvProceedPlan.setText("Proceed");*/
-                getPlans();
-            }
         } else {
             getPlans();
         }
@@ -230,6 +217,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
 
 
                             binding.tvCoinInfo.setText("1 coin = " + planPrice );
+                            binding.tvCoinValue.setText(""+planPrice);
                         } else if (!binding.radioRecommendedPlan.isChecked())
                         {
                             Toast.makeText(getActivity(),"please select the recommended course check button",Toast.LENGTH_LONG).show();
@@ -467,7 +455,14 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 }
                 else if (binding.radioRecommendedPlan.isChecked())
                 {
-                    int walletCoins = App.userDataContract.detail.userWalletDataContract.Coins;
+                    int walletCoins =0;
+                    if(App.userDataContract.detail.userWalletDataContract ==null){
+                        walletCoins=0;
+                    }else {
+                        walletCoins = App.userDataContract.detail.userWalletDataContract.Coins;
+                    }
+
+
                     // int totalRequiredCoins = selectedPlan.noOfCoin+selectedPlan.extraCoin+walletCoins;
                     if (selectedPlan != null && (selectedPlan.noOfCoin+selectedPlan.extraCoin+walletCoins) > customCoursePrice)
                         /*|| (selectedPlan.noOfCoin+selectedPlan.extraCoin+walletCoins) == customCoursePrice*/

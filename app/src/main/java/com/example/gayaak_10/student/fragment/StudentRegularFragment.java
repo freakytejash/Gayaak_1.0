@@ -56,9 +56,12 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
         viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(StudentViewModel.class);
 
         getUpcomingClasses(viewModel);
-        if (!App.coursesDetailArrayList.isEmpty()) {
-            setLearningCourseData(App.coursesDetailArrayList);
-        }
+        //setUpcomingCourse();
+
+       /* if (!App.userLearningCourseList.isEmpty()) {
+
+        }*/
+
         binding.btnHomeBookDemoClass.setOnClickListener(this);
         binding.tvWalletPoints.setOnClickListener(this);
         binding.btnRecommendedClass.setOnClickListener(this);
@@ -101,7 +104,7 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
     /*---------------------------------------SET UI-----------------------------------------------*/
 
     private void setLearningCourseData(ArrayList<CoursesDetail> detail) {
-       /* if (!detail.isEmpty()) {
+/*        if (!detail.isEmpty()) {
             binding.layoutUserCourses.setVisibility(View.VISIBLE);
             binding.rvUserLearningCourses.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             binding.rvUserLearningCourses.setAdapter(new UserCourseAdapter(getActivity(), detail, position -> {
@@ -126,9 +129,11 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
     private void getUpcomingClasses(StudentViewModel viewModel) {
         Utility.showLoader(getContext(),false);
         viewModel.getDemoUserDashboard(App.userDataContract.detail.userId).observe(getViewLifecycleOwner(), demoUserDashboard -> {
-           /* if (demoUserDashboard.detail !=null && demoUserDashboard.detail.courseDataContractList==null){
+/*            if (demoUserDashboard.detail !=null && demoUserDashboard.detail.courseDataContractList==null){
 
-            }else if (demoUserDashboard.detail !=null && demoUserDashboard.detail.courseDataContractList!=null){
+            }else
+               *//* (demoUserDashboard.detail !=null && demoUserDashboard.detail.courseDataContractList!=null)*//*
+            {
                 setUpcomingCourse(demoUserDashboard.detail.courseDataContractList);
             }*/
             if (demoUserDashboard.detail != null && demoUserDashboard.detail.liveClassDataContractList != null) {
@@ -141,8 +146,24 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
         });
     }
 
-    private void setUpcomingCourse(ArrayList<CourseDataContract> detail) {
-        if (!detail.isEmpty()) {
+/*    private void setUpcomingCourse() {
+        viewModel.getCoursePlans().observe(Objects.requireNonNull(getActivity()),coursePlan ->{
+            if (coursePlan != null && coursePlan.detail.courseDataContractList.size() != 0){
+                if (!coursePlan.detail.courseDataContractList.isEmpty()) {
+                    binding.layoutUserCourses.setVisibility(View.VISIBLE);
+                    binding.rvUserLearningCourses.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+                    binding.rvUserLearningCourses.setAdapter(new UserCourseAdapter(getActivity(), coursePlan.detail.courseDataContractList, position -> {
+                        //open module screen
+                        //      StudentHomeActivity.addFragment(new StudentProgressFragment(detail.get(position)), Constant.COURSE_CATALOG, getActivity());
+                    }));
+                } else {
+                    binding.layoutUserCourses.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+      *//*  if (!detail.isEmpty()) {
             binding.layoutUserCourses.setVisibility(View.VISIBLE);
             binding.rvUserLearningCourses.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             binding.rvUserLearningCourses.setAdapter(new UserCourseAdapter(getActivity(), detail, position -> {
@@ -151,59 +172,62 @@ public class StudentRegularFragment extends Fragment implements View.OnClickList
             }));
         } else {
             binding.layoutUserCourses.setVisibility(View.GONE);
-        }
-        getUpcomingClasses(viewModel);
-    }
+        }*//*
+       // getUpcomingClasses(viewModel);
+    }*/
 
 
     private void setUpcomingClasses(ArrayList<LiveClassDataContractList> liveClassDataContractList) {
         Utility.hideLoader();
         binding.rvUpcomingSession.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        DemoUpcomingSessionAdapter sessionAdapter = new DemoUpcomingSessionAdapter(getActivity(), liveClassDataContractList, new DemoUpcomingSessionAdapter.OnItemClickListener() {
+        DemoUpcomingSessionAdapter sessionAdapter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            sessionAdapter = new DemoUpcomingSessionAdapter(getActivity(), liveClassDataContractList, new DemoUpcomingSessionAdapter.OnItemClickListener() {
 
-            @Override
-            public void onItemClickListener(int position) {
+                @Override
+                public void onItemClickListener(int position) {
 
-            }
-
-            @Override
-            public void onSessionReschedule(int position) {
-                rescheduleSession(liveClassDataContractList, position);
-            }
-
-            @Override
-            public void onSessionCancel(int position) {
-                sessionCancel(liveClassDataContractList, position);
-            }
-
-            @Override
-            public void onStartClass(int position) {
-                viewModel.postEmailNotification(liveClassDataContractList.get(position).studentId,
-                        liveClassDataContractList.get(position).liveclassdetailId).observe(getActivity(), new Observer<DefaultResponse>() {
-                    @Override
-                    public void onChanged(DefaultResponse defaultResponse) {
-                        Toast.makeText(getActivity(), "" + defaultResponse.message, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                App.sessionStarted = liveClassDataContractList.get(position);
-                if(liveClassDataContractList.get(position).Price > App.userDataContract.detail.userWalletDataContract.Coins
-                        && liveClassDataContractList.get(position).liveClassTypeId==2){
-                    App.studentTutorBookingId = liveClassDataContractList.get(position).StudentTutorBookingId;
-                    StudentHomeActivity.addFragment(new CoursePlansFragment(), Constant.COURSE_CATALOG, getActivity());
-                }else {
-                    App.studentTutorBookingId = null;
-                    Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
-                    Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
-                    openSession(position, liveClassDataContractList);
                 }
-            }
 
-            @Override
-            public void onSessionNotAttended(LiveClassDataContractList liveClassDataContractList) {
-                Log.e("noSession", "onSessionNotAttended: " +liveClassDataContractList.studentId);
-            }
-        });
+                @Override
+                public void onSessionReschedule(int position) {
+                    rescheduleSession(liveClassDataContractList, position);
+                }
+
+                @Override
+                public void onSessionCancel(int position) {
+                    sessionCancel(liveClassDataContractList, position);
+                }
+
+                @Override
+                public void onStartClass(int position) {
+                    viewModel.postEmailNotification(liveClassDataContractList.get(position).studentId,
+                            liveClassDataContractList.get(position).liveclassdetailId).observe(getActivity(), new Observer<DefaultResponse>() {
+                        @Override
+                        public void onChanged(DefaultResponse defaultResponse) {
+                            Toast.makeText(getActivity(), "" + defaultResponse.message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    App.sessionStarted = liveClassDataContractList.get(position);
+                    if(liveClassDataContractList.get(position).Price > App.userDataContract.detail.userWalletDataContract.Coins
+                            && liveClassDataContractList.get(position).liveClassTypeId==2){
+                        App.studentTutorBookingId = liveClassDataContractList.get(position).StudentTutorBookingId;
+                        StudentHomeActivity.addFragment(new CoursePlansFragment(), Constant.COURSE_CATALOG, getActivity());
+                    }else {
+                        App.studentTutorBookingId = null;
+                        Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
+                        Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
+                        openSession(position, liveClassDataContractList);
+                    }
+                }
+
+                @Override
+                public void onSessionNotAttended(LiveClassDataContractList liveClassDataContractList) {
+                    Log.e("noSession", "onSessionNotAttended: " +liveClassDataContractList.studentId);
+                }
+            });
+        }
         binding.rvUpcomingSession.setAdapter(sessionAdapter);
     }
 

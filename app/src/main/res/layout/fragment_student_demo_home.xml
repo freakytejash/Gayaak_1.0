@@ -47,6 +47,33 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvJoinCourses" />
 
                 <LinearLayout
+                    android:id="@+id/layoutUserCourses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="#312e2e"
+                        android:lineSpacingExtra="0sp"
+                        android:text="@string/learning_courses"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUserLearningCourses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem = "@layout/item_user_learning_courses"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="horizontal"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/layoutUpcomingClasses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,32 +117,7 @@
                         tools:listitem="@layout/demo_upcoming_classes" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/layoutUserCourses"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="#312e2e"
-                        android:lineSpacingExtra="0sp"
-                        android:text="@string/learning_courses"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvUserLearningCourses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:listitem = "@layout/item_user_learning_courses"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:orientation="horizontal"/>
-                </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutViewPager"

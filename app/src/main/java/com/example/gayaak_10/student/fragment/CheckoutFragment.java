@@ -185,61 +185,6 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                 binding.tvTotal.setText(payPalTotal + " "+App.countryCurrencyName);
                 binding.layoutPlans.setVisibility(View.VISIBLE);
 
-//            else if (type.equalsIgnoreCase("customCourseBuy")){
-//                binding.tvPlanName.setText(courseWalletPlan.name);
-//                int total = courseWalletPlan.price * customNoOfSessions;
-//                binding.tvPlanName.setText(total+ " USD");
-//
-//                double amount = Double.parseDouble(String.valueOf(total));
-//            /*double res = (amount / 100.0f) * 10;
-//            double subTotal = amount - res;*/
-//                payPalTotal = (int) (amount - 10);
-//                binding.tvSubTotal.setText(amount + " USD");
-//                //binding.tvTax.setText(res+ " USD");
-//                binding.tvTotal.setText(payPalTotal + " USD");
-//                binding.layoutPlans.setVisibility(View.VISIBLE);
-//            }
-
-           // currencyCode="INR";
-//        }
-
-//        else
-//        {
-//            if (type.equalsIgnoreCase("planBuy")) {
-//                binding.tvPlanName.setText(selectedWalletPlan.name);
-//                int total = selectedWalletPlan.noOfCoin * selectedWalletPlan.usCurrencyValue;
-//                binding.tvPlanPrice.setText(total + " USD");
-//
-//                double amount = Double.parseDouble(String.valueOf(total));
-//            /*double res = (amount / 100.0f) * 10;
-//            double subTotal = amount - res;*/
-//                payPalTotal = (int) (amount - 10);
-//                binding.tvSubTotal.setText(amount + " USD");
-//                //binding.tvTax.setText(res+ " USD");
-//                binding.tvTotal.setText(payPalTotal + " USD");
-//                binding.layoutPlans.setVisibility(View.VISIBLE);
-//            }
-//            else if (type.equalsIgnoreCase("customCourseBuy"))
-//            {
-//                binding.tvPlanName.setText(courseWalletPlan.name);
-//                int total = courseWalletPlan.price * customNoOfSessions;
-//                binding.tvPlanName.setText(total+ " USD");
-//
-//                double amount = Double.parseDouble(String.valueOf(total));
-//            /*double res = (amount / 100.0f) * 10;
-//            double subTotal = amount - res;*/
-//                payPalTotal = (int) (amount - 10);
-//                binding.tvSubTotal.setText(amount + " USD");
-//                //binding.tvTax.setText(res+ " USD");
-//                binding.tvTotal.setText(payPalTotal + " USD");
-//                binding.layoutPlans.setVisibility(View.VISIBLE);
-//            }
-//            else
-//            {
-//                binding.layoutPlans.setVisibility(View.GONE);
-//            }
-//          //  currencyCode="INR";
-//        }
 
         return binding.getRoot();
     }
@@ -258,7 +203,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btnPayPal:
-                Utility.showLoader(mContext, false);
+               Utility.showLoader(getActivity(), false);
                 PayPalPayment thingToBuy = getStuffToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
                 Intent intent1 = new Intent(getActivity(), PaymentActivity.class);
                 intent1.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -322,6 +267,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Utility.hideLoader();
         if (requestCode == REQUEST_CODE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {
                 PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
@@ -420,7 +366,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
     }
 
     private void walletAddSelectedWalletPlan(WalletRechargePlanDataContractList selectedPlanInfo, String paymentId, Integer transactionId) {
-
+        Utility.showLoader(getContext(),false);
         WalletUpdateRequest walletUpdateRequest = new WalletUpdateRequest();
         walletUpdateRequest.userWalletTransactionId = 0;
         walletUpdateRequest.userId = App.userDataContract.detail.userId;
@@ -442,6 +388,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(DefaultResponse defaultResponse) {
                 if (defaultResponse.status) {
+                    Utility.hideLoader();
                     studentFutureBooking(App.userDataContract.detail.userId,2);
 
                 }
@@ -474,6 +421,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
     }
 
     private void walletAddCoinsCustomBuy(int userId, String paymentId){
+        Utility.showLoader(getContext(), false);
         WalletUpdateRequest plans = new WalletUpdateRequest();
         plans.coins = App.spinnerSelectedCourse.price*App.noOfSessions;
         plans.name = App.spinnerSelectedCourse.name;
@@ -487,6 +435,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(DefaultResponse defaultResponse) {
                 if (defaultResponse.status) {
+                    Utility.hideLoader();
                     studentFutureBooking(userId,1);
 
                 }
@@ -495,6 +444,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
     }
 
     private void studentFutureBooking(int userId, int fromPlan){
+        Utility.showLoader(getContext(), false);
         StudentFutureBookingRequest bookingRequest = new StudentFutureBookingRequest();
         bookingRequest.studentTutorBookingId = App.spinnerSelectedCourse.studentTutorBookingId;
         if (fromPlan==2){
@@ -503,11 +453,16 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
         }else {
             bookingRequest.noOfSession = App.noOfSessions;
         }
+        bookingRequest.tutorId = App.spinnerSelectedCourse.tutorId;
+        bookingRequest.liveclasstype =2;
+        bookingRequest.classTypeId=2;
+        bookingRequest.isPaymentComplete=true;
 
         viewModel.postStudentFutureBooking(userId,bookingRequest).observe(getViewLifecycleOwner(), new Observer<DefaultResponse>() {
             @Override
             public void onChanged(DefaultResponse defaultResponse) {
                 if (defaultResponse.status){
+                    Utility.hideLoader();
                     getUserProfile(userId);
                 }
             }
@@ -515,6 +470,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
     }
 
     private void walletAddCoinsCustomRecommendedCourse(int userId, String paymentId){
+        Utility.showLoader(getActivity(), false);
         WalletUpdateRequest plans = new WalletUpdateRequest();
         plans.coins = App.selectedSessionDetail.coursePrice*App.noOfSessions;
         plans.name = App.selectedSessionDetail.courseName;
@@ -528,6 +484,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(DefaultResponse defaultResponse) {
                 if (defaultResponse.status) {
+                    Utility.hideLoader();
                     getUserProfile(userId);
 
                 }
@@ -537,22 +494,33 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
 
 
     private void getUserProfile(int userId) {
+        Utility.showLoader(getActivity(), false);
         viewModel.getUserProfile(userId).observe(getActivity(), userDataProfile -> {
             if (userDataProfile != null) {
                 App.userDataContract = userDataProfile;
                 SharedPrefsUtil.setUserPreferences(getActivity(), userDataProfile);
             }
-            if (App.selectedSessionDetail != null && (type.equalsIgnoreCase("planCustomCourseBuy") || type.equalsIgnoreCase("customRecommendedCourseBuy"))){
+            if (/*App.selectedSessionDetail != null &&*/ (type.equalsIgnoreCase("planCustomCourseBuy") || type.equalsIgnoreCase("customRecommendedCourseBuy"))){
                 createSession();
             }
             else {
+               // Utility.hideLoader();
+                Fragment fragmentName = null;
+                String userType = SharedPrefsUtil.getStringPreferences(Objects.requireNonNull(getActivity()), "UserType");
+                if (userType.equalsIgnoreCase("Free")) {
+                    fragmentName = new StudentDemoHomeFragment(App.recommendedCourseCreated);
+                } else if (userType.equalsIgnoreCase("Paid")) {
+                    fragmentName = new StudentRegularFragment(App.recommendedCourseCreated);
+                }
                 Utility.hideLoader();
-                StudentHomeActivity.addFragment(new StudentProfileFragment(""), Constant.PROFILE, getActivity());
+                StudentHomeActivity.addFragment(fragmentName, Constant.HOME, getActivity());
+              //  StudentHomeActivity.addFragment(new StudentProfileFragment(""), Constant.PROFILE, getActivity());
             }
         });
     }
 
     private void createSession() {
+        Utility.showLoader(mContext,false);
         int demoFeedbackId = SharedPrefsUtil.getIntegerPreferences(mContext,"demoTutorSessionFeedbackId");
 
         DemoTutorRequest demoTutorRequest = new DemoTutorRequest();
@@ -580,7 +548,14 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
         demoTutorRequest.liveclasstype = 2;
         demoTutorRequest.classTypeId = 2;
         demoTutorRequest.categoryid = App.selectedSessionDetail.categoryId;
-        demoTutorRequest.noOfSession=App.noOfSessions;
+        if (type.equalsIgnoreCase("planCustomCourseBuy")){
+            int session =(selectedWalletPlan.noOfCoin+selectedWalletPlan.extraCoin)/App.selectedSessionDetail.coursePrice;
+            demoTutorRequest.noOfSession=session;
+        }else {
+            demoTutorRequest.noOfSession=App.noOfSessions;
+        }
+
+
         demoTutorRequest.demoTutorSessionFeedbackId=demoFeedbackId;
         demoTutorRequest.isPaymentComplete=true;
 
@@ -590,9 +565,9 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                 if (defaultResponse==null){
 
                 }
-                Utility.hideLoader();
+
                 Toast.makeText(getActivity(), "Session created--" + defaultResponse.message, Toast.LENGTH_LONG).show();
-                Utility.hideLoader();
+
                 Fragment fragmentName = null;
                 App.recommendedCourseCreated=1;
                 String userType = SharedPrefsUtil.getStringPreferences(Objects.requireNonNull(getActivity()), "UserType");
@@ -601,6 +576,7 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
                 } else if (userType.equalsIgnoreCase("Paid")) {
                     fragmentName = new StudentRegularFragment(App.recommendedCourseCreated);
                 }
+                Utility.hideLoader();
                 StudentHomeActivity.addFragment(fragmentName, Constant.HOME, getActivity());
             }
         });

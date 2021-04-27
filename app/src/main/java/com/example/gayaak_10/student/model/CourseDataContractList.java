@@ -15,31 +15,40 @@ public class CourseDataContractList{
     public Integer price;
     @SerializedName("Detail")
     @Expose
-    public Object detail;
+    public String detail;
     @SerializedName("NoofSession")
     @Expose
     public Integer noofSession;
     @SerializedName("Duration")
     @Expose
-    public Object duration;
+    public String duration;
     @SerializedName("LevelId")
     @Expose
     public Integer levelId;
     @SerializedName("LevelName")
     @Expose
-    public Object levelName;
+    public String levelName;
     @SerializedName("CategoryId")
     @Expose
     public Integer categoryId;
+    @SerializedName("TutorId")
+    @Expose
+    public Integer tutorId;
     @SerializedName("StudentTutorBookingId")
     @Expose
     public Integer studentTutorBookingId;
     @SerializedName("CategoryName")
     @Expose
-    public Object categoryName;
+    public String categoryName;
+    @SerializedName("ModuleCount")
+    @Expose
+    public String moduleCount;
+    @SerializedName("CompletedModules")
+    @Expose
+    public String completedModules;
     @SerializedName("Tags")
     @Expose
-    public Object tags;
+    public String tags;
     @SerializedName("CourseTutorsDataContractList")
     @Expose
     public Object courseTutorsDataContractList;
@@ -66,10 +75,10 @@ public class CourseDataContractList{
     public Object courseDataContractList;
     @SerializedName("CourseType")
     @Expose
-    public Object courseType;
+    public Integer courseType;
     @SerializedName("CourseNames")
     @Expose
-    public Object courseNames;
+    public String courseNames;
     @SerializedName("IsShownInPlanList")
     @Expose
     public Boolean isShownInPlanList;

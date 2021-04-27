@@ -154,6 +154,7 @@
                         android:layout_marginTop="20dp"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/tvEbook"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_library_circle"

@@ -6,6 +6,7 @@ import android.media.MediaRecorder;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.gayaak_10.R;
 import com.example.gayaak_10.utility.SharedPrefsUtil;
@@ -22,7 +23,7 @@ public class RecordingService extends Service {
     private static final String LOG_TAG = "RecordingService";
 
     public static String mFileName = null;
-    public static String mFilePath = null;
+    public static String mFilePath = "";
 
     private MediaRecorder mRecorder = null;
 
@@ -109,7 +110,9 @@ public class RecordingService extends Service {
         mRecorder.stop();
         mElapsedMillis = (System.currentTimeMillis() - mStartingTimeMillis);
         mRecorder.release();
-     //   Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
+
+
+        Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
 
         //remove notification
         if (mIncrementTimerTask != null) {

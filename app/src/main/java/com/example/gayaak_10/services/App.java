@@ -7,6 +7,7 @@ import com.example.gayaak_10.model.response.CoursesDetail;
 import com.example.gayaak_10.model.response.UserDataProfile;
 import com.example.gayaak_10.student.model.BuyCoursesDetail;
 import com.example.gayaak_10.student.model.CourseAndStudentTutorBookingIdModel;
+import com.example.gayaak_10.student.model.CourseDataContract;
 import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.LiveClassDataContractList;
 import com.example.gayaak_10.student.model.SelectedSessionDetail;
@@ -24,7 +25,9 @@ public class App extends Application {
     public static ArrayList<CoursesDetail> coursesDetailArrayList = new ArrayList<>();              // user subscribed courses(Your learning courses HOME)
     public static ArrayList<CoursesDetail> trendingDetailArrayList = new ArrayList<CoursesDetail>();            // trending list
     public static ArrayList<CoursesDetail> allCoursesArrayList = new ArrayList<CoursesDetail>();                // all the courses
-    public static ArrayList<CoursesDetail> allCourseRecommendedList = new ArrayList<CoursesDetail>();                // all the courses
+    public static ArrayList<CoursesDetail> allCourseRecommendedList = new ArrayList<CoursesDetail>();           // all the courses
+    public static ArrayList<CourseDataContract> userLearningCourseList = new ArrayList<CourseDataContract>();
+    public static ArrayList<CourseDataContractList> dashboardRegularCourseList = new ArrayList<>();
     public static String currencyType = "USD";
     public static ArrayList<BuyCoursesDetail> studentCartList = new ArrayList<BuyCoursesDetail>();
     public static Integer firstSelectedCourseType = -1;

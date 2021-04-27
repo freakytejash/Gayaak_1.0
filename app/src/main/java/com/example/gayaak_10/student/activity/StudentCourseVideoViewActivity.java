@@ -224,11 +224,12 @@ public class StudentCourseVideoViewActivity extends AppCompatActivity{
                 break;
             }
         }
-        if (!isAnyVideoFree) {
+        //sumit
+/*        if (!isAnyVideoFree) {
             binding.layoutLockedVideo.setVisibility(View.VISIBLE);
             binding.courseVideoPlayer.setVisibility(View.GONE);
             isMediaEnded = true;
-        } else {
+        } else */{
             binding.layoutLockedVideo.setVisibility(View.GONE);
             binding.courseVideoPlayer.setVisibility(View.VISIBLE);
             isMediaEnded = false;

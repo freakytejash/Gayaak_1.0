@@ -71,7 +71,7 @@ public class CourseDataContract  {
     public Integer courseType;
     @SerializedName("CourseNames")
     @Expose
-    public Object courseNames;
+    public String courseNames;
     @SerializedName("IsShownInPlanList")
     @Expose
     public Object isShownInPlanList;

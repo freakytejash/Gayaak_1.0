@@ -24,6 +24,9 @@ public class RegularCourseProgress {
         @SerializedName("ModuleCount")
         @Expose
         public Integer moduleCount;
+        @SerializedName("CompletedModules")
+        @Expose
+        public Integer completedModules;
         @SerializedName("TotalPercentage")
         @Expose
         public Integer totalPercentage;

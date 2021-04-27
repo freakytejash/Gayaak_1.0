@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".tutor.fragment.TutorRegularFeedbackFragment">
 
 <!--    header-->
@@ -133,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2.5"
+                android:weightSum="3.0"
                 android:layout_marginTop="10dp">
 
                 <RelativeLayout
@@ -144,7 +145,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
-                    android:layout_weight=".75"
+                    android:layout_weight=".66"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/in_progress"
@@ -154,12 +155,22 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
-                    android:layout_weight=".75"
+                    android:layout_weight=".66"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/completed"
                    android:gravity="center"
                     android:textColor="@color/green"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".66"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/not_started"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
                     android:textSize="14sp" />
 
             </LinearLayout>

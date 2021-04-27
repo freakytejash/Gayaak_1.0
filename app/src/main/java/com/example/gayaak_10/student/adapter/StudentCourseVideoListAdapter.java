@@ -66,18 +66,18 @@ public class StudentCourseVideoListAdapter extends RecyclerView.Adapter<StudentC
 
             Glide.with(mContext).load(videoData.thumbnailImage).placeholder(R.drawable.gayaak_icon).into(binding.ivVideoThumbNail);
 
-            if (!videoData.isfreevedio){
+           /* if (!videoData.isfreevedio){
                 binding.ivVideoLock.setVisibility(View.VISIBLE);
-            }else {
+            }else*/ {
                 binding.ivVideoLock.setVisibility(View.INVISIBLE);
             }
 
 
             binding.layoutVideoCell.setOnClickListener(view -> {
                 selectedPosition = getAdapterPosition();
-                if (videoData.isfreevedio){
+                /*if (videoData.isfreevedio){
                     onItemClickListener.paidVideoClick(getAdapterPosition());
-                }else {
+                }else*/ {
                     onItemClickListener.onItemClick(getAdapterPosition());
                 }
             });

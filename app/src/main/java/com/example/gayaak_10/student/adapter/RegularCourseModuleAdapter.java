@@ -81,31 +81,31 @@ public class RegularCourseModuleAdapter extends RecyclerView.Adapter<RegularCour
                 for (int i=0; i< courseProgressList.size();i++){
                     if (courseModuleDetail.moduleId== courseProgressList.get(i).moduleId){
                         moduleStatus = courseProgressList.get(i).moduleStatus;
-                        Resources res = mContext.getResources();
                         if (moduleStatus==null){
                             moduleStatus="nothing";
                         }
-                        if (moduleStatus.equalsIgnoreCase("Complete")){
-                            binding.moduleStatusIcon.setImageResource(R.drawable.ic_correct_circle);
-                            binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.green));
-                            binding.cardViewModule.getBackground().setTint(res.getColor(R.color.green));
-                            //   binding.cardViewModule.setBackgroundColor(res.getColor(R.color.green));
-                        }
-                        else if (moduleStatus.equalsIgnoreCase("InProgress")){
-                            binding.moduleStatusIcon.setImageResource(R.drawable.ic_tick_dotted);
-                            binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.orange_original));
-                            binding.cardViewModule.getBackground().setTint(res.getColor(R.color.orange_original));
-                            //  binding.cardViewModule.setBackgroundColor(res.getColor(R.color.orange_original));
-                        }
-                        else {
-                            binding.moduleStatusIcon.setImageResource(R.drawable.ic_3_dot_circle);
-                            binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.colorAccent));
-                            binding.cardViewModule.getBackground().setTint(res.getColor(R.color.colorAccent));
-                            // binding.cardViewModule.setBackgroundColor(res.getColor(R.color.colorAccent));
-                        }
-
                     }
                 }
+            }
+
+            Resources res = mContext.getResources();
+            if (moduleStatus.equalsIgnoreCase("Complete")){
+                binding.moduleStatusIcon.setImageResource(R.drawable.ic_correct_circle);
+                binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.green));
+                binding.cardViewModule.getBackground().setTint(res.getColor(R.color.green));
+                //   binding.cardViewModule.setBackgroundColor(res.getColor(R.color.green));
+            }
+            else if (moduleStatus.equalsIgnoreCase("InProgress")){
+                binding.moduleStatusIcon.setImageResource(R.drawable.ic_tick_dotted);
+                binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.orange_original));
+                binding.cardViewModule.getBackground().setTint(res.getColor(R.color.orange_original));
+                //  binding.cardViewModule.setBackgroundColor(res.getColor(R.color.orange_original));
+            }
+            else {
+                binding.moduleStatusIcon.setImageResource(R.drawable.ic_3_dot_circle);
+                binding.moduleStatusIcon.setColorFilter(res.getColor(R.color.colorAccent));
+                binding.cardViewModule.getBackground().setTint(res.getColor(R.color.colorAccent));
+                // binding.cardViewModule.setBackgroundColor(res.getColor(R.color.colorAccent));
             }
 
 

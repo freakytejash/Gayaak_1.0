@@ -137,7 +137,10 @@ public class TutorRegularFeedbackFragment extends Fragment implements View.OnCli
                         }
                     }
                 }
-                moduleList.add(new FeedbackTutorRegularContentRequest.ModuleStatusDataContractList(moduleId,statusId));
+                if (statusId!=0){
+                    moduleList.add(new FeedbackTutorRegularContentRequest.ModuleStatusDataContractList(moduleId,statusId));
+                }
+
             }
         });
         binding.rvModuleProgress.setAdapter(moduleAdapter);

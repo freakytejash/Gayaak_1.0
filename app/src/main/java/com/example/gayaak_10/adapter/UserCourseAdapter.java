@@ -13,6 +13,7 @@ import com.example.gayaak_10.R;
 import com.example.gayaak_10.databinding.ItemUserLearningCoursesBinding;
 import com.example.gayaak_10.model.response.CoursesDetail;
 import com.example.gayaak_10.student.model.CourseDataContract;
+import com.example.gayaak_10.student.model.CourseDataContractList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,10 @@ import java.util.List;
 public class UserCourseAdapter extends RecyclerView.Adapter<UserCourseAdapter.ViewHolder> {
 
     public Context mContext;
-    private List<CourseDataContract> coursesDetailsList;
+    private List<CourseDataContractList> coursesDetailsList;
     private OnItemClickListener onItemClickListener;
 
-    public UserCourseAdapter(Context context, ArrayList<CourseDataContract> detail, OnItemClickListener onItemClickListener) {
+    public UserCourseAdapter(Context context, ArrayList<CourseDataContractList> detail, OnItemClickListener onItemClickListener) {
         this.mContext = context;
         this.coursesDetailsList = detail;
         this.onItemClickListener = onItemClickListener;
@@ -58,15 +59,18 @@ public class UserCourseAdapter extends RecyclerView.Adapter<UserCourseAdapter.Vi
             this.binding = binding;
         }
 
-        public void bind(CourseDataContract coursesDetail, Context mContext, final OnItemClickListener onItemClickListener) {
-            binding.tvCourseName.setText(coursesDetail.name);
+        public void bind(CourseDataContractList coursesDetail, Context mContext, final OnItemClickListener onItemClickListener) {
+            binding.tvCourseName.setText(coursesDetail.categoryName);
             binding.tvLevelName.setText(coursesDetail.levelName);
+            String status =coursesDetail.completedModules+"/"+coursesDetail.moduleCount+" Module Completed";
+            binding.tvCourseProgressStatus.setText(status);
             Glide.with(mContext).load(coursesDetail.thumbnailImage).placeholder(R.drawable.singer3).into(binding.ivCourseBg);
             binding.btnContinueCourse.setOnClickListener(view ->
                     onItemClickListener.onItemClickListener(getAdapterPosition()));
 
         }
 
+        //for click on complete adapter
         public void bind(Context mContext, OnItemClickListener onItemClickListener) {
             binding.btnContinueCourse.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -193,6 +193,7 @@
     <string name="my_students">My Students</string>
     <string name="my_scheduler">My Scheduler</string>
     <string name="tutor_details">Tutor Details</string>
+    <string name="practice_session">Practice Session</string>
     <string name="report_card">Report Card</string>
     <string name="choose_a_course">Choose a course</string>
     <string name="find_a_tutor">Find a Tutor</string>
@@ -248,6 +249,7 @@
     <string name="back">Back</string>
     <string name="submit_practice_song">Submit your practice song</string>
     <string name="no_tutor">Tutors are not available.</string>
+    <string name="no_course_plan_available">No Course Plan Available</string>
     <string name="select_student">Select Student</string>
     <string name="no_schedule_found_for_this_student">No schedule found for this student.</string>
     <string name="book">Book</string>
@@ -299,8 +301,9 @@
     <string name="pay_now">Pay Now</string>
     <string name="re_schedule">Re-Schedule</string>
     <string name="module_progress">Module Progress</string>
-    <string name="in_progress">Inprogress</string>
-    <string name="completed">Completed</string>
+    <string name="in_progress">In progress</string>
+    <string name="completed">Comp- leted</string>
+    <string name="not_started">Not Started</string>
     <string name="module_1">Module 1</string>
     <string name="module_2">Module 2</string>
     <string name="module_3">Module 3</string>

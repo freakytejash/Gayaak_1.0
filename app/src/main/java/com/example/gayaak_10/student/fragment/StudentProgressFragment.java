@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.gayaak_10.R;
 import com.example.gayaak_10.constants.Constant;
@@ -24,6 +25,7 @@ import com.example.gayaak_10.student.activity.StudentHomeActivity;
 import com.example.gayaak_10.student.adapter.CourseModuleAdapter;
 import com.example.gayaak_10.student.adapter.RegularCourseModuleAdapter;
 import com.example.gayaak_10.student.adapter.StudentCourseVideoListAdapter;
+import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.ModuleWithVideoDetail;
 import com.example.gayaak_10.student.model.RegularCourseProgress;
 import com.example.gayaak_10.student.model.VideosModuleDataContractList;
@@ -33,17 +35,17 @@ import com.example.gayaak_10.utility.Utility;
 import java.util.ArrayList;
 
 
-public class StudentProgressFragment extends Fragment {
+public class StudentProgressFragment extends Fragment implements View.OnClickListener{
     private FragmentStudentProgressBinding binding;
     private StudentViewModel viewModel;
     private Integer courseId = 0;
-    private CoursesDetail coursesDetail;
+    private CourseDataContractList coursesDetail;
     private ModuleWithVideoDetail selectedCourse;
     private ArrayList<CourseModuleDetail> courseDetail;
     private ArrayList<RegularCourseProgress.ModuledataContractList>moduleStatusList = new ArrayList<>();
     public static Integer moduleId = -1;
 
-    public StudentProgressFragment(CoursesDetail coursesDetail) {
+    public StudentProgressFragment(CourseDataContractList coursesDetail) {
         this.courseId = coursesDetail.courseId;
         this.coursesDetail = coursesDetail;
     }
@@ -58,7 +60,7 @@ public class StudentProgressFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentStudentProgressBinding.inflate(getLayoutInflater());
         viewModel = ViewModelProviders.of(getActivity()).get(StudentViewModel.class);
-
+        binding.tvEbook.setOnClickListener(this);
         binding.tvCourseName.setText(coursesDetail.name);
         binding.tvModuleDescription.setText(coursesDetail.detail);
 
@@ -119,6 +121,17 @@ public class StudentProgressFragment extends Fragment {
         });
         binding.rvModule.setAdapter(courseModuleAdapter);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.tvEbook){
+            if (courseId != -1){
+                StudentHomeActivity.addFragment(new StudentEbookFragment(courseId), Constant.COURSE_CATALOG, getActivity());
+            }else {
+                Toast.makeText(getActivity(), "Ebook for this module is not available." , Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
    /* private void getCourseVideos(Integer selectedCourseId) {

@@ -21,6 +21,7 @@ import com.example.gayaak_10.services.App;
 import com.example.gayaak_10.student.model.AudioModuleDataContractList;
 import com.example.gayaak_10.student.model.CoinCurrencyConfig;
 import com.example.gayaak_10.student.model.CourseByStudentId;
+import com.example.gayaak_10.student.model.CourseDataContractList;
 import com.example.gayaak_10.student.model.CoursePlan;
 import com.example.gayaak_10.student.model.DemoUserDashboard;
 import com.example.gayaak_10.student.model.LevelCategoryInfo;
@@ -70,8 +71,10 @@ public class StudentViewModel extends ViewModel {
     private MutableLiveData<DefaultResponse> cancelSessionMutableLiveData;
     private MutableLiveData<FilteredCourseDetail> coursesDetailMutableLiveData;
     private MutableLiveData<CoursePlan> coursePlanMutableLiveData;
+    private MutableLiveData<CoursePlan> regularCourseMutableLiveData;
     private MutableLiveData<UserDataProfile> userDataProfileMutableLiveData;
     private MutableLiveData<TransactionType> transactionTypeData;
+
 
     //188, 189, 10, 2020
     public MutableLiveData<TutorCalendar> getStudentCalendar(int studentId) {
@@ -145,6 +148,13 @@ public class StudentViewModel extends ViewModel {
             public void onResponse(@NonNull Call<DemoUserDashboard> call, @NonNull Response<DemoUserDashboard> response) {
                 Log.e("apiCall", "getUpcomingClasses: " +call.request());
                 assert response.body() != null;
+                /*if (response.body().detail.courseDataContractList != null){
+
+                    for (int i=0; i<response.body().detail.courseDataContractList.size(); i++){
+                        App.userLearningCourseList.add(i,response.body().detail.courseDataContractList.get(i));
+                    }
+
+                }*/
                 if (response.body().detail.liveClassDataContractList != null) {
                     for (int i = 0; i < response.body().detail.liveClassDataContractList.size(); i++) {
 
@@ -489,6 +499,35 @@ public class StudentViewModel extends ViewModel {
 
 
     /*--------------------------------------------------------------------------------------------*/
+    int i=0;
+    public MutableLiveData<CoursePlan> getRegularCourse() {
+        regularCourseMutableLiveData = new MutableLiveData<>();
+        getRegularCourseCall();
+        return regularCourseMutableLiveData;
+    }
+
+    private void getRegularCourseCall() {
+        Call<CoursePlan> filterCall = Constant.retrofitServiceHeader.getCoursePlans();
+        Log.d("call", " filter => " + filterCall.request());
+        filterCall.enqueue(new Callback<CoursePlan>() {
+            @Override
+            public void onResponse(@NonNull Call<CoursePlan> call, @NonNull Response<CoursePlan> response) {
+                assert response.body() != null;
+                if (response.body().detail != null) {
+                    regularCourseMutableLiveData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CoursePlan> call, @NonNull Throwable t) {
+                regularCourseMutableLiveData.setValue(null);
+            }
+        });
+    }
+
+
+
+    /*-------------------------------------coursePlan Dashboard-----------------------------------*/
     public MutableLiveData<CoursePlan> getCoursePlans() {
         coursePlanMutableLiveData = new MutableLiveData<>();
         getAllPlans();

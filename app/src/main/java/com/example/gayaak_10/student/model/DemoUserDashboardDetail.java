@@ -9,6 +9,10 @@ import java.util.List;
 
 public class DemoUserDashboardDetail {
 
+    /* @SerializedName("CourseDataContractList")
+    @Expose
+    public ArrayList<CourseDataContract> userCourseDataContractList = new ArrayList<>();*/
+
     @SerializedName("LiveClassDataContractList")
     @Expose
     public ArrayList<LiveClassDataContractList> liveClassDataContractList = new ArrayList<>();
@@ -18,9 +22,7 @@ public class DemoUserDashboardDetail {
     @Expose
     public Integer totalCount;
 
-   /* @SerializedName("CourseDataContractList")
-    @Expose
-    public ArrayList<CourseDataContract> courseDataContractList = new ArrayList<>();*/
+
 
 
 }

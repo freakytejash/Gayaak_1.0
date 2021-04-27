@@ -65,6 +65,7 @@ public class TutorRegularModuleAdapter extends RecyclerView.Adapter<TutorRegular
 
             binding.moduleInProgress.setOnClickListener( view -> onItemClickListener.onModuleStatus(courseModuleDetail.moduleId, 2));
             binding.moduleCompleted.setOnClickListener(view -> onItemClickListener.onModuleStatus(courseModuleDetail.moduleId,1));
+            binding.moduleNotDone.setOnClickListener(view -> onItemClickListener.onModuleStatus(courseModuleDetail.moduleId, 0));
 
 //            binding.layoutModuleVideo.setOnClickListener(view -> onItemClickListener.openModuleVideo(getAdapterPosition()));
 //            binding.layoutModulePDF.setOnClickListener(view -> onItemClickListener.openModulePDF(getAdapterPosition()));
