@@ -70,6 +70,12 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
             binding.tvWalletPoints.setText(Utility.withSuffix(App.tutorCoins));
         }
 
+        /*Calendar min = Calendar.getInstance();
+        min.add(Calendar.MONTH, -5);
+
+        Calendar max = Calendar.getInstance();
+        max.add(Calendar.MONTH, 5);*/
+
         Calendar min = Calendar.getInstance();
         min.add(Calendar.MONTH, -2);
 

@@ -271,7 +271,6 @@ public class RecordAudioFragment extends Fragment implements View.OnClickListene
     private void onRecord(boolean start) {
 
         Intent intent = new Intent(getActivity(), RecordingService.class);
-        getActivity().startService(intent);
 
         if (start) {
             // start recording
@@ -338,7 +337,7 @@ public class RecordAudioFragment extends Fragment implements View.OnClickListene
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.save_audio_custom_dialog, null);
 
-         AppCompatEditText editText = dialogView.findViewById(R.id.edt_comment);
+        final AppCompatEditText editText = dialogView.findViewById(R.id.edt_comment);
         AppCompatButton button1 = dialogView.findViewById(R.id.buttonSubmit);
         AppCompatButton button2 = dialogView.findViewById(R.id.buttonCancel);
 
@@ -352,9 +351,8 @@ public class RecordAudioFragment extends Fragment implements View.OnClickListene
                 return;
             }
             Utility.hideSoftKeyboard(getActivity(), view);
+            saveSessionOnServer(editText.getText().toString());
             binding.progressBarUploading.setVisibility(View.VISIBLE);
-            saveSessionOnServer(editText.getText().toString().trim());
-
             dialogBuilder.dismiss();
         });
 
@@ -378,7 +376,6 @@ public class RecordAudioFragment extends Fragment implements View.OnClickListene
         practiseSessionData.LoginUserId = App.userDataContract.detail.userId;
 
         File file = new File(RecordingService.mFilePath);
-        //File mdr = new File();
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 

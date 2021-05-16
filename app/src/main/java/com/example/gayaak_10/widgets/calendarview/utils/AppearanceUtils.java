@@ -1,5 +1,6 @@
 package com.example.gayaak_10.widgets.calendarview.utils;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -42,7 +43,7 @@ public final class AppearanceUtils {
             return;
         }
 
-        ConstraintLayout calendarHeader = (ConstraintLayout) view.findViewById(R.id.calendarHeader);
+        @SuppressLint("WrongViewCast") ConstraintLayout calendarHeader = (ConstraintLayout) view.findViewById(R.id.calendarHeader);
         calendarHeader.setBackgroundColor(color);
     }
 

@@ -177,7 +177,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     if (response.body().status && response.body().detail != null) {
                         binding.progressSignUp.setVisibility(View.GONE);
                         App.isSocial = true;
-                        Log.d("token", " ==> " + response.body().detail.tockenString + " userId -> " + response.body().detail.userDataContract.userId);
+//                        Log.d("token", " ==> " + response.body().detail.tockenString + " userId -> " + response.body().detail.userDataContract.userId);
                         userDetail = response.body().detail.userDataContract;
                         userDetail.registerType = "Social";
                         storeDataNavigate(response.body());
@@ -196,7 +196,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onFailure(Call<UserLoginData> call, Throwable t) {
                 binding.progressSignUp.setVisibility(View.GONE);
-                Toast.makeText(SignUpActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Something went wrong.SignUp", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -210,7 +210,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Utility.customDialogBoxTextWithSingle(SignUpActivity.this, "Something went wrong.", mError.message);
+        Utility.customDialogBoxTextWithSingle(SignUpActivity.this, "Something went wrong.in fetch error", mError.message);
     }
 
     private void logoutSocialAcc() {
@@ -234,7 +234,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         } else {
             logoutSocialAcc();
-            Utility.customDialogBoxTextWithSingle(SignUpActivity.this, "Something went wrong...", "");
+            Utility.customDialogBoxTextWithSingle(SignUpActivity.this, "Something went wrong...store Date", "");
         }
     }
 

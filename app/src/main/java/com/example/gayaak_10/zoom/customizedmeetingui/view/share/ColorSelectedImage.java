@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class ColorSelectedImage extends ImageView {
+public class ColorSelectedImage extends androidx.appcompat.widget.AppCompatImageView {
 	private int color = 0;
 	private Paint mPaint;
 	

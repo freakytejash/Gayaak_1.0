@@ -29,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ExpertFeedbackFragment extends Fragment {
-
     private FragmentExpertFeedbackBinding binding;
     private ExpertFeedbackAdapter adapter;
 
@@ -37,48 +36,46 @@ public class ExpertFeedbackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentExpertFeedbackBinding.inflate(inflater);
-
         getFeedback();
-
         return binding.getRoot();
     }
 
     private void getFeedback() {
-            Call<PractiseSessionInfo> practiseSessionInfoCall = Constant.retrofitServiceHeader.getPracticeSessionByUserId(App.userDataContract.detail.userId);
-            practiseSessionInfoCall.enqueue(new Callback<PractiseSessionInfo>() {
-                @Override
-                public void onResponse(Call<PractiseSessionInfo> call, Response<PractiseSessionInfo> response) {
-                    if (response.isSuccessful()){
-                        if (response.body().status){
-                            if (response.body().detail != null && !response.body().detail.isEmpty()){
-                                binding.layoutEmptyFeedback.setVisibility(View.GONE);
-                                binding.rvFeedback.setVisibility(View.VISIBLE);
-                                setFeedback(response.body().detail);
-                            }else {
-                                binding.layoutEmptyFeedback.setVisibility(View.VISIBLE);
-                                binding.rvFeedback.setVisibility(View.GONE);
-                            }
+        Call<PractiseSessionInfo> practiseSessionInfoCall = Constant.retrofitServiceHeader.getPracticeSessionByUserId(App.userDataContract.detail.userId);
+        practiseSessionInfoCall.enqueue(new Callback<PractiseSessionInfo>() {
+            @Override
+            public void onResponse(Call<PractiseSessionInfo> call, Response<PractiseSessionInfo> response) {
+                if (response.isSuccessful()){
+                    if (response.body().status){
+                        if (response.body().detail != null && !response.body().detail.isEmpty()){
+                            binding.layoutEmptyFeedback.setVisibility(View.GONE);
+                            binding.rvFeedback.setVisibility(View.VISIBLE);
+                            setFeedback(response.body().detail);
+                        }else {
+                            binding.layoutEmptyFeedback.setVisibility(View.VISIBLE);
+                            binding.rvFeedback.setVisibility(View.GONE);
                         }
-                    }else {
-                        binding.layoutEmptyFeedback.setVisibility(View.VISIBLE);
-                        binding.rvFeedback.setVisibility(View.GONE);
-                        Gson gson = new GsonBuilder().create();
-                        ErrorPojoClass mError = new ErrorPojoClass();
-                        try {
-                            mError = gson.fromJson(response.errorBody().string(), ErrorPojoClass.class);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        Utility.customDialogBoxTextWithSingle(getActivity(), "Something went wrong." ,mError.message );
                     }
-                }
-
-                @Override
-                public void onFailure(Call<PractiseSessionInfo> call, Throwable t) {
+                }else {
                     binding.layoutEmptyFeedback.setVisibility(View.VISIBLE);
                     binding.rvFeedback.setVisibility(View.GONE);
+                    Gson gson = new GsonBuilder().create();
+                    ErrorPojoClass mError = new ErrorPojoClass();
+                    try {
+                        mError = gson.fromJson(response.errorBody().string(), ErrorPojoClass.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Utility.customDialogBoxTextWithSingle(getActivity(), "Something went wrong." ,mError.message );
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<PractiseSessionInfo> call, Throwable t) {
+                binding.layoutEmptyFeedback.setVisibility(View.VISIBLE);
+                binding.rvFeedback.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setFeedback(ArrayList<PractiseSessionInfoDetail> detail) {
@@ -95,7 +92,4 @@ public class ExpertFeedbackFragment extends Fragment {
         });
         binding.rvFeedback.setAdapter(adapter);
     }
-
-
-
 }

@@ -166,9 +166,9 @@ public class StudentEbookFragment extends Fragment implements View.OnClickListen
             }
 
             DownloadManager.Request request = new DownloadManager.Request(uri);
-            request.setTitle(name);
+            request.setTitle(name+".pdf");
             request.setDescription("Downloading..");
-            //request.setMimeType("application/pdf");
+           // request.setMimeType("application/pdf");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
            // request.setDestinationInExternalFilesDir(getActivity(), Environment.getExternalStorageDirectory() + "/Gayaak/Ebook", name);

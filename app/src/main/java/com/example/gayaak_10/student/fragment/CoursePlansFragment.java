@@ -191,7 +191,90 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
         Utility.showLoader(getActivity(), true);
         viewModel.getCoursePlans().observe(Objects.requireNonNull(getActivity()), coursePlan -> {
             Utility.hideLoader();
+            if (!isFrom.isEmpty() && isFrom.equalsIgnoreCase("RecommendedCourse")) {
+                customCoursePrice = App.selectedSessionDetail.coursePrice*App.noOfSessions;
+                binding.spCoursePlan.setVisibility(View.GONE);
+                binding.tvCoursePlan.setVisibility(View.VISIBLE);
+                binding.customCard.setVisibility(View.VISIBLE);
 
+                binding.layoutInfoCoins.setVisibility(View.VISIBLE);
+
+                binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
+                binding.tvCoinValue.setText(""+App.countryCurrencyValue+ " "+App.countryCurrencyName);
+
+                binding.layoutPlanTotal.setVisibility(View.VISIBLE);
+
+                total = ((App.selectedSessionDetail.coursePrice*App.noOfSessions))* App.countryCurrencyValue;
+                binding.tvPlanTotal.setText(""+countryCurrencyName + total);
+
+
+            }
+            else
+            {
+                  /*  binding.radioRecommendedPlan.setChecked(true);
+                    binding.radioCustomPlan.setChecked(false);*/
+                if (coursePlan.detail.courseDataContractList==null){
+                    binding.spCoursePlan.setVisibility(View.GONE);
+                    binding.tvCoursePlan.setVisibility(View.GONE);
+                    binding.customCard.setVisibility(View.GONE);
+                    binding.contentLayout.setVisibility(View.GONE);
+                    binding.emptyDataLayout.setVisibility(View.VISIBLE);
+                }
+
+                if (coursePlan.detail.courseDataContractList != null && coursePlan.detail.courseDataContractList.size() != 0) {
+                    binding.spCoursePlan.setVisibility(View.VISIBLE);
+                    binding.tvCoursePlan.setVisibility(View.GONE);
+                    binding.customCard.setVisibility(View.VISIBLE);
+
+                    binding.layoutInfoCoins.setVisibility(View.VISIBLE);
+
+                    binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
+                    binding.tvCoinValue.setText(""+App.countryCurrencyValue+ " "+App.countryCurrencyName);
+
+                    binding.layoutPlanTotal.setVisibility(View.VISIBLE);
+
+                    //done
+
+                    ArrayList<String> courseString= new ArrayList<>();
+                    for (int i = 0; i<coursePlan.detail.courseDataContractList.size(); i++){
+                        courseString.add(""+coursePlan.detail.courseDataContractList.get(i).name);
+                    }
+                    perSessionPrice = coursePlan.detail.courseDataContractList.get(0).price;
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, courseString);
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spCoursePlan.setAdapter(arrayAdapter);
+                    // binding.spCoursePlan.setSelection(0);
+
+                    //customCoursePrice = coursePlan.detail.courseDataContractList.get(0).perSessionPrice*(this.App.noOfSessions);
+
+                    binding.spCoursePlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            App.spinnerSelectedCourse = coursePlan.detail.courseDataContractList.get(position);
+                            binding.tvCustomSessions.setText(String.valueOf(App.noOfSessions));
+                            customCoursePrice = coursePlan.detail.courseDataContractList.get(position).price*App.noOfSessions;
+                            binding.tvCustomRequiredPoints.setText(""+(customCoursePrice));
+                            coursePlanNoOfSessions = coursePlan.detail.courseDataContractList.get(position).noofSession;
+                            coursePlanPrice = coursePlan.detail.courseDataContractList.get(position).price;
+
+                            customPlan = coursePlan.detail.courseDataContractList.get(position);
+                            perSessionPrice = coursePlan.detail.courseDataContractList.get(position).price;
+
+                            total = (customCoursePrice)* App.countryCurrencyValue;
+                            binding.tvPlanTotal.setText(""+countryCurrencyName + total);
+
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                            binding.spCoursePlan.setSelection(0);
+                            perSessionPrice= coursePlan.detail.courseDataContractList.get(0).price;
+                        }
+                    });
+                }
+            }
             if (coursePlan != null && coursePlan.detail.walletRechargePlanDataContractList.size() != 0)
             {
                 binding.rvWalletsPlan.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -232,92 +315,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
                 binding.rvWalletsPlan.setAdapter(adapter);
             }
 
-            if (!isFrom.isEmpty() && isFrom.equalsIgnoreCase("RecommendedCourse")) {
-                customCoursePrice = App.selectedSessionDetail.coursePrice*App.noOfSessions;
-                binding.spCoursePlan.setVisibility(View.GONE);
-                binding.tvCoursePlan.setVisibility(View.VISIBLE);
-                binding.customCard.setVisibility(View.VISIBLE);
 
-                binding.layoutInfoCoins.setVisibility(View.VISIBLE);
-
-                binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
-
-                binding.layoutPlanTotal.setVisibility(View.VISIBLE);
-
-                total = ((App.selectedSessionDetail.coursePrice*App.noOfSessions))* App.countryCurrencyValue;
-                binding.tvPlanTotal.setText(""+countryCurrencyName + total);
-
-
-            }
-            else
-                {
-                  /*  binding.radioRecommendedPlan.setChecked(true);
-                    binding.radioCustomPlan.setChecked(false);*/
-                    if (coursePlan.detail.courseDataContractList==null){
-                        binding.spCoursePlan.setVisibility(View.GONE);
-                        binding.tvCoursePlan.setVisibility(View.GONE);
-                        binding.customCard.setVisibility(View.GONE);
-                        binding.contentLayout.setVisibility(View.GONE);
-                        binding.emptyDataLayout.setVisibility(View.VISIBLE);
-                    }
-
-                if (coursePlan.detail.courseDataContractList != null && coursePlan.detail.courseDataContractList.size() != 0) {
-                    binding.spCoursePlan.setVisibility(View.VISIBLE);
-                    binding.tvCoursePlan.setVisibility(View.GONE);
-                    binding.customCard.setVisibility(View.VISIBLE);
-
-                    binding.layoutInfoCoins.setVisibility(View.VISIBLE);
-
-                    binding.tvCoinInfo.setText("1 coin = " + App.countryCurrencyValue +" "+App.countryCurrencyName);
-
-                    binding.layoutPlanTotal.setVisibility(View.VISIBLE);
-
-
-
-                    //done
-
-                    ArrayList<String> courseString= new ArrayList<>();
-                    for (int i = 0; i<coursePlan.detail.courseDataContractList.size(); i++){
-                        courseString.add(""+coursePlan.detail.courseDataContractList.get(i).name);
-                    }
-
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_spinner_item, courseString);
-                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spCoursePlan.setAdapter(arrayAdapter);
-                   // binding.spCoursePlan.setSelection(0);
-
-                   //customCoursePrice = coursePlan.detail.courseDataContractList.get(0).perSessionPrice*(this.App.noOfSessions);
-
-                    binding.spCoursePlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                            App.spinnerSelectedCourse = coursePlan.detail.courseDataContractList.get(position);
-                            binding.tvCustomSessions.setText(String.valueOf(App.noOfSessions));
-                            customCoursePrice = coursePlan.detail.courseDataContractList.get(position).price*App.noOfSessions;
-                            binding.tvCustomRequiredPoints.setText(""+(customCoursePrice));
-                            coursePlanNoOfSessions = coursePlan.detail.courseDataContractList.get(position).noofSession;
-                            coursePlanPrice = coursePlan.detail.courseDataContractList.get(position).price;
-
-                            customPlan = coursePlan.detail.courseDataContractList.get(position);
-                            perSessionPrice = coursePlan.detail.courseDataContractList.get(position).price;
-
-                            total = (customCoursePrice)* App.countryCurrencyValue;
-                            binding.tvPlanTotal.setText(""+countryCurrencyName + total);
-
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-
-
-                }
-            }
         });
     }
 

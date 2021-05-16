@@ -44,6 +44,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".student.activity.RecordedFilesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+
+
         <activity
             android:name=".common.login_register.SignUpActivity"
             android:screenOrientation="portrait"
@@ -147,6 +154,12 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <service android:name=".student.fragment.RecordAudioFragment$InstrumentService"
+            android:enabled="true"/>
+
+        <service android:name=".services.RecordingService"
+            android:enabled="true"/>
+
 
     </application>
 
@@ -162,6 +175,6 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!--<uses-permission android:name="android.permission.STORAGE"/>-->
+    <uses-permission android:name="android.permission.STORAGE"/>
 
 </manifest>

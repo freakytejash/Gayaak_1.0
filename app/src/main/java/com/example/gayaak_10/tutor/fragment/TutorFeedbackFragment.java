@@ -66,6 +66,8 @@ public class TutorFeedbackFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         binding = FragmentTutorFeedbackBinding.inflate(getLayoutInflater());
         mViewModel = ViewModelProviders.of(getActivity()).get(TutorViewModel.class);
+       
+        tutorSession = App.tutorSessionStarted;
 
         mViewModel.getAllCourseByCatIdAndLevelId(tutorSession.CategoryId, tutorSession.levelId).observe(this, new Observer<AllCourses>() {
             @Override
@@ -144,7 +146,7 @@ public class TutorFeedbackFragment extends Fragment implements View.OnClickListe
         }
 
 
-        getSlotTime();
+        //getSlotTime();
 
         binding.rvProficiencies.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         StudentProficiencyAdapter rvProficiencies = new StudentProficiencyAdapter(getActivity(), studentProficiencies, new StudentProficiencyAdapter.OnItemClickListener() {
@@ -191,7 +193,7 @@ public class TutorFeedbackFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        binding.radioGroupClassWeek.setOnCheckedChangeListener((group, checkedId) -> {
+      /*  binding.radioGroupClassWeek.setOnCheckedChangeListener((group, checkedId) -> {
             // find which radio button is selected
             if (checkedId == R.id.rbOne) {
                 noOfClass = 1;
@@ -202,13 +204,15 @@ public class TutorFeedbackFragment extends Fragment implements View.OnClickListe
                 binding.layoutFirstSession.setVisibility(View.VISIBLE);
                 binding.layoutSecondSession.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
         return binding.getRoot();
     }
 
 
     private void allCoursesFinalList(ArrayList<CoursesDetail> tempCoursesArrayList) {
         Collections.sort(tempCoursesArrayList, (s1, s2) -> s1.name.compareToIgnoreCase(s2.name));
+
+
         App.allCourseRecommendedList.clear();
         App.allCourseRecommendedList.addAll(tempCoursesArrayList);
     }
@@ -442,9 +446,9 @@ public class TutorFeedbackFragment extends Fragment implements View.OnClickListe
             feedbackTutorContentRequest.isStudentQualifies = true;
         }
         feedbackTutorContentRequest.isClassTimeDecided = haveDecidedSession;
-        feedbackTutorContentRequest.noOfClassPerWeek = noOfClass;
+        /*feedbackTutorContentRequest.noOfClassPerWeek = noOfClass;
         feedbackTutorContentRequest.scheduleId1 = schedule1;
-        feedbackTutorContentRequest.scheduleId2 = schedule2;
+        feedbackTutorContentRequest.scheduleId2 = schedule2;*/
         feedbackTutorContentRequest.isStudentGotSittingTolerance = isStudentTolerant;
         feedbackTutorContentRequest.isProficientInDiction = returnProficiencyResult(studentProficiencies, "Dictation");
         feedbackTutorContentRequest.isProficientInShruthi = returnProficiencyResult(studentProficiencies, "Shruthi");

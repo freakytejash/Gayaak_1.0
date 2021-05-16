@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gayaak_10.databinding.ItemRecordedFilesBinding;
 import com.example.gayaak_10.model.response.PractiseSessionInfoDetail;
 import com.example.gayaak_10.utility.DateTimeUtility;
+import com.example.gayaak_10.utility.Utility;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,7 @@ public class SessionFilesAdapter extends RecyclerView.Adapter<SessionFilesAdapte
             itemRecordedFilesBinding.fileNameText.setText(coursesDetail.comment);
             if (coursesDetail.createdDate != null){
                 if (!coursesDetail.createdDate.isEmpty()) {
-                    itemRecordedFilesBinding.fileDateAddedText.setText(DateTimeUtility.convertDateTimeFormate(coursesDetail.createdDate, "dd/MM/yyyy hh:mm a", "yyyy-MM-dd'T'HH:mm:ss.SSS"));
+                    itemRecordedFilesBinding.fileDateAddedText.setText(DateTimeUtility.convertDateTimeFormatUtil(coursesDetail.createdDate, "dd/MM/yyyy hh:mm a"));
                 }
             }
 

@@ -44,7 +44,7 @@ public class StudentCalendarFragment extends Fragment {
     List<String> refillList = new ArrayList<>();
     List<EventDay> events = new ArrayList<>();
     private StudentViewModel viewModel;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 
     @Nullable
     @Override
@@ -75,11 +75,13 @@ public class StudentCalendarFragment extends Fragment {
         viewModel.getStudentCalendar(App.userDataContract.detail.userId).observe(getActivity(), tutorCalendar -> {
 
             if (tutorCalendar.detail != null && tutorCalendar.detail.transactionDetailDataContractLists != null) {
+               // refillList.clear();
                 for (int i = 0; i < tutorCalendar.detail.transactionDetailDataContractLists.size(); i++) {
-                    refillList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.transactionDetailDataContractLists.get(i).CreditDateAndTime, "yyyy-mm-dd'T'hh:mm:ss", "dd-M-yyyy hh:mm:ss"));
+                    refillList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.transactionDetailDataContractLists.get(i).CreditDateAndTime, "yyyy-MM-dd'T'hh:mm:ss", "dd-M-yyyy hh:mm:ss"));
                 }
 
                 if (refillList.size() == tutorCalendar.detail.transactionDetailDataContractLists.size()) {
+                    //SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.US);
                     for (int i = 0; i < refillList.size(); i++) {
                         Date date = null;
                         try {
@@ -90,7 +92,7 @@ public class StudentCalendarFragment extends Fragment {
                         events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_yellow));
                     }
 
-                    for (int i = 0; i < upcomingList.size(); i++) {
+/*                    for (int i = 0; i < upcomingList.size(); i++) {
                         Date date = null;
                         try {
                             date = sdf.parse(upcomingList.get(i));
@@ -98,7 +100,7 @@ public class StudentCalendarFragment extends Fragment {
                             e.printStackTrace();
                         }
                         events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_upcoming));
-                    }
+                    }*/
                     binding.calendar.setEvents(events);
                 }
             }
@@ -130,7 +132,10 @@ public class StudentCalendarFragment extends Fragment {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_completed));
+
+                        if (tutorCalendar.detail.liveClassDataContractList.get(i).isComplete ==1){
+                            events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_completed));
+                        }
                     }
 
                     for (int i = 0; i < upcomingList.size(); i++) {
@@ -151,6 +156,7 @@ public class StudentCalendarFragment extends Fragment {
                 binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
                 binding.layoutEmptySchedule.setVisibility(View.GONE);
                 for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
+
                     list.add(new TutorCalendarCompleteList("session",
                             tutorCalendar.detail.liveClassDataContractList.get(i), null));
 
@@ -200,7 +206,31 @@ public class StudentCalendarFragment extends Fragment {
 
     private void setList(ArrayList<TutorCalendarCompleteList> list) {
         binding.rvStudentScheduleList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        CalendarStudentListAdapter adapter = new CalendarStudentListAdapter(getActivity(), list, new CalendarStudentListAdapter.OnItemClickListener() {
+
+        ArrayList<TutorCalendarCompleteList> calenderList = new ArrayList<>();
+        for (int i=0; i<list.size(); i++){
+            if (list.get(i).type.equalsIgnoreCase("refill")){
+                calenderList.add(list.get(i));
+            }
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+                Date date1 = sdf.parse(list.get(i).liveClassData.dateString);
+                Date date2 = sdf.parse(DateTimeUtility.currentDateTime("MM/dd/yyyy"));
+
+                if (date1.after(date2)) {
+                    if (list.get(i).type.equalsIgnoreCase("session")){
+                        calenderList.add(list.get(i));
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+        CalendarStudentListAdapter adapter = new CalendarStudentListAdapter(getActivity(), calenderList, new CalendarStudentListAdapter.OnItemClickListener() {
             @Override
             public void onRescheduleSession(TutorCalendarLiveClassDataContractList liveClassData) {
                 CustomDialogClass cdd = new CustomDialogClass(getActivity(), new DecisionInterface() {

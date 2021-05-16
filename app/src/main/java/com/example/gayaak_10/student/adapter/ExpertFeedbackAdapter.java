@@ -57,10 +57,11 @@ public class ExpertFeedbackAdapter extends RecyclerView.Adapter<ExpertFeedbackAd
 
         @SuppressLint("SetTextI18n")
         public void bind(PractiseSessionInfoDetail practiseSessionInfoDetail, Context mContext, OnItemClickListener onItemClickListener) {
-            itemExpertFeedbackBinding.tvPracticeName.setText(Utility.getFileNameFromURL(practiseSessionInfoDetail.audioFileName));
+            //itemExpertFeedbackBinding.tvPracticeName.setText(Utility.getFileNameFromURL(practiseSessionInfoDetail.audioFileName));
+            itemExpertFeedbackBinding.tvPracticeName.setText(practiseSessionInfoDetail.comment);
             if (practiseSessionInfoDetail.createdDate != null) {
                 if (!practiseSessionInfoDetail.createdDate.isEmpty()) {
-                    itemExpertFeedbackBinding.tvPracticeDate.setText(DateTimeUtility.convertDateTimeFormate(practiseSessionInfoDetail.createdDate, "","dd/MM/yyyy hh:mm a"));
+                    itemExpertFeedbackBinding.tvPracticeDate.setText(DateTimeUtility.convertDateTimeFormatUtil(practiseSessionInfoDetail.createdDate,"dd/MM/yyyy hh:mm a"));
                 }
             }
 
@@ -74,7 +75,8 @@ public class ExpertFeedbackAdapter extends RecyclerView.Adapter<ExpertFeedbackAd
                 itemExpertFeedbackBinding.ivReview.setVisibility(View.VISIBLE);
             }
 
-            itemExpertFeedbackBinding.tvSongName.setText(Utility.getFileNameFromURL(practiseSessionInfoDetail.audioFileName));
+           // itemExpertFeedbackBinding.tvSongName.setText(Utility.getFileNameFromURL(practiseSessionInfoDetail.audioFileName));
+            itemExpertFeedbackBinding.tvSongName.setText(practiseSessionInfoDetail.comment);
             itemExpertFeedbackBinding.ivPlayRecording.setOnClickListener(view -> {
                 onItemClickListener.onItemClickListener(getAdapterPosition());
             });

@@ -42,6 +42,20 @@ public class DateTimeUtility {
         return outputFormat.format(date);
     }
 
+    public static String convertDateTimeFormatUtil(String strDate, String format) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(format, Locale.ENGLISH);
+        Date date = null;
+        try {
+            date = inputFormat.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = outputFormat.format(date);
+        return formattedDate;
+    }
+
+
     public static String convertDateTimeFormate(String strDate, String format, String output) {
 
         Date date = null;

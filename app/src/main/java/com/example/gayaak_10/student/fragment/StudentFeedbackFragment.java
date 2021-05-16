@@ -39,6 +39,9 @@ public class StudentFeedbackFragment extends Fragment implements View.OnClickLis
         mViewModel = ViewModelProviders.of(getActivity()).get(StudentViewModel.class);
    //     binding.ratingBar.getRating();
 
+        if (App.liveClassId == 2){
+            binding.llWishToJoin.setVisibility(View.GONE);
+        }
         binding.btnYes.setOnClickListener(this);
         binding.btnNo.setOnClickListener(this);
         binding.btnYesJoin.setOnClickListener(this);
@@ -102,8 +105,8 @@ public class StudentFeedbackFragment extends Fragment implements View.OnClickLis
         LiveClassDataContractList liveClassDataContractList = new LiveClassDataContractList();
         liveClassDataContractList = App.sessionStarted;
         App.sessionStarted = new LiveClassDataContractList();
-        FeedbackContentRequest feedbackContentRequest = new FeedbackContentRequest();
 
+        FeedbackContentRequest feedbackContentRequest = new FeedbackContentRequest();
         feedbackContentRequest.tutorId = liveClassDataContractList.tutorId;
         feedbackContentRequest.sessionFeedbackId = 0;
         feedbackContentRequest.courseId = null;
@@ -116,12 +119,11 @@ public class StudentFeedbackFragment extends Fragment implements View.OnClickLis
         feedbackContentRequest.moduleId = null;
         if (liveClassDataContractList.liveClassTypeId==1){
             feedbackContentRequest.feedBackTypeIId = 1;
+            feedbackContentRequest.IsInterestedToJoin = isJoining;
         }else {
             feedbackContentRequest.feedBackTypeIId =2;
         }
-
         feedbackContentRequest.IsExpAnyTechnicalDifficulties = technicalIssues;
-        feedbackContentRequest.IsInterestedToJoin = isJoining;
         feedbackContentRequest.Feedbacktext = etFeedbackThoughts;
         feedbackContentRequest.StudentTutorBookingId = liveClassDataContractList.StudentTutorBookingId;
 

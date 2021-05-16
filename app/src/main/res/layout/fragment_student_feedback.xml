@@ -184,56 +184,63 @@
                     android:text="@string/dialog_action_no" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginTop="30dp"
-                android:text="@string/would_you_like_to_join"
-                android:layout_gravity="center"
-                android:textColor="@color/colorLightGray"
-                android:textSize="16sp" />
-
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnYesJoin"
-                    android:background="@drawable/btn_state_normal"
+                android:id="@+id/ll_wish_to_join"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:text="@string/dialog_action_yes" />
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/would_you_like_to_join"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorLightGray"
+                    android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnNoJoin"
-                    android:background="@drawable/btn_state_normal"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:text="@string/dialog_action_no" />
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnDecidJoin"
-                    android:background="@drawable/btn_state_normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:text="@string/yet_to_decide" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnYesJoin"
+                        android:background="@drawable/btn_state_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:text="@string/dialog_action_yes" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnNoJoin"
+                        android:background="@drawable/btn_state_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:text="@string/dialog_action_no" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnDecidJoin"
+                        android:background="@drawable/btn_state_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:text="@string/yet_to_decide" />
+                </LinearLayout>
             </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etFeedbackThoughts"

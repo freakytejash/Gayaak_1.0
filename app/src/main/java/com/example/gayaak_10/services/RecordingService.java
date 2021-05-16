@@ -19,13 +19,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RecordingService extends Service {
-
     private static final String LOG_TAG = "RecordingService";
 
     public static String mFileName = null;
-    public static String mFilePath = "";
+    public static String mFilePath = null;
 
     private MediaRecorder mRecorder = null;
+
+    private DBHelper mDatabase;
 
     private long mStartingTimeMillis = 0;
     public static long mElapsedMillis = 0;
@@ -48,6 +49,7 @@ public class RecordingService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        mDatabase = new DBHelper(getApplicationContext());
     }
 
     @Override
@@ -58,16 +60,17 @@ public class RecordingService extends Service {
 
     @Override
     public void onDestroy() {
+        Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
         if (mRecorder != null) {
             stopRecording();
         }
-
-        super.onDestroy();
     }
+
+
 
     public void startRecording() {
         setFileNameAndPath();
-
+        Toast.makeText(this, "service Starts", Toast.LENGTH_LONG).show();
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -110,9 +113,7 @@ public class RecordingService extends Service {
         mRecorder.stop();
         mElapsedMillis = (System.currentTimeMillis() - mStartingTimeMillis);
         mRecorder.release();
-
-
-        Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
+        //   Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
 
         //remove notification
         if (mIncrementTimerTask != null) {
@@ -121,6 +122,11 @@ public class RecordingService extends Service {
         }
 
         mRecorder = null;
+        try {
+            mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
 
+        } catch (Exception e){
+            Log.e(LOG_TAG, "exception", e);
+        }
     }
 }

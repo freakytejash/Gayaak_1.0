@@ -17,12 +17,15 @@ import com.example.gayaak_10.utility.DateTimeUtility;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class CalendarStudentListAdapter extends RecyclerView.Adapter<CalendarStudentListAdapter.ViewHolder> {
 
     public Context mContext;
     private OnItemClickListener onItemClickListener;
     private ArrayList<TutorCalendarCompleteList> liveClassDataContractList = new ArrayList<>();
+    private int count =0;
 
     public CalendarStudentListAdapter(Context context, ArrayList<TutorCalendarCompleteList> liveClassDataContractList, OnItemClickListener onItemClickListener) {
         this.mContext = context;
@@ -40,7 +43,25 @@ public class CalendarStudentListAdapter extends RecyclerView.Adapter<CalendarStu
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(liveClassDataContractList.get(position), onItemClickListener);
+        /*SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        try {
+            Date date1 = sdf.parse(liveClassDataContractList.get(position).liveClassData.dateString);
+            Date date2 = sdf.parse(DateTimeUtility.currentDateTime("MM/dd/yyyy"));
+*//*            if (date1.before(date2) && liveClassDataContractList.get(position).liveClassData.isComplete ==1){
+                count++;
+                holder.bind(liveClassDataContractList.get(position), onItemClickListener);
+            }else*//*
+
+            if (date1.after(date2)){
+                holder.bind(liveClassDataContractList.get(position), onItemClickListener);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+
+            holder.bind(liveClassDataContractList.get(position), onItemClickListener);
+
     }
 
 

@@ -206,6 +206,7 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
                         App.studentTutorBookingId =0;
                         Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
                         Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
+                        App.liveClassId = liveClassDataContractList.get(position).liveClassTypeId;
                         openSession(position, liveClassDataContractList);
 
                     }

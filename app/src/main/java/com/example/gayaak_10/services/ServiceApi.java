@@ -313,7 +313,8 @@ public interface ServiceApi {
 
     //CancelScheduleBYStudent
     //POST
-//    http://103.255.190.131/GaayakAPI/api/Schedule/ManageCancelscheduleByStudent?tutorScheduleId=172userId=209
+    //http://103.255.190.131/GaayakAPI/api/Schedule/ManageCancelscheduleByStudent?tutorScheduleId=172userId=209
+
     @POST("Schedule/ManageCancelscheduleByStudent?")
     Call<DefaultResponse> CancelScheduleByStudent(@Query("tutorScheduleId") Integer tutorScheduleId,
                                         @Query("userId") Integer userId);
@@ -326,5 +327,6 @@ public interface ServiceApi {
     @GET("User/GetProgressByUserId?")
     Call<RegularCourseProgress> getRegularCourseProgress(@Query("userId") int userId,
                                                          @Query("courseId") int courseId);
+
 }
 

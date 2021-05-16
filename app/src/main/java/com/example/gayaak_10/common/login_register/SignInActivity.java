@@ -167,7 +167,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         if (acct != null) {
             registerUser(acct.getEmail(), acct.getGivenName(), acct.getFamilyName(), "Google");
         } else {
-            Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong.", "");
+            Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong. signinpage", "");
         }
     }
 
