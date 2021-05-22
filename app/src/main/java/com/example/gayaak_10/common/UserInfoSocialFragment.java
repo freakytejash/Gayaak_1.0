@@ -199,7 +199,7 @@ public class UserInfoSocialFragment extends Fragment implements AdapterView.OnIt
         userDataProfile.email = email;
         userDataProfile.phone = number;
         userDataProfile.gender = gender;
-        userDataProfile.profileImage = "";
+       // userDataProfile.profileImage = "";
         userDataProfile.isEmailVerified = userDataContract.isEmailVerified;
         userDataProfile.isPhoneVerified = userDataContract.isPhoneVerified;
         userDataProfile.password = "";
@@ -235,11 +235,10 @@ public class UserInfoSocialFragment extends Fragment implements AdapterView.OnIt
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 if (response.isSuccessful()) {
                     Log.d("Info", " UPDATED");
-                    binding.progressBarUpdateInfo.setVisibility(View.VISIBLE);
-                    if (registerType.equals("Social")) {
+                    binding.progressBarUpdateInfo.setVisibility(View.GONE);
+                    if (userDataContract.registerType.equals("Social")){
                         getUserProfile(String.valueOf(userDataProfile.userId));
                     }
-
                 }
             }
 
@@ -372,6 +371,29 @@ public class UserInfoSocialFragment extends Fragment implements AdapterView.OnIt
 //
 //                    }
 //                });
+
+        Constant.retrofitService.getCountries()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<Countries>() {
+                    @Override
+                    public void onNext(Countries countries) {
+                        if (countries.status && countries.detail != null) {
+                            countryList.addAll(countries.detail);
+                            setCountryData(countryList, country);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
 
     }

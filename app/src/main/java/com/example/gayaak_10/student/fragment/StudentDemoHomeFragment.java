@@ -64,10 +64,6 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
         binding.tvWalletPoints.setOnClickListener(this);
         binding.btnRecommendedClass.setOnClickListener(this);
 
-
-        //setUpcomingCourse();
-        //getUpcomingClasses(viewModel);
-
         if (App.recommendedCourseCreated==1){
             binding.btnRecommendedClass.setVisibility(View.GONE);
         }
@@ -96,7 +92,6 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
         if (view.getId() == R.id.btnRecommendedClass){
             StudentHomeActivity.addFragment(new StudentBookRegularCourseFragment("Free"), Constant.COURSE_CATALOG, getActivity());
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -111,31 +106,9 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
                 }else {
                     binding.layoutUpcomingClasses.setVisibility(View.GONE);
                 }
-
-              /*  if( demoUserDashboard.detail.userCourseDataContractList!=null){
-                    binding.layoutUserCourses.setVisibility(View.VISIBLE);
-                    setUpcomingCourse(demoUserDashboard.detail.userCourseDataContractList);
-                }else {
-                    binding.layoutUserCourses.setVisibility(View.GONE);
-                }*/
-
             }
         });
     }
-
-   /* private void setUpcomingCourse(ArrayList<CourseDataContract> detail) {
-        if (!detail.isEmpty()) {
-            binding.layoutUserCourses.setVisibility(View.VISIBLE);
-            binding.rvUserLearningCourses.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            binding.rvUserLearningCourses.setAdapter(new UserCourseAdapter(getActivity(), detail, position -> {
-                //open module screen
-                //      StudentHomeActivity.addFragment(new StudentProgressFragment(detail.get(position)), Constant.COURSE_CATALOG, getActivity());
-            }));
-        } else {
-            binding.layoutUserCourses.setVisibility(View.GONE);
-        }
-       *//* getUpcomingClasses(viewModel);*//*
-    }*/
 
     private void setUpcomingCourse(ArrayList<CourseDataContract> userCourseDataContractList) {
 /*        if (coursePlan != null && coursePlan.detail.courseDataContractList.size() != 0) {
@@ -185,27 +158,41 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
 
                 @Override
                 public void onStartClass(int position) {
-
-                    viewModel.postEmailNotification(liveClassDataContractList.get(position).studentId,
-                            liveClassDataContractList.get(position).liveclassdetailId).observe(getActivity(), new Observer<DefaultResponse>() {
-                        @Override
-                        public void onChanged(DefaultResponse defaultResponse) {
-                            Toast.makeText(getActivity(), "" + defaultResponse.message, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//                    viewModel.postEmailNotification(liveClassDataContractList.get(position).studentId,
+//                            liveClassDataContractList.get(position).liveclassdetailId)
+//                            .observe(getActivity(), new Observer<DefaultResponse>() {
+//                        @Override
+//                        public void onChanged(DefaultResponse defaultResponse) {
+//                            Toast.makeText(getActivity(), "" + defaultResponse.message, Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
 
                     App.sessionStarted = liveClassDataContractList.get(position);
 
 
+
                     if(liveClassDataContractList.get(position).Price > App.userDataContract.detail.userWalletDataContract.Coins
                             && liveClassDataContractList.get(position).liveClassTypeId==2){
+                        binding.btnRecommendedClass.setVisibility(View.GONE);
                         App.studentTutorBookingId=liveClassDataContractList.get(position).StudentTutorBookingId;
                         StudentHomeActivity.addFragment(new CoursePlansFragment(), Constant.COURSE_CATALOG, getActivity());
                     }
                     else {
+                        if (liveClassDataContractList.get(position).liveClassTypeId==1){
+                            binding.btnRecommendedClass.setVisibility(View.VISIBLE);
+                        }else {
+                            binding.btnRecommendedClass.setVisibility(View.GONE);
+                        }
                         App.studentTutorBookingId =0;
+                        String passwordFromString = liveClassDataContractList.get(position).hostLink;
+                        String password = passwordFromString.substring(passwordFromString.lastIndexOf("pwd=")+4);
                         Constant.meetingNo = liveClassDataContractList.get(position).ZoomMeetingId;
-                        Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
+                        if (password.equalsIgnoreCase("")){
+                            Constant.meetingPassword = liveClassDataContractList.get(position).ZoomMeetingPassword;
+                        }
+                        else {
+                            Constant.meetingPassword = password;
+                        }
                         App.liveClassId = liveClassDataContractList.get(position).liveClassTypeId;
                         openSession(position, liveClassDataContractList);
 
@@ -378,22 +365,42 @@ public class StudentDemoHomeFragment extends Fragment implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-
-
-        if (App.recommendedCourseCreated == 1)
+/*        if (App.recommendedCourseCreated == 1)
         {
             binding.btnRecommendedClass.setVisibility(View.GONE);
-        }
-
+        }*/
         viewModel = ViewModelProviders.of(getActivity()).get(StudentViewModel.class);
         getRecommendedCourse(viewModel);
         getUpcomingClasses(viewModel);
-
+        getRegularCourseList(viewModel);
         Utility.hideLoader();
+
         if (!App.allCoursesArrayList.isEmpty()) {
+            Utility.hideLoader();
             getViewPager(App.allCoursesArrayList);
         }
 
+    }
+
+    private void getRegularCourseList(StudentViewModel viewModel) {
+        viewModel.getAllCourseLevelsById().observe(getViewLifecycleOwner(), levelCategoryInfo -> {
+            if (levelCategoryInfo.detail != null) {
+                if (!levelCategoryInfo.detail.isEmpty()) {
+                    /*setList(levelCategoryInfo.detail);
+                    SharedPrefsUtil.setIntegerPreferences(getContext(),"demoTutorSessionFeedbackId",
+                            levelCategoryInfo.detail.get(0).DemoTutorSessionFeedbackDataContractList.get(0).DemoTutorSessionFeedbackId);
+                    App.tutorFeedbackId=levelCategoryInfo.detail.get(0).DemoTutorSessionFeedbackDataContractList.get(0).DemoTutorSessionFeedbackId;
+    */
+                    binding.btnRecommendedClass.setVisibility(View.VISIBLE);
+                }else {
+                    binding.btnRecommendedClass.setVisibility(View.GONE);
+                }
+            } else {
+       /*         fragmentHomeBinding.rvAvailableTutor.setVisibility(View.GONE);
+                fragmentHomeBinding.layoutEmptyTutor.setVisibility(View.VISIBLE);*/
+                binding.btnRecommendedClass.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void getRecommendedCourse(StudentViewModel viewModel) {

@@ -96,6 +96,7 @@ public class CoursePlansFragment extends Fragment implements View.OnClickListene
         viewModel.getCoinCurrencyConfig();
         countryCurrencyName = ""+App.userDataContract.detail.currencyName;
         App.countryCurrencyName=countryCurrencyName;
+
         countryCurrencyValue= App.countryCurrencyValue;
 
         binding.ivPaymentBack.setOnClickListener(this);

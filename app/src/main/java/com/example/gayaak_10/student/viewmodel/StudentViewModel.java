@@ -77,10 +77,10 @@ public class StudentViewModel extends ViewModel {
 
 
     //188, 189, 10, 2020
-    public MutableLiveData<TutorCalendar> getStudentCalendar(int studentId) {
-        Calendar c = Calendar.getInstance();
+    public MutableLiveData<TutorCalendar> getStudentCalendar(int studentId, int month, int year) {
+/*        Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH) + 1;
+        int month = c.get(Calendar.MONTH) + 1;*/
         if (tutorCalendarMutableLiveData == null) {
             tutorCalendarMutableLiveData = new MutableLiveData<>();
         }
@@ -610,6 +610,7 @@ public class StudentViewModel extends ViewModel {
 
                         if (App.userDataContract.detail.currencyName.equals(response.body().detail.get(i).currencyName))
                         {
+
                             App.countryCurrencyValue = response.body().detail.get(i).currencyValue;
                         }
                     }

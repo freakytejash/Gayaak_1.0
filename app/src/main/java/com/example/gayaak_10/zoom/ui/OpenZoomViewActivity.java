@@ -218,7 +218,14 @@ public class OpenZoomViewActivity extends Activity implements InitAuthSDKCallbac
         binding.progressBarHome.setVisibility(View.GONE);
         JoinMeetingParams params = new JoinMeetingParams();
         params.meetingNo = Constant.meetingNo;
+        params.password = Constant.meetingPassword;
         params.displayName = App.userDataContract.detail.firstName;
+
+       /* params.displayName = DISPLAY_NAME;
+        params.meetingNo = meetingNo;
+        params.password = meetingPassword;*/
+
+
         JoinMeetingOptions options = new JoinMeetingOptions();
         ZoomSDK.getInstance().getMeetingService().joinMeetingWithParams(this, params, ZoomMeetingUISettingHelper.getJoinMeetingOptions());
     }

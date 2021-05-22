@@ -254,9 +254,18 @@ public class TutorHomeFragment extends Fragment {
                     /*Uri uri = Uri.parse(todayList.get(position).HostLink);
                     String path = uri.getPath(); // /s/327837283728
                     String meetingId = path.substring(path.lastIndexOf('/') + 1);*/
+                    Constant.meetingNo = todayList.get(position).ZoomMeetingId;
 
-                    Constant.meetingNo = todayList.get(position).ZoomMeetingId;;
-                    Constant.meetingPassword = todayList.get(position).ZoomMeetingPassword;
+                    String passwordFromString = todayList.get(position).hostLink;
+                    String password = passwordFromString.substring(passwordFromString.lastIndexOf("pwd=")+4);
+
+                    if (password.equalsIgnoreCase("")){
+                        Constant.meetingPassword = todayList.get(position).ZoomMeetingPassword;
+                    }
+                    else {
+                        Constant.meetingPassword = password;
+                    }
+                   // Constant.meetingPassword = todayList.get(position).ZoomMeetingPassword;
                     App.liveClassId = todayList.get(position).LiveClassTypeId;
                     App.StudentName = todayList.get(position).StudentName;
                     if (!Constant.meetingNo.isEmpty()){

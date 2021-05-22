@@ -156,6 +156,14 @@ public class StudentProfileFragment extends Fragment implements View.OnClickList
                     App.coursesDetailArrayList.clear();
                     App.trendingDetailArrayList.clear();
                     App.allCoursesArrayList.clear();
+                    App.allCourseRecommendedList.clear();
+                    App.userLearningCourseList.clear();
+                    App.dashboardRegularCourseList.clear();
+                    App.studentCartList.clear();
+                    App.countryCurrencyName="";
+                    App.countryName="";
+                    App.noOfSessions=4;
+                    App.recommendedCourseCreated=0;
                     App.currencyType = "USD";
                     App.cartList.clear();
                     App.isSocial = false;

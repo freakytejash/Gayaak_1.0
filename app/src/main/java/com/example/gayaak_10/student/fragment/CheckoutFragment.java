@@ -173,15 +173,22 @@ public class CheckoutFragment extends Fragment implements View.OnClickListener {
 
                 binding.tvPlanPrice.setText(""+total + App.countryCurrencyName);
 
-                double amount = Double.parseDouble(String.valueOf(total));
-                double tax = (amount*18) /100;
-            /*double res = (amount / 100.0f) * 10;
-            double subTotal = amount - res;*/
-                payPalTotal = (int) ((amount + tax)- 10);
-
-                binding.tvSubTotal.setText(amount + " "+App.countryCurrencyName);
-                binding.tvTax.setText(tax +" "+App.countryCurrencyName);
-                //binding.tvTax.setText(res+ " USD");
+            if (App.countryCurrencyName.equalsIgnoreCase("INR")){
+                    binding.rlGst.setVisibility(View.VISIBLE);
+                    double amount = Double.parseDouble(String.valueOf(total));
+                    double tax = (amount*18) /100;
+                    payPalTotal = (int) ((amount + tax)- 10);
+                    binding.tvSubTotal.setText(amount + " "+App.countryCurrencyName);
+                    binding.tvTax.setText(tax +" "+App.countryCurrencyName);
+                    //binding.tvTax.setText(res+ " USD");
+                    //
+                }else {
+                    binding.rlGst.setVisibility(View.GONE);
+                    binding.tvSubTotal.setText(""+total + App.countryCurrencyName);
+                    binding.tvTax.setText("0" +App.countryCurrencyName);
+                    payPalTotal = (int) (total-10);
+                   // binding.tvTotal.setText(payPalTotal+ " "+App.countryCurrencyName);
+                }
                 binding.tvTotal.setText(payPalTotal + " "+App.countryCurrencyName);
                 binding.layoutPlans.setVisibility(View.VISIBLE);
 

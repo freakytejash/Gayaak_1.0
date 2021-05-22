@@ -165,12 +165,11 @@ public class Utility {
     public static boolean isPasswordValid(final String password) {
         Pattern pattern;
         Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{6,}$";
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!*])(?=\\S+$).{6,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 
         return !matcher.matches();
-
     }
 
     public static String calculateStrength(String passwordText, AppCompatTextView tvPasswordStrength) {

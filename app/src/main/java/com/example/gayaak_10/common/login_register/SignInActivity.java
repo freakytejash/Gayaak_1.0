@@ -209,6 +209,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         }
         userDataProfile.lastLogin = null;
         userDataProfile.registerType = null;
+        userDataProfile.Countryid = 1;
         userDataProfile.oTP = null;
         userDataProfile.loginOrSignup = 0;
         userDataProfile.userName = null;
@@ -239,13 +240,19 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         }
                         if (response.body().detail.userDataContract != null) {
                             Constant.userId = response.body().detail.userDataContract.userId.toString();
+                            //response.body().detail.userDataContract.registerType="Social";
                             SharedPrefsUtil.setStringPreferences(SignInActivity.this, "userId", response.body().detail.userDataContract.userId.toString());
                             Utility.customDialogBoxAuthenticating(SignInActivity.this, true);
-                            getUserProfile(response.body().detail.userDataContract.userId.toString());
+                            if (response.body().detail.userDataContract.phone.isEmpty() || response.body().detail.userDataContract.phone.equals("")) {
+                                openPreferences(response.body().detail.userDataContract.email, "", "Social", response.body().detail.userDataContract);
+                            } else {
+                                getUserProfile(response.body().detail.userDataContract.userId.toString());
+                            }
+                           // getUserProfile(response.body().detail.userDataContract.userId.toString());
                         } else {
                             GoogleSignIn.getClient(SignInActivity.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                     .requestEmail().build()).signOut();
-                            Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong...", "");
+                            Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong...user null", "");
                         }
                     } else {
                         GoogleSignIn.getClient(SignInActivity.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -266,7 +273,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         e.printStackTrace();
                     }
                     Utility.customDialogBoxAuthenticating(SignInActivity.this, false);
-                    Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong.", mError.message);
+                    Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong....", mError.message);
                 }
             }
 
@@ -323,6 +330,22 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 Utility.customDialogBoxTextWithSingle(SignInActivity.this, "Something went wrong.", t.getLocalizedMessage());
             }
         });
+    }
+
+    private void openPreferences(String email, String password, String type, UserDataContract userDataContract) {
+        //binding..setVisibility(View.GONE);
+        Intent intent = new Intent(SignInActivity.this, UserInfoActivity.class);
+        if (type.equalsIgnoreCase("Social")) {
+            userDataContract.registerType="Social";
+            intent.putExtra("userDataProfile", userDataContract);
+        }
+        intent.putExtra("fragmentType", type);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit);
+        finish();
     }
 
     private void getUserProfile(final String userId) {

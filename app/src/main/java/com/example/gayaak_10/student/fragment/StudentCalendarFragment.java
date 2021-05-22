@@ -2,6 +2,7 @@ package com.example.gayaak_10.student.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.example.gayaak_10.utility.Utility;
 import com.example.gayaak_10.widgets.CustomDialogClass;
 import com.example.gayaak_10.widgets.DecisionInterface;
 import com.example.gayaak_10.widgets.calendarview.EventDay;
+import com.example.gayaak_10.widgets.calendarview.listeners.OnCalendarPageChangeListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,9 +41,7 @@ import java.util.Locale;
 public class StudentCalendarFragment extends Fragment {
 
     private FragmentStudentCalendarBinding binding;
-    List<String> completedList = new ArrayList<>();
-    List<String> upcomingList = new ArrayList<>();
-    List<String> refillList = new ArrayList<>();
+
     List<EventDay> events = new ArrayList<>();
     private StudentViewModel viewModel;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -65,17 +65,108 @@ public class StudentCalendarFragment extends Fragment {
         binding.calendar.setMinimumDate(min);
         binding.calendar.setMaximumDate(max);
         //current day
+
         Calendar calendar1 = Calendar.getInstance();
-        events.add(new EventDay(calendar1, R.drawable.circle_filled_gray));
+
+       // events.add(new EventDay(calendar1, R.drawable.circle_filled_gray));
+        calenderApiCall(calendar1.get(Calendar.MONTH)+1,calendar1.get(Calendar.YEAR));
+       // binding.calendar.setEvents(events);
+        Toast.makeText(getContext(), "current date "+calendar1.get(Calendar.MONTH)+1 + " "+calendar1.get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
+
+        binding.calendar.setOnForwardPageChangeListener(new OnCalendarPageChangeListener() {
+            @Override
+            public void onChange() {
+                int year = calendar1.get(Calendar.YEAR);
+                calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) + 1));
+                events.clear();
+                int month = calendar1.get(Calendar.MONTH)+1;
+                Toast.makeText(getContext(), "page forwarded"+year+" "+month, Toast.LENGTH_SHORT).show();
+                calenderApiCall(month,year);
+            }
+        });
+
+        binding.calendar.setOnPreviousPageChangeListener(new OnCalendarPageChangeListener() {
+            @Override
+            public void onChange() {
+                int year = calendar1.get(Calendar.YEAR);
+                calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) -1));
+                int month = calendar1.get(Calendar.MONTH)+1;
+                events.clear();
+                Toast.makeText(getContext(), "previous page changed"+year+" "+month, Toast.LENGTH_SHORT).show();
+                calenderApiCall(month,year);
+            }
+        });
+
+        return binding.getRoot();
+    }
+
+    private void calenderApiCall(int month, int year) {
+        Utility.showLoader(getContext(), false);
+
+        Calendar c = Calendar.getInstance();
+        events.add(new EventDay(c, R.drawable.circle_filled_gray));
+
+        viewModel.getStudentCalendar(App.userDataContract.detail.userId, month, year)
+                .observe(getActivity(), tutorCalendar -> {
 
 
 
+            ArrayList<TutorCalendarCompleteList> list = new ArrayList<>();
+            list.clear();
+            if (tutorCalendar.detail.liveClassDataContractList != null
+                    && tutorCalendar.detail.transactionDetailDataContractLists != null) {
+                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
+                binding.layoutEmptySchedule.setVisibility(View.GONE);
+                for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
 
+                    list.add(new TutorCalendarCompleteList("session",
+                            tutorCalendar.detail.liveClassDataContractList.get(i), null));
 
-        viewModel.getStudentCalendar(App.userDataContract.detail.userId).observe(getActivity(), tutorCalendar -> {
+                    if (list.size() == tutorCalendar.detail.liveClassDataContractList.size()) {
+                        for (int j = 0; j < tutorCalendar.detail.transactionDetailDataContractLists.size(); j++) {
+                            list.add(new TutorCalendarCompleteList("refill",
+                                    null, tutorCalendar.detail.transactionDetailDataContractLists.get(j)));
+                            int totalSize = tutorCalendar.detail.liveClassDataContractList.size() + tutorCalendar.detail.transactionDetailDataContractLists.size();
+                            if (list.size() == totalSize) {
+                                setList(list);
+                            }
+                        }
+                    }
+                }
+            } else if (tutorCalendar.detail.liveClassDataContractList != null && tutorCalendar.detail.transactionDetailDataContractLists == null) {
+                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
+                binding.layoutEmptySchedule.setVisibility(View.GONE);
+                for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
+                    list.add(new TutorCalendarCompleteList("session",
+                            tutorCalendar.detail.liveClassDataContractList.get(i), null));
+
+                    if (list.size() == tutorCalendar.detail.liveClassDataContractList.size()) {
+                        setList(list);
+                    }
+                }
+            } else if (tutorCalendar.detail.liveClassDataContractList == null && tutorCalendar.detail.transactionDetailDataContractLists != null) {
+                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
+                binding.layoutEmptySchedule.setVisibility(View.GONE);
+                for (int j = 0; j < tutorCalendar.detail.transactionDetailDataContractLists.size(); j++) {
+                    list.add(new TutorCalendarCompleteList("refill",
+                            null, tutorCalendar.detail.transactionDetailDataContractLists.get(j)));
+                    if (list.size() == tutorCalendar.detail.transactionDetailDataContractLists.size()) {
+                        setList(list);
+                    }
+                }
+            } else {
+                binding.rvStudentScheduleList.setVisibility(View.GONE);
+                binding.layoutEmptySchedule.setVisibility(View.VISIBLE);
+            }
+                    List<String> completedList = new ArrayList<>();
+                    List<String> upcomingList = new ArrayList<>();
+                    List<String> refillList = new ArrayList<>();
 
             if (tutorCalendar.detail != null && tutorCalendar.detail.transactionDetailDataContractLists != null) {
-               // refillList.clear();
+
+                refillList.clear();
+                upcomingList.clear();
+                completedList.clear();
                 for (int i = 0; i < tutorCalendar.detail.transactionDetailDataContractLists.size(); i++) {
                     refillList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.transactionDetailDataContractLists.get(i).CreditDateAndTime, "yyyy-MM-dd'T'hh:mm:ss", "dd-M-yyyy hh:mm:ss"));
                 }
@@ -93,14 +184,14 @@ public class StudentCalendarFragment extends Fragment {
                     }
 
 /*                    for (int i = 0; i < upcomingList.size(); i++) {
-                        Date date = null;
-                        try {
-                            date = sdf.parse(upcomingList.get(i));
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_upcoming));
-                    }*/
+                Date date = null;
+                try {
+                    date = sdf.parse(upcomingList.get(i));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_upcoming));
+            }*/
                     binding.calendar.setEvents(events);
                 }
             }
@@ -151,57 +242,14 @@ public class StudentCalendarFragment extends Fragment {
                 }
 
             }
-            ArrayList<TutorCalendarCompleteList> list = new ArrayList<>();
-            if (tutorCalendar.detail.liveClassDataContractList != null && tutorCalendar.detail.transactionDetailDataContractLists != null) {
-                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
-                binding.layoutEmptySchedule.setVisibility(View.GONE);
-                for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
 
-                    list.add(new TutorCalendarCompleteList("session",
-                            tutorCalendar.detail.liveClassDataContractList.get(i), null));
 
-                    if (list.size() == tutorCalendar.detail.liveClassDataContractList.size()) {
-                        for (int j = 0; j < tutorCalendar.detail.transactionDetailDataContractLists.size(); j++) {
-                            list.add(new TutorCalendarCompleteList("refill",
-                                    null, tutorCalendar.detail.transactionDetailDataContractLists.get(j)));
-                            int totalSize = tutorCalendar.detail.liveClassDataContractList.size() + tutorCalendar.detail.transactionDetailDataContractLists.size();
-                            if (list.size() == totalSize) {
-                                setList(list);
-                            }
-                        }
-                    }
-                }
-            } else if (tutorCalendar.detail.liveClassDataContractList != null && tutorCalendar.detail.transactionDetailDataContractLists == null) {
-                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
-                binding.layoutEmptySchedule.setVisibility(View.GONE);
-                for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
-                    list.add(new TutorCalendarCompleteList("session",
-                            tutorCalendar.detail.liveClassDataContractList.get(i), null));
-
-                    if (list.size() == tutorCalendar.detail.liveClassDataContractList.size()) {
-                        setList(list);
-                    }
-                }
-            } else if (tutorCalendar.detail.liveClassDataContractList == null && tutorCalendar.detail.transactionDetailDataContractLists != null) {
-                binding.rvStudentScheduleList.setVisibility(View.VISIBLE);
-                binding.layoutEmptySchedule.setVisibility(View.GONE);
-                for (int j = 0; j < tutorCalendar.detail.transactionDetailDataContractLists.size(); j++) {
-                    list.add(new TutorCalendarCompleteList("refill",
-                            null, tutorCalendar.detail.transactionDetailDataContractLists.get(j)));
-                    if (list.size() == tutorCalendar.detail.transactionDetailDataContractLists.size()) {
-                        setList(list);
-                    }
-                }
-            } else {
-                binding.rvStudentScheduleList.setVisibility(View.GONE);
-                binding.layoutEmptySchedule.setVisibility(View.VISIBLE);
-            }
+            Utility.hideLoader();
         });
 
+       // viewModel.getStudentCalendar(App.userDataContract.detail.userId, month,year).removeObservers(getViewLifecycleOwner());
+
         binding.calendar.setEvents(events);
-
-
-        return binding.getRoot();
     }
 
     private void setList(ArrayList<TutorCalendarCompleteList> list) {

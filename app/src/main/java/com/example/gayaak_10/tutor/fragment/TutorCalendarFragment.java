@@ -38,6 +38,7 @@ import com.example.gayaak_10.utility.Utility;
 import com.example.gayaak_10.widgets.CustomDialogClass;
 import com.example.gayaak_10.widgets.DecisionInterface;
 import com.example.gayaak_10.widgets.calendarview.EventDay;
+import com.example.gayaak_10.widgets.calendarview.listeners.OnCalendarPageChangeListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,6 +58,8 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
     List<String> rescheduledList = new ArrayList<>();
     private TutorViewModel tutorScheduleViewModel;
     List<EventDay> events = new ArrayList<>();
+    int studentIdNo =0;
+    int month, year;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
     private ArrayList<StudentTutorBookingDataContractList> studentTutorBookingDataContractList = new ArrayList<>();
 
@@ -70,11 +73,6 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
             binding.tvWalletPoints.setText(Utility.withSuffix(App.tutorCoins));
         }
 
-        /*Calendar min = Calendar.getInstance();
-        min.add(Calendar.MONTH, -5);
-
-        Calendar max = Calendar.getInstance();
-        max.add(Calendar.MONTH, 5);*/
 
         Calendar min = Calendar.getInstance();
         min.add(Calendar.MONTH, -2);
@@ -86,6 +84,8 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
         binding.calendar.setMaximumDate(max);
         //current day
         Calendar calendar1 = Calendar.getInstance();
+        month = calendar1.get(Calendar.MONTH)+1;
+        year = calendar1.get(Calendar.YEAR);
         events.add(new EventDay(calendar1, R.drawable.circle_filled_gray));
 
         binding.layoutStudent.setOnClickListener(this);
@@ -108,22 +108,59 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
                 }
             }
         });
+
+        binding.calendar.setOnForwardPageChangeListener(new OnCalendarPageChangeListener() {
+            @Override
+            public void onChange() {
+                year = calendar1.get(Calendar.YEAR);
+                calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) + 1));
+                events.clear();
+                month = calendar1.get(Calendar.MONTH)+1;
+                Toast.makeText(getContext(), "page forwarded"+year+" "+month, Toast.LENGTH_SHORT).show();
+                if (studentIdNo == 0){
+                    Toast.makeText(getContext(), "Please Select the student for details", Toast.LENGTH_SHORT).show();
+                }else {
+                    getCalendarById(studentIdNo, month, year);
+                }
+
+            }
+        });
+
+        binding.calendar.setOnPreviousPageChangeListener(new OnCalendarPageChangeListener() {
+            @Override
+            public void onChange() {
+                year = calendar1.get(Calendar.YEAR);
+                calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) -1));
+                month = calendar1.get(Calendar.MONTH)+1;
+                events.clear();
+                Toast.makeText(getContext(), "previous page changed"+year+" "+month, Toast.LENGTH_SHORT).show();
+                if (studentIdNo == 0){
+                    Toast.makeText(getContext(), "Please Select the student for details", Toast.LENGTH_SHORT).show();
+                }else {
+                    getCalendarById(studentIdNo, month, year);
+                }
+            }
+        });
+
         binding.calendar.setEvents(events);
         return binding.getRoot();
     }
 
-    private void getCalendarById(int studentId) {
+
+
+    private void getCalendarById(int studentId, int month, int year) {
         completedList.clear();
         upcomingList.clear();
         todaysList.clear();
         events.clear();
         binding.calendar.setEvents(events);
-        tutorScheduleViewModel.getTutorCalendar(App.userDataContract.detail.userId, studentId).observe(getActivity(), new Observer<TutorCalendar>() {
+        tutorScheduleViewModel.getTutorCalendar(App.userDataContract.detail.userId, studentId, month, year).observe(getActivity(), new Observer<TutorCalendar>() {
             @Override
             public void onChanged(TutorCalendar tutorCalendar) {
                 Log.e("tutorCalendar", "onChanged: " + tutorCalendar.detail.liveClassDataContractList);
                 if (tutorCalendar.detail != null && tutorCalendar.detail.liveClassDataContractList != null) {
-
+                    ArrayList<TutorCalendarLiveClassDataContractList> listItem = new ArrayList<>();
+                    listItem.clear();
                     for (int i = 0; i < tutorCalendar.detail.liveClassDataContractList.size(); i++) {
                         try {
                             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
@@ -131,10 +168,16 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
                             Date date2 = sdf.parse(DateTimeUtility.currentDateTime("MM/dd/yyyy"));
 
                             if (date1.before(date2)) {
-                                completedList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.liveClassDataContractList.get(i).dateString, "MM/dd/yyyy", "dd-M-yyyy hh:mm:ss"));
+                                if (tutorCalendar.detail.liveClassDataContractList.get(i).isComplete==1){
+                                    completedList.add(DateTimeUtility.convertDateTimeFormate(
+                                            tutorCalendar.detail.liveClassDataContractList.get(i).dateString,
+                                            "MM/dd/yyyy", "dd-M-yyyy hh:mm:ss"));
+                                }
                             } else if (date1.after(date2)) {
+                                listItem.add(tutorCalendar.detail.liveClassDataContractList.get(i));
                                 upcomingList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.liveClassDataContractList.get(i).dateString, "MM/dd/yyyy", "dd-M-yyyy hh:mm:ss"));
                             } else {
+                                listItem.add(tutorCalendar.detail.liveClassDataContractList.get(i));
                                 todaysList.add(DateTimeUtility.convertDateTimeFormate(tutorCalendar.detail.liveClassDataContractList.get(i).dateString, "MM/dd/yyyy", "dd-M-yyyy hh:mm:ss"));
                             }
                         } catch (Exception e) {
@@ -151,6 +194,7 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+
                             if (!events.contains(new EventDay(toCalendar(date)))) {
                                 events.add(new EventDay(toCalendar(date), R.drawable.circle_filled_24_completed));
                             }
@@ -184,7 +228,9 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
 
                     binding.rvTutorScheduleList.setVisibility(View.VISIBLE);
                     binding.layoutEmptySchedule.setVisibility(View.GONE);
-                    setScheduleListData(tutorCalendar.detail.liveClassDataContractList);
+
+
+                    setScheduleListData(listItem /*tutorCalendar.detail.liveClassDataContractList*/);
                 } else {
                     binding.rvTutorScheduleList.setVisibility(View.GONE);
                     binding.layoutEmptySchedule.setVisibility(View.VISIBLE);
@@ -196,6 +242,7 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
     private void setScheduleListData(ArrayList<TutorCalendarLiveClassDataContractList> liveClassDataContractList) {
         Utility.hideLoader();
         HashMap<String, ArrayList<TutorCalendarLiveClassDataContractList>> hashMap = new HashMap<>();
+        hashMap.clear();
         for (int i = 0; i < liveClassDataContractList.size(); i++) {
             if (!hashMap.containsKey(liveClassDataContractList.get(i).dateString)) {
                 ArrayList<TutorCalendarLiveClassDataContractList> list = new ArrayList<TutorCalendarLiveClassDataContractList>();
@@ -335,7 +382,8 @@ public class TutorCalendarFragment extends Fragment implements View.OnClickListe
                             binding.rvTutorScheduleList.setVisibility(View.GONE);
                             binding.layoutEmptySchedule.setVisibility(View.GONE);
                             binding.tvStudentHeader.setText(scheduleSlotDetail.studentName);
-                            getCalendarById(scheduleSlotDetail.studentId);
+                            studentIdNo = scheduleSlotDetail.studentId;
+                            getCalendarById( studentIdNo, month,year /*scheduleSlotDetail.studentId*/);
                         }
                     });
                     rvSlotTime.setAdapter(adapter);

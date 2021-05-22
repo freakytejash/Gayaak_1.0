@@ -1198,6 +1198,7 @@ public class MyMeetingActivity extends FragmentActivity implements View.OnClickL
         refreshToolbar();
     }
 
+    //sumit
     @Override
     public void onMeetingNeedPasswordOrDisplayName(boolean needPassword, boolean needDisplayName, InMeetingEventHandler handler) {
         handler.setMeetingNamePassword(Constant.meetingPassword, App.userDataContract.detail.firstName);

@@ -150,6 +150,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         userDataProfile.lastLogin = null;
         userDataProfile.registerType = null;
         userDataProfile.oTP = null;
+        userDataProfile.Countryid=1;
         userDataProfile.loginOrSignup = 0;
         userDataProfile.userName = null;
         userDataProfile.loginUserId = 0;

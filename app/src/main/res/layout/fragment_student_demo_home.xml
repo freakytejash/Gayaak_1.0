@@ -44,7 +44,8 @@
                     android:text="Recommended Courses"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tvJoinCourses" />
+                    app:layout_constraintEnd_toStartOf="@+id/tvJoinCourses"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/layoutUserCourses"

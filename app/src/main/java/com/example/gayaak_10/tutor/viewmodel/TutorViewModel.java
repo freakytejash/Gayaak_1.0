@@ -378,10 +378,10 @@ public class TutorViewModel extends ViewModel {
     /*--------------------------------------------------------------------------------------------*/
 
     //188, 189, 10, 2020
-    public MutableLiveData<TutorCalendar> getTutorCalendar(int tutorId, int studentId) {
-        Calendar c = Calendar.getInstance();
+    public MutableLiveData<TutorCalendar> getTutorCalendar(int tutorId, int studentId, int month, int year) {
+       /* Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH) + 1;
+        int month = c.get(Calendar.MONTH) + 1;*/
         tutorCalendarMutableLiveData = new MutableLiveData<>();
         getTutorCalendarSchedule(tutorId, studentId, month, year);
         return tutorCalendarMutableLiveData;

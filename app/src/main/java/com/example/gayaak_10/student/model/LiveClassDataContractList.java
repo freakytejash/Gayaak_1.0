@@ -114,6 +114,9 @@ public class LiveClassDataContractList implements Serializable {
     @SerializedName("TutorScheduleId")
     @Expose
     public Integer TutorScheduleId;
+    @SerializedName("HostLink")
+    @Expose
+    public String hostLink = "";
     @SerializedName("ZoomMeetingId")
     @Expose
     public String ZoomMeetingId = "";

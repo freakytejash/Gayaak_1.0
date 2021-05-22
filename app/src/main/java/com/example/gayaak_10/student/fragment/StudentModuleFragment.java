@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class StudentModuleFragment extends Fragment implements View.OnClickListener {
 
     private FragmentStudentModuleBinding binding;
-    private Integer courseId = 0;
+    private Integer courseId = -1;
     private CoursesDetail coursesDetail;
     private ArrayList<CourseModuleDetail> courseDetail;
     public static Integer moduleId = -1;
@@ -48,6 +48,7 @@ public class StudentModuleFragment extends Fragment implements View.OnClickListe
         binding.tvCourseName.setText(coursesDetail.name);
         binding.tvModuleDescription.setText(coursesDetail.detail);
         binding.tvPrice.setText(Utility.withSuffix(coursesDetail.price));
+
 
         viewModel.getCourseModule(courseId).observe(getViewLifecycleOwner(), courseModule -> {
             if (!courseModule.detail.isEmpty()) {
@@ -99,8 +100,9 @@ public class StudentModuleFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tvEbook:
-                if (moduleId != -1){
-                    StudentHomeActivity.addFragment(new StudentEbookFragment(moduleId), Constant.COURSE_CATALOG, getActivity());
+                //firstly there was module id
+                if (courseId != -1){
+                    StudentHomeActivity.addFragment(new StudentEbookFragment(courseId), Constant.COURSE_CATALOG, getActivity());
                 }else {
                     Toast.makeText(getActivity(), "Ebook for this module is not available." , Toast.LENGTH_SHORT).show();
                 }

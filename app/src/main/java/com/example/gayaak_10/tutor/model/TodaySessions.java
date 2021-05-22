@@ -95,7 +95,7 @@ public class TodaySessions implements Serializable {
     public String connectionlink = "";
     @SerializedName("HostLink")
     @Expose
-    public String HostLink = "";
+    public String hostLink = "";
     @SerializedName("ZoomMeetingId")
     @Expose
     public String ZoomMeetingId = "";
