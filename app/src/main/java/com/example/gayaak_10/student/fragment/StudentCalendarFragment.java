@@ -30,6 +30,7 @@ import com.example.gayaak_10.widgets.DecisionInterface;
 import com.example.gayaak_10.widgets.calendarview.EventDay;
 import com.example.gayaak_10.widgets.calendarview.listeners.OnCalendarPageChangeListener;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class StudentCalendarFragment extends Fragment {
 
@@ -71,7 +73,27 @@ public class StudentCalendarFragment extends Fragment {
        // events.add(new EventDay(calendar1, R.drawable.circle_filled_gray));
         calenderApiCall(calendar1.get(Calendar.MONTH)+1,calendar1.get(Calendar.YEAR));
        // binding.calendar.setEvents(events);
-        Toast.makeText(getContext(), "current date "+calendar1.get(Calendar.MONTH)+1 + " "+calendar1.get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "current date "+calendar1.get(Calendar.MONTH)+1 + " "+calendar1.get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
+        TimeZone timeZone = calendar1.getTimeZone();
+
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        dateTimeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+        Date date = new Date();
+        DateFormat timeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        timeFormat.setTimeZone(TimeZone.getTimeZone(String.valueOf(timeZone.getID())));
+        String estTime = timeFormat.format(date);
+        try {
+            date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH).parse(estTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date todaysDate = null;
+        try {
+            todaysDate = new SimpleDateFormat("dd/MM/yyyy").parse("20/09/2021");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+      //  Toast.makeText(getContext(), "Current time Zone : "+ DateTimeUtility.formatDateWithTimeZoneFromServer("20-5-2021 13:30:00","dd-M-yyyy HH:mm:ss","Asia/Calcutta"), Toast.LENGTH_LONG).show();
 
         binding.calendar.setOnForwardPageChangeListener(new OnCalendarPageChangeListener() {
             @Override
@@ -80,7 +102,7 @@ public class StudentCalendarFragment extends Fragment {
                 calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) + 1));
                 events.clear();
                 int month = calendar1.get(Calendar.MONTH)+1;
-                Toast.makeText(getContext(), "page forwarded"+year+" "+month, Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(getContext(), "page forwarded"+year+" "+month, Toast.LENGTH_SHORT).show();
                 calenderApiCall(month,year);
             }
         });
@@ -92,7 +114,7 @@ public class StudentCalendarFragment extends Fragment {
                 calendar1.set(Calendar.MONTH, (calendar1.get( Calendar.MONTH ) -1));
                 int month = calendar1.get(Calendar.MONTH)+1;
                 events.clear();
-                Toast.makeText(getContext(), "previous page changed"+year+" "+month, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getContext(), "previous page changed"+year+" "+month, Toast.LENGTH_SHORT).show();
                 calenderApiCall(month,year);
             }
         });
@@ -109,6 +131,12 @@ public class StudentCalendarFragment extends Fragment {
         viewModel.getStudentCalendar(App.userDataContract.detail.userId, month, year)
                 .observe(getActivity(), tutorCalendar -> {
 
+/*                    for (int i=0; i<tutorCalendar.detail.liveClassDataContractList.size(); i++){
+                        tutorCalendar.detail.liveClassDataContractList.get(i).dateString =
+                                DateTimeUtility.formatDateWithTimeZoneFromServer
+                                        (tutorCalendar.detail.liveClassDataContractList.get(i).dateString,
+                                                "MM/dd/yyyy");
+                    }*/
 
 
             ArrayList<TutorCalendarCompleteList> list = new ArrayList<>();

@@ -19,6 +19,7 @@ import com.example.gayaak_10.model.response.UserDataContract;
 import com.example.gayaak_10.model.response.UserDataProfile;
 import com.example.gayaak_10.model.response.UserLoginData;
 import com.example.gayaak_10.services.App;
+import com.example.gayaak_10.student.activity.StudentHomeActivity;
 import com.example.gayaak_10.utility.SharedPrefsUtil;
 import com.example.gayaak_10.utility.Utility;
 import com.example.gayaak_10.widgets.customotp.OnOtpCompletionListener;
@@ -70,6 +71,8 @@ public class OtpVerificationActivity extends AppCompatActivity implements View.O
             @Override
             public void onInCompleteOtp(String otp) {
                 otp1 = otp.toString();
+                Intent intent = new Intent(OtpVerificationActivity.this, StudentHomeActivity.class);
+                startActivity(intent);
             }
         });
 

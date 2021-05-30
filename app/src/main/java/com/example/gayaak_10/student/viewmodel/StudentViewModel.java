@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gayaak_10.common.model.TutorCalendar;
+import com.example.gayaak_10.common.model.TutorCalendarLiveClassDataContractList;
 import com.example.gayaak_10.constants.Constant;
 import com.example.gayaak_10.model.response.DefaultResponse;
 import com.example.gayaak_10.model.response.FilteredCourse;
@@ -47,6 +48,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,9 +80,7 @@ public class StudentViewModel extends ViewModel {
 
     //188, 189, 10, 2020
     public MutableLiveData<TutorCalendar> getStudentCalendar(int studentId, int month, int year) {
-/*        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH) + 1;*/
+
         if (tutorCalendarMutableLiveData == null) {
             tutorCalendarMutableLiveData = new MutableLiveData<>();
         }
@@ -93,6 +93,13 @@ public class StudentViewModel extends ViewModel {
         tutorCalendarCall.enqueue(new Callback<TutorCalendar>() {
             @Override
             public void onResponse(@NonNull Call<TutorCalendar> call, @NonNull Response<TutorCalendar> response) {
+
+                for (int i = 0; i< Objects.requireNonNull(response.body()).detail.liveClassDataContractList.size(); i++){
+                    String test = response.body().detail.liveClassDataContractList.get(i).dateString;
+                    response.body().detail.liveClassDataContractList.get(i).dateString
+                            = DateTimeUtility.formatDateWithTimeZoneFromServer(test,"MM/dd/yyyy");
+                }
+
                 tutorCalendarMutableLiveData.setValue(response.body());
             }
 
@@ -102,6 +109,8 @@ public class StudentViewModel extends ViewModel {
             }
         });
     }
+
+    //done
 
     public LiveData<TutorByCourseLevel> getTutorSchedule(int selectedLevel, int selectedType) {
         tutorByCourseLevelMutableLiveData = new MutableLiveData<>();
@@ -148,28 +157,23 @@ public class StudentViewModel extends ViewModel {
             public void onResponse(@NonNull Call<DemoUserDashboard> call, @NonNull Response<DemoUserDashboard> response) {
                 Log.e("apiCall", "getUpcomingClasses: " +call.request());
                 assert response.body() != null;
-                /*if (response.body().detail.courseDataContractList != null){
 
-                    for (int i=0; i<response.body().detail.courseDataContractList.size(); i++){
-                        App.userLearningCourseList.add(i,response.body().detail.courseDataContractList.get(i));
-                    }
-
-                }*/
                 if (response.body().detail.liveClassDataContractList != null) {
                     for (int i = 0; i < response.body().detail.liveClassDataContractList.size(); i++) {
-
+                        response.body().detail.liveClassDataContractList.get(i).date
+                                = DateTimeUtility.formatDateWithTimeZoneFromServer(response.body().detail.liveClassDataContractList.get(i).date,"yyyy-MM-dd'T'HH:mm:ss");
                         String convertedDate = DateTimeUtility.convertDateTimeFormate(response.body().detail.liveClassDataContractList.get(i).date,
-                                "yyyy-MM-dd'T'hh:mm:ss", "MMMM, dd");
+                                "yyyy-MM-dd'T'HH:mm:ss", "MMMM, dd");
                         String convertedTime="";
                         if (response.body().detail.liveClassDataContractList.get(i).time.equalsIgnoreCase("12:00:00")){
                            convertedTime="12:00 PM";
                         }
                         else {
                             convertedTime = DateTimeUtility.convertDateTimeFormate(response.body().detail.liveClassDataContractList.get(i).date,
-                                    "yyyy-MM-dd'T'hh:mm:ss", "h:mm a");
+                                    "yyyy-MM-dd'T'HH:mm:ss", "h:mm a");
                         }
                         String convertedDay = DateTimeUtility.convertDateTimeFormate(response.body().detail.liveClassDataContractList.get(i).date,
-                                "yyyy-MM-dd'T'hh:mm:ss", "EEEE");
+                                "yyyy-MM-dd'T'HH:mm:ss", "EEEE");
                         response.body().detail.liveClassDataContractList.get(i).sessionDate = convertedDate;
                         response.body().detail.liveClassDataContractList.get(i).time = convertedTime;
                         response.body().detail.liveClassDataContractList.get(i).day = convertedDay;
@@ -240,6 +244,9 @@ public class StudentViewModel extends ViewModel {
         tutorByCourseLevelCall.enqueue(new Callback<TutorByCourseLevel>() {
             @Override
             public void onResponse(@NonNull Call<TutorByCourseLevel> call, @NonNull Response<TutorByCourseLevel> response) {
+              /*  for (int i=0; i<response.body().detail.courseTutorDataContractList.size(); i++){
+                    response.body().detail.courseTutorDataContractList.get(i).
+                }*/
                 tutorByCourseLevelMutableLiveData.setValue(response.body());
             }
 

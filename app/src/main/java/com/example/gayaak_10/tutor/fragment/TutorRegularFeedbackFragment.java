@@ -49,6 +49,7 @@ public class TutorRegularFeedbackFragment extends Fragment implements View.OnCli
     ArrayList<FeedbackTutorRegularContentRequest.ModuleStatusDataContractList> moduleList = new ArrayList<>();
     private TodaySessions tutorSession = new TodaySessions();
 
+
     public TutorRegularFeedbackFragment(CoursesDetail coursesDetail) {
         this.courseId = coursesDetail.courseId;
         this.coursesDetail = coursesDetail;

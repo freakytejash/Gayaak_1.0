@@ -33,6 +33,7 @@ import com.example.gayaak_10.student.fragment.StudentProfileFragment;
 import com.example.gayaak_10.student.fragment.StudentRegularFragment;
 import com.example.gayaak_10.student.viewmodel.StudentViewModel;
 import com.example.gayaak_10.utility.SharedPrefsUtil;
+import com.example.gayaak_10.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -287,5 +288,11 @@ public class StudentHomeActivity extends AppCompatActivity {
                 addFragment(new StudentDemoHomeFragment(), Constant.HOME);
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utility.hideLoader();
     }
 }

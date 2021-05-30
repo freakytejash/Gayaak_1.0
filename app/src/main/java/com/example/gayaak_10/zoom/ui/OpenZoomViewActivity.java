@@ -221,9 +221,7 @@ public class OpenZoomViewActivity extends Activity implements InitAuthSDKCallbac
         params.password = Constant.meetingPassword;
         params.displayName = App.userDataContract.detail.firstName;
 
-       /* params.displayName = DISPLAY_NAME;
-        params.meetingNo = meetingNo;
-        params.password = meetingPassword;*/
+
 
 
         JoinMeetingOptions options = new JoinMeetingOptions();

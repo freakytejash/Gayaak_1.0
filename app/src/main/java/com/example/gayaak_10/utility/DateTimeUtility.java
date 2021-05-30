@@ -55,6 +55,100 @@ public class DateTimeUtility {
         return formattedDate;
     }
 
+/*    public static String convertDateTimeAccordingToTimeZoneFromServer(String dateString, String format){
+        Calendar calendar = Calendar.getInstance();
+        TimeZone timeZone = calendar.getTimeZone();
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat(*//*"MM/dd/yyyy HH:mm:ss"*//*format, Locale.ENGLISH);
+        inputFormat.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+        //Date date1 = inputFormat.parse(dateString);
+        Date date = null;
+        try {
+            date = inputFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.text.DateFormat outputFormat = new SimpleDateFormat(*//*"MM/dd/yyyy HH:mm:ss"*//*format);
+
+        outputFormat.setTimeZone(TimeZone.getTimeZone(String.valueOf(timeZone.getID())));
+        String estTime = outputFormat.format(date);
+        try {
+            date = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).parse(estTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.valueOf(date);
+    }*/
+
+    public static String formatDateWithTimeZoneFromServer(String dateString, String format) {
+        // null check
+        try {
+           /* Date date = new SimpleDateFormat(format,Locale.getDefault()).parse(dateString);
+            if (date == null) return null;
+            // create SimpleDateFormat object with input format
+            SimpleDateFormat sdf = new SimpleDateFormat(format);*/
+            //sdf.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+            // sdf.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+            // default system timezone if passed null or empty
+/*            if (timeZone == null || "".equalsIgnoreCase(timeZone.trim())) {
+                timeZone = Calendar.getInstance().getTimeZone().getID();
+            }*/
+            // set timezone to SimpleDateFormat
+            //sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
+
+            java.text.DateFormat istFormat = new SimpleDateFormat(format);
+            istFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+            java.text.DateFormat requiredFormat = new SimpleDateFormat(format);
+            requiredFormat .setTimeZone(TimeZone.getTimeZone(Calendar.getInstance().getTimeZone().getID()));
+            Date timestamp = istFormat.parse(dateString);
+            String output = requiredFormat.format(timestamp);
+
+            //  Log.e("apiTime", "formatDateToString: "+sdf.format(date));
+            // return Date in required format with timezone as String
+            return output /*convertDateTimeFormate(sdf.format(date), format, outputFormat)*/;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String formatDateTimeZoneToServer(String dateString, String format){
+
+        java.text.DateFormat istFormat = new SimpleDateFormat(format);
+        istFormat.setTimeZone(TimeZone.getTimeZone(Calendar.getInstance().getTimeZone().getID()));
+        java.text.DateFormat requiredFormat = new SimpleDateFormat(format);
+        requiredFormat .setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+        Date timestamp = null;
+        try {
+            timestamp = istFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String output = requiredFormat.format(timestamp);
+        return output;
+    }
+
+
+/*    public static String convertDateTimeAccordingToTimeZoneToServer(String dateString, String format){
+        Calendar calendar = Calendar.getInstance();
+        TimeZone timeZone = calendar.getTimeZone();
+
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        dateTimeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+        Date date = new Date();
+        java.text.DateFormat timeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        timeFormat.setTimeZone(TimeZone.getTimeZone(String.valueOf(timeZone.getID())));
+        String estTime = timeFormat.format(date);
+        try {
+            date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH).parse(estTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }*/
 
     public static String convertDateTimeFormate(String strDate, String format, String output) {
 
@@ -90,6 +184,8 @@ public class DateTimeUtility {
         return convertDateTimeFormate(sdf.format(date), format, outputFormat);
 
     }
+
+
 
     public static String convertDateStringFormat(String inputDate) {
         Date formattedDate = null;
